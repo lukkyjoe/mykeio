@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Sschumac/myke#readme",
   "dependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
     "body-parser": "^1.16.0",
     "browser-sync": "^2.18.7",
     "browsersync-webpack-plugin": "^0.4.1",

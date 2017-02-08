@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/Sschumac/myke/issues"
   },
-  "homepage": "https://github.com/Sschumac/myke#readme"
+  "homepage": "https://github.com/Sschumac/myke#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.1",
+    "express-session": "^1.15.0",
+    "passport": "^0.3.2",
+    "react": "^15.4.2",
+    "webpack": "^2.2.1"
+  }
 }

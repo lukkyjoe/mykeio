@@ -3,5 +3,8 @@ bower_components/
 *.log
 *.swp
 
+#tern completion settings
+.tern-project
+
 build/
 dist/

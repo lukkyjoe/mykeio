@@ -19,6 +19,8 @@
   "homepage": "https://github.com/Sschumac/myke#readme",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "browser-sync": "^2.18.7",
+    "browsersync-webpack-plugin": "^0.4.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.1",
     "express-session": "^1.15.0",

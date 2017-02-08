@@ -2,11 +2,11 @@ var webpack = require('webpack');
 var path = require('path');
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
-var BUILD_DIR = path.resolve(__dirname, 'client/public');
-var APP_DIR = path.resolve(__dirname, 'client/src');
+var BUILD_DIR = path.resolve(__dirname, './app/dist/');
+var APP_DIR = path.resolve(__dirname, './app/src/');
 
 var config = {
-  entry: APP_DIR + '/index.jsx',
+  entry: APP_DIR + 'index.jsx',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'

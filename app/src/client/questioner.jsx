@@ -9,21 +9,12 @@ class Questioner extends React.Component {
     }
   }
 
-  componentWillMount() {
-    console.log("component will mount");
-  }
-
-  componentDidMount() {
-    console.log("component did mount");
-  }
-
-  componentDidUpdate() {
-    console.log("component did update");
-  }  
 
   render() {
     return (
-      <div></div>
+      <div>This is from the questioner component!</div>
     )
   }
 }
+
+export default Questioner;

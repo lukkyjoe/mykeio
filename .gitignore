@@ -7,4 +7,5 @@ bower_components/
 .tern-project
 
 build/
+.vscode
 app/dist/bundle.js

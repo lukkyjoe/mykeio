@@ -1,21 +1,39 @@
 import React from 'react';
 import $ from 'jquery';
-
+import Host from './host/host-main.jsx';
+import Client from './client/client-main.jsx';
 class Room extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={loading:true};
+  }
+
+
 
   componentDidMount(){
-    const url = window.location.href;
-    const roomid = url.substr(url.length - 6, 6);
-    console.log(roomid);
-    $.get('/api/room/info/'+ roomid)
+    this.url = window.location.href;
+    this.roomid = this.url.substr(this.url.length - 6, 6);
+    $.get('/api/room/info/'+ this.roomid)
       .done((data)=>{
-       console.log(data);
+        this.setState({
+          isAdmin:data.isAdmin,
+          loading:false
+        });
+      }).fail((er)=>{
+
       })
   }
+
   render(){
-    return (
-      <p>This is the room Component</p>
-    )
+    if (this.state.loading){
+      return <p>Joining room...</p>
+    } else {
+      if (this.state.isAdmin){
+        return <Host roomId={this.roomid} />
+      }else {
+        return <Client roomId={this.roomid}/>
+      }
+    }
   }
 }
 

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 export const DEFAULT_TEXT = 'Ask question';
 export const CLICKED_TEXT = 'Cancel';
 
-class Questioner extends React.Component {
+class Speaker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,4 +27,4 @@ class Questioner extends React.Component {
   }
 }
 
-export default Questioner;
+export default Speaker;

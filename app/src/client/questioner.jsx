@@ -6,10 +6,10 @@ export const CLICKED_TEXT = 'Cancel';
 
 class Questioner extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       raisedHand: false
-    }
+    };
 
     this.handleClick = this.handleClick.bind(this);
   }
@@ -22,8 +22,8 @@ class Questioner extends React.Component {
 
   render() {
     return (
-        <button onClick={this.handleClick}>{this.state.raisedHand ? CLICKED_TEXT : DEFAULT_TEXT}</button>
-    )
+      <button onClick={this.handleClick}>{this.state.raisedHand ? CLICKED_TEXT : DEFAULT_TEXT}</button>
+    );
   }
 }
 

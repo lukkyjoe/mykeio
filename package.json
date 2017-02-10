@@ -35,7 +35,6 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
-    "simplewebrtc": "^2.2.3",
     "webpack": "^2.2.1"
   },
   "devDependencies": {

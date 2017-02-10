@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Question = () =>
+const Question = (props) =>
   <div className="question">
     <ul>
-      <li className="speech"></li>
+      <div className="questionText">{props.question}</div>
       <button>Accept</button>
       <button>Reject</button>
     </ul>

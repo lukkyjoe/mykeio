@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-import Host from './host/host-main.jsx';
-import Client from './client/client-main.jsx';
+import Host from './host/host.jsx';
+import Client from './client/client.jsx';
 class Room extends React.Component{
   constructor(props){
     super(props);

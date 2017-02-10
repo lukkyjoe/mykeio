@@ -5,7 +5,10 @@ import Client from './client/client.jsx';
 class Room extends React.Component{
   constructor(props){
     super(props);
-    this.state={loading:true};
+    this.state={
+      loading:true,
+      roomFound:true,
+    };
   }
 
 
@@ -20,7 +23,10 @@ class Room extends React.Component{
           loading:false
         });
       }).fail((er)=>{
-
+        this.setState({
+          roomFound:false,
+          loading:false
+        });
       })
   }
 
@@ -28,10 +34,14 @@ class Room extends React.Component{
     if (this.state.loading){
       return <p>Joining room...</p>
     } else {
-      if (this.state.isAdmin){
-        return <Host roomId={this.roomid} />
-      }else {
-        return <Client roomId={this.roomid}/>
+      if (this.state.roomFound){
+        if (this.state.isAdmin){
+          return <Host roomId={this.roomid} />
+        }else {
+          return <Client roomId={this.roomid}/>
+        }
+      }else{
+        return <h1>The room could not be found</h1>
       }
     }
   }

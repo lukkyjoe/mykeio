@@ -9,3 +9,4 @@ bower_components/
 build/
 .vscode
 app/dist/bundle.js
+app/dist/bundle.js.map

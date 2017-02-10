@@ -1,6 +1,5 @@
 import React from 'react';
 import Client, {DEFAULT_TEXT, CLICKED_TEXT} from './client.jsx';
-// import Question from './question.jsx';
 import {shallow} from 'enzyme';
 
 describe('The client component', () => {

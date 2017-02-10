@@ -3,7 +3,7 @@ import React from 'react';
 export const DEFAULT_TEXT = 'Ask question';
 export const CLICKED_TEXT = 'Cancel';
 
-class Speaker extends React.Component {
+class Client extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,4 +26,4 @@ class Speaker extends React.Component {
   }
 }
 
-export default Speaker;
+export default Client;

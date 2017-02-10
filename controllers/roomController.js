@@ -15,5 +15,13 @@ module.exports.createNewRoom = function(adminId, callback){
     clients:[],
   }
 
-  callback(null,rooms[id]);
+  callback(null, rooms[id]);
+}
+
+module.exports.getRoomInfo = function(roomId, callback){
+  if (rooms[roomId]){
+    callback(null, rooms[roomId]);
+  }else{
+    callback("room does not exist", null);
+  }
 }

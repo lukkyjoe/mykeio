@@ -22,7 +22,10 @@ router.get('/room/info/:roomid', (req, res)=>{
     if (err) {
       res.sendStatus(500);
     } else {
-      res.send(room);
+      res.send({
+        room:room,
+        isAdmin:(req.session.id === room.adminId)
+      });
     }
   });
 });

@@ -10,7 +10,10 @@ const testQuestions = [{username: 'JOSEPH', question: 'What does recursion mean?
 
 describe('The queue component', () => {
     it ('should hold correct number of questions', () => {
-        const queue = shallow(<Queue questions={testQuestions} />);
-        expect(queue.find(Question)).to.have.length(3);
+        const q = shallow(<Queue questions={testQuestions} />);
+        // console.log('q.find(Question)=========', q.find(Question))
+        expect(q.find(Question).length).toBe(3);
     })
+
+
 })

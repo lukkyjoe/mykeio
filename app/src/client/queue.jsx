@@ -1,10 +1,10 @@
 import React from 'react';
 import Question from './question.jsx';
 
-const Queue = ({ questions = [] }) => {
+const Queue = ({ questions = []}) => {
   const queue = questions
-    .map(question => 
-      (<Question 
+    .map((question, index) => 
+      (<Question key={index}
       question={question.question}
       username={question.username}
       />)

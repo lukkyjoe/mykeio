@@ -25,3 +25,12 @@ module.exports.getRoomInfo = function(roomId, callback){
     callback("room does not exist", null);
   }
 }
+
+module.exports.updateHostPeerId = function(roomId, requestId, peerId,callback){
+  if (rooms[roomId].adminId === requestId && rooms[roomId]){
+    rooms[roomId].adminPeer = peerId;
+    callback(null,peerId);
+  }else {
+    callback('not auth');
+  }
+}

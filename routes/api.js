@@ -11,8 +11,17 @@ router.get('/room/new',(req,res) => {
     if (err){
       res.sendStatus(500);
     } else {
-      console.log('redirecting to ' + '#/' + room.id);
       res.redirect('/#/'+ room.id);
+    }
+  })
+});
+
+router.get('/room/info/:roomid',(req, res)=>{
+  roomController.getRoomInfo(req.params.roomid, (err,room)=>{
+    if (err){
+      res.sendStatus(500);
+    } else {
+      res.send(room);
     }
   })
 });

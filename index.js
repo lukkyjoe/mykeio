@@ -15,7 +15,9 @@ app.use(session({
 }));
 
 app.use(bodyParser.json());
+
 app.use('/api', apiRoutes);
+
 app.use(express.static(path.join(__dirname, 'app/dist/')));
 app.listen(process.env.port || 3100);
 

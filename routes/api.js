@@ -11,7 +11,8 @@ router.get('/room/new',(req,res) => {
     if (err){
       res.sendStatus(500);
     } else {
-      res.redirect('/#/'+ room.id);
+      console.log('sending room data to new host');
+      res.send(room);
     }
   })
 });

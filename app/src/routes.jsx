@@ -1,6 +1,6 @@
 import React from 'react';
-import Main from './main.jsx'
-import Room from './room.jsx'
+import Main from './main.jsx';
+import Room from './room.jsx';
 import {render} from 'react-dom';
 import {Router, Route, Link, hashHistory} from 'react-router'; 
 

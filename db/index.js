@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const db = mongoose.connect(mongoUri);
 
 const quizSchema = new Schema({
-  title: String,
+  title: {type: String, unique: true},
   questions: Array,
 })
 
@@ -16,13 +16,13 @@ const questionSchema = new Schema({
   answer: {type: String, text: String}
 })
 
-module.exports.question = mongoose('Questions', questionSchema);
+module.exports.question = mongoose.model('Questions', questionSchema);
 
 const responseSchema = new Schema({
   username: String,
   question: String,
   response: Array,
-  ts: Timestamp
+  ts: Date
 })
 
 const usersSchema = new Schema({

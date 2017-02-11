@@ -16,7 +16,7 @@ const questionSchema = new Schema({
   answer: {type: String, text: String}
 })
 
-module.exports.question = mongoose('Questions', questionSchema);
+module.exports.question = mongoose.model('Questions', questionSchema);
 
 const responseSchema = new Schema({
   username: String,

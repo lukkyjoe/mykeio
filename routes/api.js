@@ -22,8 +22,9 @@ router.get('/room/info/:roomid',(req, res)=>{
     if (err){
       res.sendStatus(500);
     } else {
+      console.log(room);
       res.send({
-        room:room,
+        adminPeerId:room.adminPeer,
         isAdmin:(req.session.id === room.adminId)
       });
     }
@@ -31,6 +32,7 @@ router.get('/room/info/:roomid',(req, res)=>{
 });
 
 router.post('/room/updateHostPeer/:id',(req, res)=>{
+  console.log(req.body);
   roomController.updateHostPeerId(req.params.id, req.session.id, req.body.peerID,(err, peer)=>{
     if (err){
       res.sendStatus(401);

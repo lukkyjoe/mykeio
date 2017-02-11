@@ -11,6 +11,7 @@ class Client extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.createPeerConnection = this.createPeerConnection.bind(this);
 
     $.get('/api/room/info/'+props.roomId)
       .done((data)=>{
@@ -33,10 +34,17 @@ class Client extends React.Component {
 
   createPeerConnection(host_id){
     this.peer = new Peer({key: 'lwjd5qra8257b9'});
-    this.peer.on('open',function(client_id) {
-      this.conn = peer.connect(host_id)
-      this.conn.on('open',function(){
-        console.log('connected to host');
+    const peer = this.peer;
+    this.peer.on('open',(client_id) => {
+      this.conn = this.peer.connect(host_id);
+      this.conn.on('open',()=>{
+        this.conn.send({
+          type:'init',
+          user:{
+            client_id:client_id,
+            username:'Anonymous'
+          }
+        })
       })
     })
   }

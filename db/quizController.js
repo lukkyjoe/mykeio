@@ -64,6 +64,15 @@ module.exports.createQuestion = function(req, res) {
       res.sendStatus(201);
     }
   })
+const qa = require('./index.js');
+
+module.exports.createQuiz = function(req, res) {
+  //create a quiz
+};
+
+module.exports.createQuestion = function(req, res) {
+  //create question for quiz
+
 };
 
 module.exports.deleteQuestion = function(req, res) {
@@ -98,3 +107,4 @@ db.quizzes.update({title: 'time complexity quiz'}, {$push: {questions: "q3"}},
     console.error(err);
     console.log(model);
   });
+

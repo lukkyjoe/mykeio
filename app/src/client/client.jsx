@@ -27,8 +27,14 @@ class Client extends React.Component {
   handleClick() {
     this.setState(() => ({
       raisedHand: !this.state.raisedHand
-    }));
-    this.conn
+    }),()=>{
+     this.conn.send({
+       type:'question',
+       active:this.state.raisedHand,
+       id:this.client_id
+     });
+    });
+
     
   }
 
@@ -36,6 +42,7 @@ class Client extends React.Component {
     this.peer = new Peer({key: 'lwjd5qra8257b9'});
     const peer = this.peer;
     this.peer.on('open',(client_id) => {
+      this.client_id = client_id;
       this.conn = this.peer.connect(host_id);
       this.conn.on('open',()=>{
         this.conn.send({

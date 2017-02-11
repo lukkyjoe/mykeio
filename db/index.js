@@ -18,6 +18,11 @@ const questionSchema = new Schema({
 
 module.exports.question = mongoose.model('Questions', questionSchema);
 
+const questionSchema = new Schema({
+  question: {type: String, text: String},
+  answer: {type: String, text: String}
+})
+
 const responseSchema = new Schema({
   username: String,
   question: String,

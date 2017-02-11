@@ -14,14 +14,21 @@ const quizSchema = new Schema({
 const Quizzes = mongoose.model('Quizzes', quizSchema);
 Quizzes.create({title: 'Quiz1'});
 
+const questionSchema = new Schema({
+  question: {type: String, text: String},
+  answer: {type: String, text: String}
+})
+
 const responseSchema = new Schema({
   username: String,
   question: String,
-  response: Array
+  response: Array,
+  ts: Timestamp
 })
 
-const userProfileSchema = new Schema({
+const usersSchema = new Schema({
   username: String,
+  name: {first: String, last: String},
   cumulative_score: Number,
   handRaiseCount: Number
 })

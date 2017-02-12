@@ -1,18 +1,19 @@
 import React from 'react';
-import Question from '';
+import Question from './question.jsx';
 
-const Queue = ({ questions = []},onAnswer,onCancel) => {
-  const queue = questions
-    .map((question, index) => 
-      (<Question key={index}
-      name={question.user.username}
-      onAnswer={onAnswer}
-      onCancel={onCancel}
-      />)
-    );
-  return (
-    <div>{queue}</div>  
-  )
-};
+
+class Queue extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+    if (this.props.questions[0]){
+      console.log('rendering questions',this.props);
+      return this.props.questions.map((value, index, array)=>(Question(value.user.username)));
+    }else{
+      return <div></div>
+    }
+  }
+}
 
 export default Queue;

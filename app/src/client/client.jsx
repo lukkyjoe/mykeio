@@ -49,7 +49,8 @@ class Client extends React.Component {
           type:'init',
           user:{
             client_id:client_id,
-            username:'Anonymous'
+            username:'Anonymous',
+            hasQuestion:false,
           }
         })
       })

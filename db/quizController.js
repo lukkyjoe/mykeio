@@ -150,9 +150,7 @@ db.quizzes.update({title: 'time complexity quiz'}, {$push: {questions: "q3"}},
   function(err, model) {
     console.error(err);
     console.log(model);
-<<<<<<< ea008fefcb0155671a90d1d58f7418680a21b2da
-  });
+  }
+);
 
-=======
-  });
->>>>>>> Build more db quiz controllers.
+

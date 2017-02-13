@@ -5,23 +5,29 @@ const Schema = mongoose.Schema;
 const db = mongoose.connect(mongoUri);
 
 const quizSchema = new Schema({
-  title: String,
-  topic: Array,
+  title: {type: String, unique: true},
   questions: Array,
-  responses: Array
 })
 
-const Quizzes = mongoose.model('Quizzes', quizSchema);
-Quizzes.create({title: 'Quiz1'});
+module.exports.quizzes = mongoose.model('Quizzes', quizSchema);
+
+const questionSchema = new Schema({
+  question: {type: String, text: String},
+  answer: {type: String, text: String}
+})
+
+module.exports.question = mongoose.model('Questions', questionSchema);
 
 const responseSchema = new Schema({
   username: String,
   question: String,
-  response: Array
+  response: Array,
+  ts: Date
 })
 
-const userProfileSchema = new Schema({
+const usersSchema = new Schema({
   username: String,
+  name: {first: String, last: String},
   cumulative_score: Number,
   handRaiseCount: Number
 })

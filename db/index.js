@@ -31,3 +31,8 @@ const usersSchema = new Schema({
   cumulative_score: Number,
   handRaiseCount: Number
 })
+
+const sessionSchema = new Schema({
+  title: String,
+  host: String
+})

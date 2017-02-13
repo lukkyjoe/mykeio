@@ -1,5 +1,5 @@
 import React from 'react';
-import Question from './question.jsx';
+import Question from '../client/question.jsx';
 
 const Queue = ({ questions = []}) => {
   const queue = questions

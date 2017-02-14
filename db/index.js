@@ -6,17 +6,17 @@ const db = mongoose.connect(mongoUri);
 
 const quizSchema = new Schema({
   title: {type: String, unique: true},
-  questions: Array,
+  questionsAndAnswers: Array,
 })
 
 module.exports.quizzes = mongoose.model('Quizzes', quizSchema);
 
-const questionSchema = new Schema({
-  question: {type: String, text: String},
-  answer: {type: String, text: String}
+const questionAndAnswerSchema = new Schema({
+  question: {type: String, unique: true},
+  answer: {type: String}
 })
 
-module.exports.question = mongoose.model('Questions', questionSchema);
+module.exports.questionAndAnswer = mongoose.model('QuestionsandAnswers', questionAndAnswerSchema);
 
 const responseSchema = new Schema({
   username: String,

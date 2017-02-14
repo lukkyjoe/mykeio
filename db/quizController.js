@@ -153,12 +153,24 @@ module.exports.createQuestion = function(req, res) {
 //   }
 // );
 
-db.questionAndAnswer.create(
-  {question: "this is question 3", answer: "this is answer 3"}, 
-  function(err, model) {
-    if (err) {console.error(err);}
-    else {
-      console.log(model);
+//test create entry
+// db.questionAndAnswer.create(
+//   {question: "this is question 3", answer: "this is answer 3"}, 
+  // function(err, model) {
+  //   if (err) {console.error(err);}
+  //   else {
+  //     console.log(model);
+  //   }
+  // }
+// )
+
+module.exports.findallQA = function() {
+  db.questionAndAnswer.find({}, 
+    function(err, model) {
+      if (err) {console.error(err);}
+      else {
+        console.log(model);
+      }
     }
-  }
-)
+  );
+}

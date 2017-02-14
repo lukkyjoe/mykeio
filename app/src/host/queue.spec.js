@@ -1,6 +1,6 @@
 import React from 'react';
 import Queue from './queue.jsx';
-import Question from './question.jsx';
+import Question from '../client/question.jsx';
 import {shallow, mount} from 'enzyme';
 
 const testQuestions = [{username: 'JOSEPH', question: 'What does recursion mean?'},

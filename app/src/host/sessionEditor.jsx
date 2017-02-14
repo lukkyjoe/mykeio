@@ -35,7 +35,7 @@ class SessionEditor extends React.Component {
   render() {
     return (
       <div>
-        <h2>Edit your quiz.</h2>    
+        <h2>Create your quiz.</h2>    
         <form onSubmit={this.handleSubmit}>
             <h3>Click to edit the questions and answers.</h3>
             <QAPairQueue pairs={this.state.editorObj.questionAndAnswers}/>

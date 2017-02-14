@@ -64,7 +64,7 @@ module.exports.createQuestion = function(req, res) {
       res.sendStatus(201);
     }
   })
-const qa = require('./index.js');
+}
 
 
 module.exports.createQuiz = function(req, res) {
@@ -145,12 +145,20 @@ module.exports.createQuestion = function(req, res) {
 //     questions: ["q1", "q2"]});
 
 //test add question to existing quiz
-db.quizzes.update({title: 'time complexity quiz'}, {$push: {questions: "q3"}}, 
-  {safe: true, upsert: true, new : true},
+// db.quizzes.update({title: 'time complexity quiz'}, {$push: {questions: "q3"}}, 
+//   {safe: true, upsert: true, new : true},
+//   function(err, model) {
+//     console.error(err);
+//     console.log(model);
+//   }
+// );
+
+db.questionAndAnswer.create(
+  {question: "this is question 3", answer: "this is answer 3"}, 
   function(err, model) {
-    console.error(err);
-    console.log(model);
+    if (err) {console.error(err);}
+    else {
+      console.log(model);
+    }
   }
-);
-
-
+)

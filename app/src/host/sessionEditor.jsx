@@ -1,36 +1,47 @@
 import React from 'react';
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
+import QAPairQueue from './qaPairQueue.jsx';
 
 class SessionEditor extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {value: ''};
+    this.state = {
+      editorObj: {
+        questionAndAnswers: [
+          {
+            question: 'QLorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            answer: 'AInteger nec odio.'
+          }, 
+          {
+            question: 'QPraesent libero.',
+            answer: 'ASed cursus ante dapibus diam.'
+          }, 
+          {
+            question: 'QMorbi in dui quis est pulvinar ullamcorper. ',
+            answer: 'AVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere'
+          },          
+        ]
+      }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
-    alert('A quiz question was submitted: ' + this.state.value);
+    console.log("this should eventually save changes")
     event.preventDefault();
   }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }  
 
   render() {
     return (
       <div>
-        <h2>Edit your session!</h2>
+        <h2>Edit your quiz.</h2>    
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Quiz name:
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <br></br>
+            <h3>Click to edit the questions and answers.</h3>
+            <QAPairQueue pairs={this.state.editorObj.questionAndAnswers}/>
           <br></br>
           <input type="submit" value="Save changes" />
-        </form>
+        </form>                  
       </div>
     )
   }

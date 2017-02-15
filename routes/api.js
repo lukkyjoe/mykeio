@@ -7,29 +7,28 @@ router.post('/createRoom',(req,res) => {
   if (!req.session){
     req.session.serialized = true;
   }
-  roomController.createNewRoom(req.session.id, req.body,(id)=>{
+  roomController.createNewRoom(req.session.id, req.body, (id)=>{
     res.send(id);
   });
-
 });
 
-router.get('/room/info/:roomid',(req, res)=>{
-  roomController.getRoomInfo(req.params.roomid, (err,room)=>{
+router.get('/getRoom',(req, res)=>{
+  console.log('get room');
+  roomController.getRoomInfo(req.query.roomid, (err,room)=>{
     if (err){
       res.sendStatus(500);
     } else {
-      console.log(room);
-      res.send({
-        adminPeerId:room.adminPeer,
-        isAdmin:(req.session.id === room.adminId)
-      });
+      res.send(Object.assign({},room,{
+        adminSessionId:undefined
+      }));
+
     }
   })
 });
 
-router.post('/room/updateHostPeer/:id',(req, res)=>{
+router.post('/updateHost',(req, res)=>{
   console.log(req.body);
-  roomController.updateHostPeerId(req.params.id, req.session.id, req.body.peerID,(err, peer)=>{
+  roomController.updateHostPeerId(req.body.roomid, req.session.id, req.body.peerid,(err, peer)=>{
     if (err){
       res.sendStatus(401);
     } else {

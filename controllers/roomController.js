@@ -8,8 +8,7 @@ module.exports.createNewRoom = function(adminSessionId, roomData, callback){
   const id = shortid.generate();
   rooms[id] = roomData;
   rooms[id].adminSessionId = adminSessionId;
-  console.log(rooms[id]);
-  callback(id);
+  callback(id)
 }
 
 module.exports.getRoomInfo = function(roomId, callback){
@@ -20,9 +19,9 @@ module.exports.getRoomInfo = function(roomId, callback){
   }
 }
 
-module.exports.updateHostPeerId = function(roomId, requestId, peerId,callback){
-  if (rooms[roomId].adminId === requestId && rooms[roomId]){
-    rooms[roomId].adminPeer = peerId;
+module.exports.updateHostPeerId = function(roomId, requestSessionId, peerId,callback){
+  if (rooms[roomId].adminSessionId === requestSessionId && rooms[roomId]){
+    rooms[roomId].adminPeerId = peerId;
     callback(null,peerId);
   }else {
     callback('not auth');

@@ -3,18 +3,14 @@ const express = require ('express');
 const roomController = require('./../controllers/roomController.js');
 const router = express.Router();
 
-router.get('/room/new',(req,res) => {
+router.post('/createRoom',(req,res) => {
   if (!req.session){
     req.session.serialized = true;
   }
-  roomController.createNewRoom(req.session.id,(err,room)=>{
-    if (err){
-      res.sendStatus(500);
-    } else {
-      console.log('sending room data to new host');
-      res.send(room);
-    }
-  })
+  roomController.createNewRoom(req.session.id, req.body,(id)=>{
+    res.send(id);
+  });
+
 });
 
 router.get('/room/info/:roomid',(req, res)=>{

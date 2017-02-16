@@ -5,12 +5,14 @@ import ResponseTypeSelect from './responseTypeSelect.jsx';
 import ResponseField from './responseField.jsx';
 import MultipleChoiceBuilder from './multipleChoice/multipleChoiceBuilder.jsx';
 
+const foo = 'bar';
+
 class Prompt extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       promptText: 'Here is a scary example question',
-      responseType: '',
+      responseType: 'none',
       responseTypes: [{type: "Multiple Choice", selected: false}, {type: "Raw text", selected: false}],
       choices: [{choice: "hi", correctAnswer: false}],
       trackAnswers: false
@@ -41,15 +43,17 @@ class Prompt extends React.Component {
 
   selectResponseType(text) {
     this.state.responseType = text;
-    this.setState({ choices: this.state.choices });
+    this.setState({ responseType: this.state.responseType });
   }
+
+
 
   render() {
     return (
       <div className="prompt">
         <h3>Prompt</h3>
         <HostQuestion promptText={this.state.promptText} updatePrompt={this.updatePrompt.bind(this)}/>
-        <ResponseTypeSelect responseTypes={this.state.responseTypes} selectResponseType={this.selectResponseType.bind(this)}/>
+        <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         <br></br>
         <br></br>
         <MultipleChoiceBuilder correctAnswerExists={this.state.correctAnswerExists}

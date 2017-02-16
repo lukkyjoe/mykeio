@@ -4,7 +4,8 @@ import InlineEdit from 'react-edit-inline';
 class HostQuestion extends React.Component {
 
   handleUpdateClick(event) {
-    event.preventDefault;
+    console.log(this.props)
+    event.preventDefault();
     console.log(this.refs.promptInput.value);
     this.props.updatePrompt(this.refs.promptInput.value);
   }

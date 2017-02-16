@@ -1,6 +1,6 @@
 import React from 'react';
 
-class TrackAnswersAndFeedbackBoolean extends React.Component {
+class TrackAnswersBoolean extends React.Component {
 
   handleClick(event) {
     console.log(event);
@@ -31,4 +31,4 @@ class TrackAnswersAndFeedbackBoolean extends React.Component {
   }
 }
 
-export default TrackAnswersAndFeedbackBoolean;
+export default TrackAnswersBoolean;

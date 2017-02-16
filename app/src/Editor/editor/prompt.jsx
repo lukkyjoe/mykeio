@@ -4,7 +4,8 @@ import HostQuestion from './hostQuestion.jsx';
 import ResponseTypeSelect from './responseTypeSelect.jsx';
 import ResponseField from './responseField.jsx';
 import MultipleChoiceBuilder from './multipleChoice/multipleChoiceBuilder.jsx';
-import TrackAnswersAndFeedbackBoolean from './trackAnswersAndFeedbackBoolean.jsx';
+import TrackAnswersBoolean from './trackAnswersBoolean.jsx';
+import GiveFeedbackBoolean from './giveFeedbackBoolean.jsx';
 
 const foo = 'bar';
 
@@ -66,7 +67,7 @@ class Prompt extends React.Component {
   renderGiveFeedbackSection() {
     if (this.state.trackAnswers === "true") {
       return (
-        <div> Give feedback? </div>
+        <GiveFeedbackBoolean />
       )
     }
     else {
@@ -84,10 +85,8 @@ class Prompt extends React.Component {
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         <br></br>
         <br></br>
-        <MultipleChoiceBuilder correctAnswerExists={this.state.correctAnswerExists}
-        createChoice={this.createChoice.bind(this)}
-        choices={this.state.choices}/>
-        <TrackAnswersAndFeedbackBoolean trackAnswers={this.state.trackAnswers} toggleTrackAnswerStatus={this.toggleTrackAnswerStatus.bind(this)}/>
+        {this.renderResponseFormat()}
+        <TrackAnswersBoolean trackAnswers={this.state.trackAnswers} toggleTrackAnswerStatus={this.toggleTrackAnswerStatus.bind(this)}/>
         
         <br></br>
         <br></br>

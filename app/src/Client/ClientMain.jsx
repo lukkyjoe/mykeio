@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './ClientMain.css';
 import $ from 'jquery';
+import VolumeBar from './VolumeBar.jsx';
 class ClientMain extends Component {
 
   constructor(props) {
@@ -65,17 +66,13 @@ class ClientMain extends Component {
     this.setState({hasVoiceQuestion: false});
 
   }
-
-  requestScreenShare() {
-
-  }
-
   render() {
     return (
       <div className={styles.base}>
         <p>{this.state.status}</p>
         <h2>{this.state.roomTitle}</h2>
         <button onClick={this.askVoiceQuestion}>Ask Question</button>
+        <VolumeBar />
       </div>
     );
   }

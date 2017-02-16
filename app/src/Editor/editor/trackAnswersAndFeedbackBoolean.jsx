@@ -5,6 +5,7 @@ class TrackAnswersAndFeedbackBoolean extends React.Component {
   handleClick(event) {
     console.log(event);
     console.log(this.props);
+    console.log('target value ====', event.currentTarget.value)
     this.props.toggleTrackAnswerStatus(event.currentTarget.value);
   }
   render() {

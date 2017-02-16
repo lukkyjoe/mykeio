@@ -48,6 +48,33 @@ class Prompt extends React.Component {
     this.setState({ responseType: this.state.responseType });
   }
 
+  renderResponseFormat() {
+    if (this.state.responseType === 'MULTIPLE_CHOICE') {
+      return (
+        <MultipleChoiceBuilder correctAnswerExists={this.state.correctAnswerExists}
+        createChoice={this.createChoice.bind(this)}
+        choices={this.state.choices}/>
+      )
+    }
+    if (this.state.responseType === 'TEXT') {
+      return (
+        <div> Raw input field </div>
+      )
+    }
+  }
+
+  renderGiveFeedbackSection() {
+    if (this.state.trackAnswers === "true") {
+      return (
+        <div> Give feedback? </div>
+      )
+    }
+    else {
+      return;
+    }
+
+  }
+
 
   render() {
     return (
@@ -61,10 +88,12 @@ class Prompt extends React.Component {
         createChoice={this.createChoice.bind(this)}
         choices={this.state.choices}/>
         <TrackAnswersAndFeedbackBoolean trackAnswers={this.state.trackAnswers} toggleTrackAnswerStatus={this.toggleTrackAnswerStatus.bind(this)}/>
-        <br></br>
-        <br></br>
         
+        <br></br>
+        <br></br>
+        {this.renderGiveFeedbackSection()}        
         <button onClick={this.saveSettingsHandler.bind(this)}>Confirm prompt settings</button>
+
       </div>
     )
   }

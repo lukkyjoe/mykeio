@@ -1,6 +1,13 @@
 node_modules/
 bower_components/
 *.log
+*.swp
+
+#tern completion settings
+.tern-project
 
 build/
-dist/
+.vscode
+app/dist/bundle.js
+*.map
+

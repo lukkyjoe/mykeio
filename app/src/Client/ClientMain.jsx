@@ -7,62 +7,66 @@ class ClientMain extends Component {
     super(props);
 
     this.state = {
-      status:"connecting to server...",
-      isReady:false,
-      clientData:{
-        username:"Anonymous",
+      status: 'connecting to server...',
+      isReady: false,
+      clientData: {
+        username: 'Anonymous',
       }
-    }
+    };
 
   }
 
   componentDidMount() {
-    $.get('/api/getRoom', {roomid:this.props.params.roomid})
+    $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
         console.log(data);
-        this.setState({status:"connecting to host...."});
+        this.setState({status: 'connecting to host....'});
         this.setState(data);
         this.peer = new Peer({key: 'lwjd5qra8257b9'});
 
         this.peer.on('open', (id)=>{
           this.state.clientData.id = id;
           this.connection = this.peer.connect(this.state.adminPeerId);
-          this.connection.on('open',()=>{
-            this.setState({status:"connected to host."});
+          this.connection.on('open', ()=>{
+            this.setState({status: 'connected to host.'});
             this.updateHostWithClientData();
-          })
-        })
+          });
+        });
       }).fail(()=>{
-        this.setState({status:"Could not connect to the server"});
-      })
+        this.setState({status: 'Could not connect to the server'});
+      });
 
     window.onbeforeunload = ()=>{ 
       console.log(this.peer);
-      this.connection.send({type:"CLIENT_DISCONNECT", payload: this.state.clientData});
-    }
+      this.connection.send({type: 'CLIENT_DISCONNECT', payload: this.state.clientData});
+    };
   }
 
-  updateHostWithClientData(){
+  updateHostWithClientData() {
     this.connection.send({
-      type:'CLIENT_UPDATE',
-      payload:this.state.clientData
-    })
-  }
-
-  askVoiceQuestion(){
-    this.connection.send({
-      type:'QUESTION_REQUEST',
-      payload:this.state.clientData
-    })
-    this.setState({hasVoiceQuestion:true});
-  }
-
-  cancelVoiceQuestion(){
-    this.connection.send({
-      type:'CANCEL_QUESTION_REQUEST',
-      payload:this.state.clientData
+      type: 'CLIENT_UPDATE',
+      payload: this.state.clientData
     });
-    this.setState({hasVoiceQuestion:false});
+  }
+
+  askVoiceQuestion() {
+    this.connection.send({
+      type: 'QUESTION_REQUEST',
+      payload: this.state.clientData
+    });
+    this.setState({hasVoiceQuestion: true});
+  }
+
+  cancelVoiceQuestion() {
+    this.connection.send({
+      type: 'CANCEL_QUESTION_REQUEST',
+      payload: this.state.clientData
+    });
+    this.setState({hasVoiceQuestion: false});
+
+  }
+
+  requestScreenShare() {
 
   }
 

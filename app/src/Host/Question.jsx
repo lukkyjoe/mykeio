@@ -8,10 +8,10 @@ class Question extends Component {
   }
 
 
-  onAnswerClick(){
-    this.props.peer
+  onAnswerClick() {
+    this.props.peer;
   
-  }
+  } 
   render() {
     return (
       <div className={styles.base}>

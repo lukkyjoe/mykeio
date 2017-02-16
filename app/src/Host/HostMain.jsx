@@ -7,7 +7,8 @@ class HostMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      settingUp:true
+      settingUp:true,
+      clients:[]
     }
     this.setUpRoom = this.setUpRoom.bind(this);
   }
@@ -26,7 +27,7 @@ class HostMain extends Component {
         })
         .fail((data)=>{
           console.log('could not update host data');
-        })
+        });
     });
 
     this.peer.on('connection',(conn)=>{
@@ -35,9 +36,14 @@ class HostMain extends Component {
       })
     })
 
+    this.peer.on('close', (hello)=>{
+      console.log('peer closed');
+      console.log(hello);
+    })
+
     $.get('/api/getRoom', {roomid:this.props.params.roomid})
       .done((data)=>{
-        console.log(data);
+        this.setState({roomData:data});
       })
       .fail(()=>{
         console.log('could not get room data');
@@ -46,12 +52,38 @@ class HostMain extends Component {
 
   handlePeerData(data){
     console.log(data);
+    switch (data.type){
+      case "CLIENT_UPDATE":{
+        let currentList = this.state.clients.slice();
+        if (currentList.find(a=>a.id === data.payload.id)){
+          currentList.splice(currentList.findIndex(a=>a.id === data.payload.id), 1, data.payload);
+          this.setState({clients:currentList},()=>{
+            console.log('client updated', this.state.clients)
+          });
+        } else {
+          this.setState({clients:[...this.state.clients, data.payload]},()=>{
+            console.log("client added", this.state.clients);
+          })
+        }
+        break;
+      }
+      case "CLIENT_DISCONNECT":{
+        let currentList = this.state.clients.slice();
+        currentList.splice(currentList.findIndex(a=>a.id === data.payload.id),1);
+        this.setState({clients:currentList},()=>{
+          console.log("client diconnected", this.state.clients);
+        });
+        break;
+      }
+    }
   }
 
   render() {
+    let users = this.state.clients.map(a=><p>{a.id}</p>);
     return (
       <div className={styles.base}>
-        
+        <a href={'/#/' + this.props.params.roomid}>go to client</a>
+        {[...users]}
       </div>
     );
   }

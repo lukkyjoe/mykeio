@@ -2,14 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
 
+
 class HostMain extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      settingUp: true,
-      clients: []
-    };
+      settingUp:true,
+      clients:[]
+    }
+    this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
   }
 

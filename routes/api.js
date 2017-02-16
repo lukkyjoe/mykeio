@@ -13,7 +13,6 @@ router.post('/createRoom',(req,res) => {
 });
 
 router.get('/getRoom',(req, res)=>{
-  console.log('get room');
   roomController.getRoomInfo(req.query.roomid, (err,room)=>{
     if (err){
       res.sendStatus(500);
@@ -27,7 +26,6 @@ router.get('/getRoom',(req, res)=>{
 });
 
 router.post('/updateHost',(req, res)=>{
-  console.log(req.body);
   roomController.updateHostPeerId(req.body.roomid, req.session.id, req.body.peerid,(err, peer)=>{
     if (err){
       res.sendStatus(401);

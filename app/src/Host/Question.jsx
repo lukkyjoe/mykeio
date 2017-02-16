@@ -9,9 +9,8 @@ class Question extends Component {
 
 
   onAnswerClick(){
-    this.props.connection.send({
-      type:"QUESTION_ANSWER"
-    })
+    this.props.peer
+  
   }
   render() {
     return (

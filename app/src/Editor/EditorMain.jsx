@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './EditorMain.css';
 import $ from 'jquery';
+import Editor from './editor/editor.jsx';
 class EditorMain extends Component {
 
   constructor(props) {
@@ -50,6 +51,7 @@ class EditorMain extends Component {
     return (
       <div className={styles.base}>
         <p>This is the editor view</p>
+        <Editor />
         <button onClick={this.createRoom}>Create Room with Fake Data</button>
       </div>
     );

@@ -12,7 +12,6 @@ export default class ChoicesList extends React.Component {
   }
   
   render() {
-    console.log(this.props);
     return (
       <table>
         <ChoicesListHeader />

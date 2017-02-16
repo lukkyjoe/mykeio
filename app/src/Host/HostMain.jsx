@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
-import $ from "jquery";
+import $ from 'jquery';
 
 class HostMain extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      settingUp:true,
-      clients:[]
-    }
+      settingUp: true,
+      clients: []
+    };
     this.setUpRoom = this.setUpRoom.bind(this);
   }
 
@@ -17,11 +17,11 @@ class HostMain extends Component {
     this.setUpRoom();
   }
 
-  setUpRoom(){
+  setUpRoom() {
     this.peer = new Peer({key: 'lwjd5qra8257b9'});
 
     this.peer.on('open', (id)=>{
-      $.post('/api/updateHost', {roomid:this.props.params.roomid, peerid:id})
+      $.post('/api/updateHost', {roomid: this.props.params.roomid, peerid: id})
         .done(()=>{
           console.log('host data updated');
         })
@@ -30,65 +30,65 @@ class HostMain extends Component {
         });
     });
 
-    this.peer.on('connection',(conn)=>{
-      conn.on('data',(data)=>{
-        this.handlePeerData(data,conn);
-      })
-    })
+    this.peer.on('connection', (conn)=>{
+      conn.on('data', (data)=>{
+        this.handlePeerData(data, conn);
+      });
+    });
 
-    $.get('/api/getRoom', {roomid:this.props.params.roomid})
+    $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
-        this.setState({roomData:data});
+        this.setState({roomData: data});
       })
       .fail(()=>{
-      })
+      });
   }
 
-  handlePeerData(data, conn){
-    switch (data.type){
-      case "CLIENT_UPDATE":{
-        let currentList = this.state.clients.slice();
-        if (currentList.find(a=>a.id === data.payload.id)) {
-          this.setState({clients:this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
+  handlePeerData(data, conn) {
+    switch (data.type) {
+    case 'CLIENT_UPDATE': {
+      let currentList = this.state.clients.slice();
+      if (currentList.find(a=>a.id === data.payload.id)) {
+          this.setState({clients: this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
         } else {
-          this.setState({clients:this.addToList(this.state.clients, data.payload)});
+          this.setState({clients: this.addToList(this.state.clients, data.payload)});
           this.connectionHash[data.payload.id] = conn;
         }
-        break;
-      }
-      case "CLIENT_DISCONNECT":{
-        this.setState({clients:this.removeFromList(this.state.clients, a=> a.id === data.payload.id)});
-        this.setState({questions:this.removeFromList(this.state.questions, a=> a.id === data.payload.id)})
-        this.connectionHash[data.payload.id] = undefined;
-        break;
-      }
+      break;
+    }
+    case 'CLIENT_DISCONNECT': {
+      this.setState({clients: this.removeFromList(this.state.clients, a=> a.id === data.payload.id)});
+      this.setState({questions: this.removeFromList(this.state.questions, a=> a.id === data.payload.id)});
+      this.connectionHash[data.payload.id] = undefined;
+      break;
+    }
 
-      case "QUESTION_REQUEST":{
-        data.payload.connection = conn;
-        this.setState({questions:this.addToList(this.state.questions, data.payload)});
-      }
+    case 'QUESTION_REQUEST': {
+      data.payload.connection = conn;
+      this.setState({questions: this.addToList(this.state.questions, data.payload)});
+    } 
 
-      case "CANCEL_QUESTION_REQUEST":{
-        this.setState({questions:this.removeFromList(this.state.questions, a => a.id === data.payload.id)});
-      }
+    case 'CANCEL_QUESTION_REQUEST': {
+      this.setState({questions: this.removeFromList(this.state.questions, a => a.id === data.payload.id)});
+    }
 
     }
   }
   //pure, returns new array
-  removeFromList(list, selectionFunction ){
+  removeFromList(list, selectionFunction ) {
     let newList = list.slice();
-    newList.splice(newList.findIndex(selectionFunction(a)),1);
+    newList.splice(newList.findIndex(selectionFunction(a)), 1);
     return newList;
 
   }
 
-  addToList(list, item){
+  addToList(list, item) {
     return [...list, item];
   }
 
-  updateItemInList(list, selectionFunction, itemToAdd){
+  updateItemInList(list, selectionFunction, itemToAdd) {
     let newList = list.slice();
-    newList.splice(newList.findIndex(selectionFunction(a)),1,itemToAdd);
+    newList.splice(newList.findIndex(selectionFunction(a)), 1, itemToAdd);
     return newList;
   }
 

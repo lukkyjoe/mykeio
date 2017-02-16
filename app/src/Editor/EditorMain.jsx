@@ -10,7 +10,7 @@ class EditorMain extends Component {
   createRoom(){
     $.post('/api/createRoom', {
       roomTitle:"A v hella dank room.",
-      feedback:[
+      feedback:[ 
         {
           type:"MULTIPLE_CHOICE",
           prompt:"WHAT IS LOVE?",

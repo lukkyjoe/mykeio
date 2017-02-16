@@ -49,11 +49,29 @@ class ClientMain extends Component {
     })
   }
 
+  askVoiceQuestion(){
+    this.connection.send({
+      type:'QUESTION_REQUEST',
+      payload:this.state.clientData
+    })
+    this.setState({hasVoiceQuestion:true});
+  }
+
+  cancelVoiceQuestion(){
+    this.connection.send({
+      type:'CANCEL_QUESTION_REQUEST',
+      payload:this.state.clientData
+    });
+    this.setState({hasVoiceQuestion:false});
+
+  }
+
   render() {
     return (
       <div className={styles.base}>
         <p>{this.state.status}</p>
         <h2>{this.state.roomTitle}</h2>
+        <button onClick={this.askVoiceQuestion}>Ask Question</button>
       </div>
     );
   }

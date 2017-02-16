@@ -36,17 +36,11 @@ class HostMain extends Component {
       })
     })
 
-    this.peer.on('close', (hello)=>{
-      console.log('peer closed');
-      console.log(hello);
-    })
-
     $.get('/api/getRoom', {roomid:this.props.params.roomid})
       .done((data)=>{
         this.setState({roomData:data});
       })
       .fail(()=>{
-        console.log('could not get room data');
       })
   }
 
@@ -58,11 +52,9 @@ class HostMain extends Component {
         if (currentList.find(a=>a.id === data.payload.id)){
           currentList.splice(currentList.findIndex(a=>a.id === data.payload.id), 1, data.payload);
           this.setState({clients:currentList},()=>{
-            console.log('client updated', this.state.clients)
           });
         } else {
           this.setState({clients:[...this.state.clients, data.payload]},()=>{
-            console.log("client added", this.state.clients);
           })
         }
         break;
@@ -71,7 +63,6 @@ class HostMain extends Component {
         let currentList = this.state.clients.slice();
         currentList.splice(currentList.findIndex(a=>a.id === data.payload.id),1);
         this.setState({clients:currentList},()=>{
-          console.log("client diconnected", this.state.clients);
         });
         break;
       }
@@ -84,6 +75,7 @@ class HostMain extends Component {
       <div className={styles.base}>
         <a href={'/#/' + this.props.params.roomid}>go to client</a>
         {[...users]}
+        <p>questions</p>
       </div>
     );
   }

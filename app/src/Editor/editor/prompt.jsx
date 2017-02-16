@@ -4,6 +4,7 @@ import HostQuestion from './hostQuestion.jsx';
 import ResponseTypeSelect from './responseTypeSelect.jsx';
 import ResponseField from './responseField.jsx';
 import MultipleChoiceBuilder from './multipleChoice/multipleChoiceBuilder.jsx';
+import TrackAnswersAndFeedbackBoolean from './trackAnswersAndFeedbackBoolean.jsx';
 
 const foo = 'bar';
 
@@ -13,9 +14,9 @@ class Prompt extends React.Component {
     this.state = {
       promptText: 'Here is a scary example question',
       responseType: 'none',
-      responseTypes: [{type: "Multiple Choice", selected: false}, {type: "Raw text", selected: false}],
-      choices: [{choice: "hi", correctAnswer: false}],
-      trackAnswers: false
+      choices: [{choice: 'dummy choice', correctAnswer: false}],
+      trackAnswers: false,
+      giveFeedback: false
     }
   }
   saveSettingsHandler(){
@@ -37,15 +38,15 @@ class Prompt extends React.Component {
 
   }
 
-  toggleTrackAnswerStatus() {
-    this.state.trackAnswers = !this.state.trackAnswers;
+  toggleTrackAnswerStatus(status) {
+    this.state.trackAnswers = status
+    this.setState({ trackAnswers: this.state.trackAnswers });
   }
 
   selectResponseType(text) {
     this.state.responseType = text;
     this.setState({ responseType: this.state.responseType });
   }
-
 
 
   render() {
@@ -59,6 +60,7 @@ class Prompt extends React.Component {
         <MultipleChoiceBuilder correctAnswerExists={this.state.correctAnswerExists}
         createChoice={this.createChoice.bind(this)}
         choices={this.state.choices}/>
+        <TrackAnswersAndFeedbackBoolean trackAnswers={this.state.trackAnswers} toggleTrackAnswerStatus={this.toggleTrackAnswerStatus.bind(this)}/>
         <br></br>
         <br></br>
         

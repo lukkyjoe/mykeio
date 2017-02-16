@@ -1,7 +1,7 @@
 import React from 'react';
 import InlineEdit from 'react-edit-inline';
 import HostQuestion from './hostQuestion.jsx';
-import ResponseTypeDropDown from './responseTypeDropDown.jsx';
+import ResponseTypeSelect from './responseTypeSelect.jsx';
 import ResponseField from './responseField.jsx';
 import MultipleChoiceBuilder from './multipleChoice/multipleChoiceBuilder.jsx';
 
@@ -49,7 +49,7 @@ class Prompt extends React.Component {
       <div className="prompt">
         <h3>Prompt</h3>
         <HostQuestion promptText={this.state.promptText} updatePrompt={this.updatePrompt.bind(this)}/>
-        <ResponseTypeDropDown responseTypes={this.state.responseTypes} selectResponseType={this.selectResponseType.bind(this)}/>
+        <ResponseTypeSelect responseTypes={this.state.responseTypes} selectResponseType={this.selectResponseType.bind(this)}/>
         <br></br>
         <br></br>
         <MultipleChoiceBuilder correctAnswerExists={this.state.correctAnswerExists}

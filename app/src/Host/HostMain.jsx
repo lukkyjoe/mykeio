@@ -9,7 +9,8 @@ class HostMain extends Component {
     super(props);
     this.state = {
       settingUp:true,
-      clients:[]
+      clients:[],
+      questions:[]
     }
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -21,7 +22,6 @@ class HostMain extends Component {
 
   setUpRoom() {
     this.peer = new Peer({key: 'lwjd5qra8257b9'});
-
     this.peer.on('open', (id)=>{
       $.post('/api/updateHost', {roomid: this.props.params.roomid, peerid: id})
         .done(()=>{
@@ -79,9 +79,8 @@ class HostMain extends Component {
   //pure, returns new array
   removeFromList(list, selectionFunction ) {
     let newList = list.slice();
-    newList.splice(newList.findIndex(selectionFunction(a)), 1);
+    newList.splice(newList.findIndex(selectionFunction), 1);
     return newList;
-
   }
 
   addToList(list, item) {
@@ -90,7 +89,7 @@ class HostMain extends Component {
 
   updateItemInList(list, selectionFunction, itemToAdd) {
     let newList = list.slice();
-    newList.splice(newList.findIndex(selectionFunction(a)), 1, itemToAdd);
+    newList.splice(newList.findIndex(selectionFunction), 1, itemToAdd);
     return newList;
   }
 

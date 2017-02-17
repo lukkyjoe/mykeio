@@ -6,7 +6,7 @@ const db = mongoose.connect(mongoUri);
 
 const hostRoomSchema = new Schema({
   roomTitle: {type: String, unique: true},
-  questionsAndAnswers: [
+  prompts: [
     {
       type: String,
       promptText: String,
@@ -19,32 +19,32 @@ const hostRoomSchema = new Schema({
         }
       ],
     }
-],
-})
-
-module.exports.roomData = mongoose.model('HostRoomData', hostRoomSchema);
-
-const promptSchema = new Schema({
-  type: String,
-  promptText: String,
-  trackAnswers: Boolean,
-  giveFeedback: Boolean,
-  options: [
-    {
-      choiceText: String,
-      correctAnswer: Boolean,
-    }
   ],
 })
 
-module.exports.promptData = mongoose.model('PromptData', promptSchema);
+// module.exports.roomData = mongoose.model('HostRoomData', hostRoomSchema);
 
-const responseSchema = new Schema({
-  choiceText: String,
-  correctAnswer: Boolean,
-})
+// const promptSchema = new Schema({
+//   type: String,
+//   promptText: String,
+//   trackAnswers: Boolean,
+//   giveFeedback: Boolean,
+//   options: [
+//     {
+//       choiceText: String,
+//       correctAnswer: Boolean,
+//     }
+//   ],
+// })
 
-module.exports.responseData = mongoose.model('ResponseData', responseSchema);
+// module.exports.promptData = mongoose.model('PromptData', promptSchema);
+
+// const responseSchema = new Schema({
+//   choiceText: String,
+//   correctAnswer: Boolean,
+// })
+
+// module.exports.responseData = mongoose.model('ResponseData', responseSchema);
 
 
 // const questionAndAnswerSchema = new Schema({

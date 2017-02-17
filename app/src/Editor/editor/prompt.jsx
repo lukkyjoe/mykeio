@@ -11,16 +11,16 @@ const foo = 'bar';
 
 class Prompt extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       promptText: 'Here is a scary example question',
       responseType: 'none',
       choices: [{choice: 'dummy choice', correctAnswer: false}],
       trackAnswers: false,
       giveFeedback: false
-    }
+    };
   }
-  saveSettingsHandler(){
+  saveSettingsHandler() {
     //should log editted prompt data object
     console.log(this.state);
   }
@@ -45,7 +45,7 @@ class Prompt extends React.Component {
   }
 
   toggleGiveFeedbackStatus(status) {
-    console.log('toggleGiveFeedback status =========', status)
+    console.log('toggleGiveFeedback status =========', status);
     this.state.giveFeedback = status;
     this.setState({ giveFeedback: this.state.giveFeedback });
   }
@@ -61,28 +61,27 @@ class Prompt extends React.Component {
         <MultipleChoiceBuilder correctAnswerExists={this.state.correctAnswerExists}
         createChoice={this.createChoice.bind(this)}
         choices={this.state.choices}/>
-      )
+      );
     }
     if (this.state.responseType === 'TEXT') {
       return (
         <div> Raw input field </div>
-      )
+      );
     }
   }
 
   renderGiveFeedbackSection() {
-    if (this.state.trackAnswers === "true") {
+    if (this.state.trackAnswers === 'true') {
       return (
         <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/>
-      )
-    }
-    else {
+      );
+    } else {
       return;
     }
   }
 
 
-  render() {
+  render() {  
     return (
       <div className="prompt">
         <h3>Prompt</h3>
@@ -97,7 +96,7 @@ class Prompt extends React.Component {
         <button onClick={this.saveSettingsHandler.bind(this)}>Confirm prompt settings</button>
 
       </div>
-    )
+    );
   }
 }
 export default Prompt;

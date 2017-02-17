@@ -2,14 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
 
+import Question from './Question.jsx';
+
 class HostMain extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      settingUp: true,
-      clients: []
-    };
+      settingUp:true,
+      clients:[],
+      questions:[]
+    }
+    this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
   }
 
@@ -18,9 +22,9 @@ class HostMain extends Component {
   }
 
   setUpRoom() {
-    this.peer = new Peer({key: 'lwjd5qra8257b9'});
-
+    this.peer = new Peer({key: 'r8qpysu90fu8r529'});
     this.peer.on('open', (id)=>{
+      this.setState({peerid:id});
       $.post('/api/updateHost', {roomid: this.props.params.roomid, peerid: id})
         .done(()=>{
           console.log('host data updated');
@@ -36,13 +40,24 @@ class HostMain extends Component {
       });
     });
 
+    this.peer.on('call', (call)=>{
+      console.log('recieving call');
+      call.answer();
+      call.on('stream', (mediaStream)=>{
+        let clientAudio = new Audio(window.URL.createObjectURL(mediaStream));
+        clientAudio.play();
+      })
+    });
+
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
         this.setState({roomData: data});
       })
       .fail(()=>{
       });
+
   }
+
 
   handlePeerData(data, conn) {
     switch (data.type) {
@@ -66,10 +81,12 @@ class HostMain extends Component {
     case 'QUESTION_REQUEST': {
       data.payload.connection = conn;
       this.setState({questions: this.addToList(this.state.questions, data.payload)});
+      break;
     } 
 
     case 'CANCEL_QUESTION_REQUEST': {
       this.setState({questions: this.removeFromList(this.state.questions, a => a.id === data.payload.id)});
+      break;
     }
 
     }
@@ -77,9 +94,8 @@ class HostMain extends Component {
   //pure, returns new array
   removeFromList(list, selectionFunction ) {
     let newList = list.slice();
-    newList.splice(newList.findIndex(selectionFunction(a)), 1);
+    newList.splice(newList.findIndex(selectionFunction), 1);
     return newList;
-
   }
 
   addToList(list, item) {
@@ -88,17 +104,21 @@ class HostMain extends Component {
 
   updateItemInList(list, selectionFunction, itemToAdd) {
     let newList = list.slice();
-    newList.splice(newList.findIndex(selectionFunction(a)), 1, itemToAdd);
+    newList.splice(newList.findIndex(selectionFunction), 1, itemToAdd);
     return newList;
   }
 
   render() {
+    console.log(this.stream);
     let users = this.state.clients.map(a=><p>{a.id}</p>);
+    let questions = this.state.questions.map(a=><Question connection={a.connection} host={this.state.peerid}/>);
+    console.log('questions length ', questions.length);
     return (
       <div className={styles.base}>
         <a href={'/#/' + this.props.params.roomid}>go to client</a>
         {[...users]}
         <p>questions</p>
+        {[...questions]}
       </div>
     );
   }

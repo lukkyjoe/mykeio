@@ -18,7 +18,7 @@ class Editor extends React.Component {
   renderPrompts() {
     var saved = [];
     for (var i = 0; i < this.state.numberOfPrompts; i++) {
-      saved.push(<Prompt />);
+      saved.push(<Prompt key={i}/>);
     }
     return saved;
   }

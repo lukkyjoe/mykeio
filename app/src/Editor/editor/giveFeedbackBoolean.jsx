@@ -6,7 +6,7 @@ class GiveFeedbackBoolean extends React.Component {
     console.log(event);
     console.log(this.props);
     console.log('target value ====', event.currentTarget.value)
-    // this.props.toggleGiveFeedbackStatus(event.currentTarget.value);
+    this.props.toggleGiveFeedbackStatus(event.currentTarget.value);
   }
   render() {
     return (

@@ -11,7 +11,7 @@ class TrackAnswersBoolean extends React.Component {
   render() {
     return (
       <div>
-        <h3>Track answers? {this.props.trackAnswers}</h3>
+        <h3>Track answers?</h3>
         <form>
           <div>
             <label>

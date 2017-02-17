@@ -40,8 +40,14 @@ class Prompt extends React.Component {
   }
 
   toggleTrackAnswerStatus(status) {
-    this.state.trackAnswers = status
+    this.state.trackAnswers = status;
     this.setState({ trackAnswers: this.state.trackAnswers });
+  }
+
+  toggleGiveFeedbackStatus(status) {
+    console.log('toggleGiveFeedback status =========', status)
+    this.state.giveFeedback = status;
+    this.setState({ giveFeedback: this.state.giveFeedback });
   }
 
   selectResponseType(text) {
@@ -67,13 +73,12 @@ class Prompt extends React.Component {
   renderGiveFeedbackSection() {
     if (this.state.trackAnswers === "true") {
       return (
-        <GiveFeedbackBoolean />
+        <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/>
       )
     }
     else {
       return;
     }
-
   }
 
 
@@ -87,8 +92,6 @@ class Prompt extends React.Component {
         <br></br>
         {this.renderResponseFormat()}
         <TrackAnswersBoolean trackAnswers={this.state.trackAnswers} toggleTrackAnswerStatus={this.toggleTrackAnswerStatus.bind(this)}/>
-        
-        <br></br>
         <br></br>
         {this.renderGiveFeedbackSection()}        
         <button onClick={this.saveSettingsHandler.bind(this)}>Confirm prompt settings</button>

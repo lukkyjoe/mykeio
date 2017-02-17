@@ -29,10 +29,10 @@ class VolumeBar extends Component {
         {
           'audio': {
             'mandatory': {
-              'googEchoCancellation': 'false',
-              'googAutoGainControl': 'false',
-              'googNoiseSuppression': 'false',
-              'googHighpassFilter': 'false'   
+              'googEchoCancellation': 'true',
+              'googAutoGainControl': 'true',
+              'googNoiseSuppression': 'true',
+              'googHighpassFilter': 'true'   
             },
             'optional': []   
           },

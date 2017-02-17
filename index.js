@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const process = require('process');
 const apiRoutes = require('./routes/api.js');
-
+const ExpressPeerServer = require('peer').ExpressPeerServer;
 const app = express();
 
 app.use(session({
@@ -21,6 +21,21 @@ app.use(bodyParser.urlencoded({
 
 app.use('/api', apiRoutes);
 
-app.use(express.static(path.join(__dirname, 'app/dist/')));
-app.listen(process.env.PORT || 3030);
 
+
+const server = require('greenlock-express').create({
+
+  server: 'staging',
+
+  email: 'sawyer.schumacher@gmail.com',
+
+  agreeTos: true,
+
+  approveDomains: [ 'myke.io' ],
+
+  app: app
+
+}).listen(80,443);
+
+app.use('/peer', ExpressPeerServer(server, {debug:true}));
+app.use(express.static(path.join(__dirname, 'app/dist/')));

@@ -10,7 +10,14 @@ class Editor extends React.Component {
     super(props);
     
     this.state = {
-      // promptTemplate: {}
+      promptTemplate: 
+      {
+        promptText: 'Here is a scary example question',
+        responseType: 'none',
+        choices: [{choice: 'dummy choice', correctAnswer: false}],
+        trackAnswers: false,
+        giveFeedback: false
+      }, 
       prompts: []
     };
 
@@ -20,7 +27,7 @@ class Editor extends React.Component {
   updatePromptField(update, index) {
     let newArray = this.state.prompts.slice();
     newArray[index] = update;
-    this.setState({prompts: newArray})
+    this.setState({prompts: newArray});
   }
 
   renderPrompts() {
@@ -35,14 +42,14 @@ class Editor extends React.Component {
     console.log('adding another prompt');
     let newArray = this.state.prompts.slice();
     newArray.push(this.state.promptTemplate);
-    this.setState({prompts: newArray}) ;
+    this.setState({prompts: newArray});
   }
   
   render() {
     return (
       <div>
         <PromptCount addPrompt={this.addPrompt.bind(this)} /> 
-        <h2>Settings</h2>   
+        <h2>Settings</h2> 
         {this.renderPrompts()}
       </div>
     );

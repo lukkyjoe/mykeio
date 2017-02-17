@@ -22,5 +22,5 @@ app.use(bodyParser.urlencoded({
 app.use('/api', apiRoutes);
 
 app.use(express.static(path.join(__dirname, 'app/dist/')));
-app.listen(process.env.port || 3100);
+app.listen(process.env.port || 80);
 

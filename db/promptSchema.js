@@ -22,7 +22,7 @@ const hostRoomSchema = new Schema({
   ],
 })
 
-// module.exports.roomData = mongoose.model('HostRoomData', hostRoomSchema);
+module.exports.hostRoomData = mongoose.model('HostRoomData', hostRoomSchema);
 
 // const promptSchema = new Schema({
 //   type: String,

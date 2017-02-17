@@ -8,49 +8,47 @@ class EditorMain extends Component {
     super(props);
   }
 
-  createRoom(){
+  createRoom() {
     $.post('/api/createRoom', {
-      roomTitle:"A v hella dank room.",
-      feedback:[ 
+      roomTitle: 'A v hella dank room.',
+      feedback: [ 
         {
-          type:"MULTIPLE_CHOICE",
-          prompt:"WHAT IS LOVE?",
-          trackAnsweres:false,
-          giveFeedback:true,
-          options:[
+          type: 'MULTIPLE_CHOICE',
+          prompt: 'WHAT IS LOVE?',
+          trackAnsweres: false,
+          giveFeedback: true,
+          options: [
             {
-              text:"baby dont hurt me",
-              isCorrect:true
+              text: 'baby dont hurt me',
+              isCorrect: true
             },
             {
-              text:"dont hurt me",
-              isCorrect:true
+              text: 'dont hurt me',
+              isCorrect: true
             },
             {
-              text:"no more",
-              isCorrect:true
+              text: 'no more',
+              isCorrect: true
             },
           ]
         },
         {
-          type:"TEXT",
-          promp:"This one time at band camp you:"
+          type: 'TEXT',
+          promp: 'This one time at band camp you:'
         }
       ]
-
-    },
-    )
+    }
+  )
       .done((data)=>{
         window.location.href = '/#/host/' + data;
       }).fail((data)=>{
-        console.log(data)
+        console.log(data);
       });
   }
 
   render() {
     return (
       <div className={styles.base}>
-        <p>This is the editor view</p>
         <Editor />
         <button onClick={this.createRoom}>Create Room with Fake Data</button>
       </div>

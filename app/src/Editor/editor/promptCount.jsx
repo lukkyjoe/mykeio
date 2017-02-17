@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 class PromptCount extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       promptNumber: 0
-    }
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,7 +27,7 @@ class PromptCount extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            How Many Prompts?:
+            Add # of Prompts:
             <input type="text" value={this.state.value} ref="promptCount" onChange={this.handleChange} />
           </label>
           <input type="submit" value="Submit"/>

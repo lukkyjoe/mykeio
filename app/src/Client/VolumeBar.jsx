@@ -6,8 +6,8 @@ class VolumeBar extends Component {
     var audioContext = null;
     var meter = null;
     var canvasContext = null;
-    var WIDTH = 500;
-    var HEIGHT = 50;
+    var WIDTH = 50;
+    var HEIGHT = 500;
     var rafID = null;
 
     // grab our canvas
@@ -56,15 +56,15 @@ class VolumeBar extends Component {
       processor.connect(audioContext.destination);
 
       processor.checkClipping =
-		function() {
-  if (!this.clipping) {
-    return false;
-  }
-  if ((this.lastClip + this.clipLag) < window.performance.now()) { 
-    this.clipping = false; 
-  } 
-  return this.clipping;
-};      
+        function() {
+          if (!this.clipping) {
+            return false;
+          }
+          if ((this.lastClip + this.clipLag) < window.performance.now()) { 
+            this.clipping = false; 
+          } 
+          return this.clipping;
+        };      
  
       processor.shutdown =
 		function() {
@@ -83,12 +83,12 @@ class VolumeBar extends Component {
 
 	// Do a root-mean-square on the samples: sum up the squares...
       for (var i = 0; i < bufLength; i++) {
-    	x = buf[i];
-    	if (Math.abs(x) >= this.clipLevel) {
-    		this.clipping = true;
-    		this.lastClip = window.performance.now();
-    	}
-    	sum += x * x;
+        x = buf[i];
+        if (Math.abs(x) >= this.clipLevel) {
+          this.clipping = true;
+          this.lastClip = window.performance.now();
+        }
+        sum += x * x;
       }
 
     // ... then take the square root of the sum.
@@ -123,14 +123,16 @@ class VolumeBar extends Component {
       canvasContext.clearRect(0, 0, WIDTH, HEIGHT);
 
     // check if we're currently clipping
+      console.log('METER CHECK', meter.checkClipping());
       if (meter.checkClipping()) {
+        console.log('got here at least');
         canvasContext.fillStyle = 'red';
       } else { 
         canvasContext.fillStyle = 'green'; 
       } 
 
     // draw a bar based on the current volume
-      canvasContext.fillRect(0, 0, meter.volume * WIDTH * 1.4, HEIGHT);
+      canvasContext.fillRect(0, HEIGHT, WIDTH, meter.volume * HEIGHT * 1.4 * -1);
 
     // set up the next visual callback
       rafID = window.requestAnimationFrame( drawLoop );
@@ -140,7 +142,7 @@ class VolumeBar extends Component {
   render() {
     return (
       <div>
-        <canvas ref={(el) => { this.canvasEl = el; }} width="500" height="50" />
+        <canvas id="myCanvas" ref={(el) => { this.canvasEl = el; }} width="50" height="500" />
       </div>
     );
   }

@@ -14,7 +14,6 @@ class ClientMain extends Component {
         username: 'Anonymous',
       }
     };
-
   }
 
   componentDidMount() {
@@ -23,21 +22,26 @@ class ClientMain extends Component {
         console.log(data);
         this.setState({status: 'connecting to host....'});
         this.setState(data);
-        this.peer = new Peer({key: 'lwjd5qra8257b9'});
+        this.peer = new Peer({key: 'r8qpysu90fu8r529'});
 
         this.peer.on('open', (id)=>{
           this.state.clientData.id = id;
           this.connection = this.peer.connect(this.state.adminPeerId);
+
           this.connection.on('open', ()=>{
             this.setState({status: 'connected to host.'});
             this.updateHostWithClientData();
             let that = this;
             navigator.getUserMedia({audio:true, video:false},(stream)=>{
-              that.setState({hasMedia:true})
+              that.setState({hasMedia:true, stream:stream});
             }, ()=>{
               that.setState({hasMedia:false});
-            })
-          })
+            });
+          });
+
+          this.connection.on('data',this.handleHostData.bind(this));
+
+
         })
       }).fail(()=>{
         this.setState({status: 'Could not connect to the server'});
@@ -47,6 +51,20 @@ class ClientMain extends Component {
       this.send('CLIENT_DISCONNECT');
     }
   }
+
+  handleHostData(data){
+    switch (data.type){
+      case "ANSWER_REQUEST":{
+        this.dispatchCall(data.payload);
+        break;
+      }
+    }
+  }
+
+  dispatchCall(hostid){
+    this.peer.call(hostid, this.state.stream);
+  }
+
 
   updateHostWithClientData(){
     this.send('CLIENT_UPDATE');
@@ -68,13 +86,21 @@ class ClientMain extends Component {
     })
   }
 
+  handleQuestionClick(){
+    if (this.state.hasVoiceQuestion){
+      this.cancelVoiceQuestion();
+    } else {
+      this.askVoiceQuestion();
+    }
+  }
+
   render() {
     return (
       <div className={styles.base}>
         <p>{this.state.status}</p>
         <h2>{this.state.roomTitle}</h2>
-        <button onClick={this.askVoiceQuestion}>Ask Question</button>
         <VolumeBar />
+        <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion?"Cancel Question":"Ask Question"}</button>
       </div>
     );
   }

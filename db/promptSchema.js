@@ -8,7 +8,7 @@ const hostRoomSchema = new Schema({
   roomTitle: {type: String, unique: true},
   prompts: [
     {
-      type: String,
+      responseType: String,
       promptText: String,
       trackAnswers: Boolean,
       giveFeedback: Boolean,
@@ -22,7 +22,7 @@ const hostRoomSchema = new Schema({
   ],
 })
 
-module.exports.hostRoomData = mongoose.model('HostRoomData', hostRoomSchema);
+module.exports.HostRoomData = mongoose.model('HostRoomData', hostRoomSchema);
 
 // const promptSchema = new Schema({
 //   type: String,

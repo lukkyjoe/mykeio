@@ -2,22 +2,31 @@ const db = require('./promptSchema.js');
 
 db.HostRoomData.create(
   {
-    roomTitle: 'loomNumbaWon',
+    roomTitle: 'loomNumbaToo',
     prompts: [
       {
-        type: 'MULTIPLE_CHOICE',
-        promptText: 'Who smells the greatest?',
-        trackAnswers: false
-      },
-      {
-        type: 'MULTIPLE_CHOICE',
-        promptText: 'Who runs the fastest?',
+        responseType: 'MULTIPLE_CHOICE',
+        promptText: 'Who is the greatest athlete ever?',
         trackAnswers: false,
-        options: ['Usain Bolt', 'Phelps']
+        giveFeedback: false,
+        options: [
+          {
+            choiceText: 'Jordan',
+            correctAnswer: true
+          }, 
+          {
+            choiceText: 'Federer',
+            correctAnswer: true
+          }
+        ]
       }
-
-
     ]
+  }, 
+  function(err, model) {
+    if (err) {console.error(err);}
+    else {
+      console.log(model);
+    }
   }
 );
 //test create a quiz
@@ -37,10 +46,10 @@ db.HostRoomData.create(
 //test create entry
 // db.questionAndAnswer.create(
 //   {question: "this is question 3", answer: "this is answer 3"}, 
-  // function(err, model) {
-  //   if (err) {console.error(err);}
-  //   else {
-  //     console.log(model);
-  //   }
-  // }
+//   function(err, model) {
+//     if (err) {console.error(err);}
+//     else {
+//       console.log(model);
+//     }
+//   }
 // )

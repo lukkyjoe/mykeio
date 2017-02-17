@@ -6,7 +6,20 @@ const db = mongoose.connect(mongoUri);
 
 const hostRoomSchema = new Schema({
   roomTitle: {type: String, unique: true},
-  questionsAndAnswers: Array,
+  questionsAndAnswers: [
+    {
+      type: String,
+      promptText: String,
+      trackAnswers: Boolean,
+      giveFeedback: Boolean,
+      options: [
+        {
+          choiceText: String,
+          correctAnswer: Boolean,
+        }
+      ],
+    }
+],
 })
 
 module.exports.roomData = mongoose.model('HostRoomData', hostRoomSchema);
@@ -16,7 +29,12 @@ const promptSchema = new Schema({
   promptText: String,
   trackAnswers: Boolean,
   giveFeedback: Boolean,
-  options: Array,
+  options: [
+    {
+      choiceText: String,
+      correctAnswer: Boolean,
+    }
+  ],
 })
 
 module.exports.promptData = mongoose.model('PromptData', promptSchema);

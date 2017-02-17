@@ -25,7 +25,8 @@ class HostMain extends Component {
     this.peer = new Peer({
       key: 'r8qpysu90fu8r529',
       config:{ 'iceServers': [{ 'url': 'stun:stun.l.google.com:19302' }] },
-      secure:true
+      secure:true,
+      debug:2
     });
     this.peer.on('open', (id)=>{
       this.setState({peerid:id});

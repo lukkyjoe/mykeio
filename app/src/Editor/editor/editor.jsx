@@ -9,38 +9,45 @@ class Editor extends React.Component {
     super(props);
     
     this.state = {
-      promptTemplate: {
-      promptText: 'Here is a scary example question',
-      responseType: 'none',
-      choices: [{choice: 'dummy choice', correctAnswer: false}],
-      trackAnswers: false,
-      giveFeedback: false
-    },
+      promptTemplate: 
+        {
+          promptText: 'Here is a scary example question',
+          responseType: 'none',
+          choices: [{choice: 'dummy choice', correctAnswer: false}],
+          trackAnswers: false,
+          giveFeedback: false
+        },
       prompts: []
     };
+
+    this.updatePromptField = this.updatePromptField.bind(this);
+  }
+
+  updatePromptField(update, index) {
+    let newArray = this.state.prompts.slice();
+    newArray[index] = update;
+    this.setState({prompts: newArray})
   }
 
   renderPrompts() {
-    // var saved = [];
-    // for (var i = 0; i < this.state.numberOfPrompts; i++) {
-    //   saved.push(<Prompt key={i}/>);
-    // }
-    // return saved;
+    // pass promptTemplate down as props to each prompt?
+      // if individual prompt changes, set the state back at editor level to reflect that change 
+    const listOfPrompts = this.state.prompts.map((prompt, index) => <Prompt key={index} updatePromptField={this.updatePromptField}/>);
+    return listOfPrompts;
   }
 
 // if change to +1 only button, consider the concat option from http://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs
-  updatePromptNumber(numberOfPrompts) {
-    console.log('adding one more prompt with misnamed handler')
-      let newArray = this.state.prompts.slice();
-      newArray.push(this.state.promptTemplate);
-      this.setState({prompts: newArray}) 
-    // this.setState({numberOfPrompts});
+  addPrompt() {
+    console.log('adding another prompt');
+    let newArray = this.state.prompts.slice();
+    newArray.push(this.state.promptTemplate);
+    this.setState({prompts: newArray}) ;
   }
   
   render() {
     return (
       <div>
-        <PromptCount updatePromptNumber={this.updatePromptNumber.bind(this)} /> 
+        <PromptCount addPrompt={this.addPrompt.bind(this)} /> 
         <h2>Settings</h2>   
         {this.renderPrompts()}
       </div>

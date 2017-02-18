@@ -25,7 +25,6 @@ class HostMain extends Component {
     this.peer = new Peer({
       host:'/',
       port:9000,
-      secure:true,
       debug:2
     });
     this.peer.on('open', (id)=>{

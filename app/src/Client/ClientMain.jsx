@@ -25,7 +25,6 @@ class ClientMain extends Component {
         this.peer = new Peer({
           host:'/',
           port:9000,
-          secure:true,
           debug:2
         });
 

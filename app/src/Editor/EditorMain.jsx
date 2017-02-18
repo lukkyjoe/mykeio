@@ -6,6 +6,9 @@ class EditorMain extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      roomData: {}
+    }
   }
 
   createRoom() {

@@ -57,6 +57,3 @@ class Editor extends React.Component {
 }
 
 export default Editor;
-
-//remove when not testing
-ReactDOM.render(<Editor />, document.getElementById('app'));

@@ -7,8 +7,13 @@ class EditorMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       roomData: {}
     }
+=======
+      roomTitle: ''
+    };
+>>>>>>> many small changes
   }
 
   createRoom() {
@@ -37,7 +42,7 @@ class EditorMain extends Component {
         },
         {
           type: 'TEXT',
-          promp: 'This one time at band camp you:'
+          prompt: 'This one time at band camp you:'
         }
       ]
     }
@@ -53,6 +58,7 @@ class EditorMain extends Component {
     return (
       <div className={styles.base}>
         <Editor />
+        <input />
         <button onClick={this.createRoom}>Create Room with Fake Data</button>
       </div>
     );

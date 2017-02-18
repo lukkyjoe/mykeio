@@ -78,7 +78,6 @@ class ClientMain extends Component {
     mediaConnection.on('close', () =>{
       that.setState({showAudio: false});
     });
-    //look into event peerjs docs
   }
 
 

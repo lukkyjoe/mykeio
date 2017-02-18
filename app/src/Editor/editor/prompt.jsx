@@ -93,6 +93,7 @@ class Prompt extends React.Component {
     return (
       <div className="prompt">
         <h3>Prompt</h3>
+        <button onClick={this.props.deletePrompt()}>Delete</button>
         <HostQuestion promptText={this.state.promptText} updatePrompt={this.updatePrompt.bind(this)}/>
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         <br></br>

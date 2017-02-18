@@ -9,14 +9,7 @@ class Editor extends React.Component {
     super(props);
     
     this.state = {
-      promptTemplate: 
-        {
-          promptText: 'Here is a scary example question',
-          responseType: 'none',
-          choices: [{choice: 'dummy choice', correctAnswer: false}],
-          trackAnswers: false,
-          giveFeedback: false
-        },
+      // promptTemplate: {}
       prompts: []
     };
 
@@ -32,7 +25,7 @@ class Editor extends React.Component {
   renderPrompts() {
     // pass promptTemplate down as props to each prompt?
       // if individual prompt changes, set the state back at editor level to reflect that change 
-    const listOfPrompts = this.state.prompts.map((prompt, index) => <Prompt key={index} updatePromptField={this.updatePromptField}/>);
+    const listOfPrompts = this.state.prompts.map((prompt, index) => <Prompt key={index} index={index} updatePromptField={this.updatePromptField}/>);
     return listOfPrompts;
   }
 

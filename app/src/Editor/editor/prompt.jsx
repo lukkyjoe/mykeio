@@ -22,7 +22,7 @@ class Prompt extends React.Component {
   }
   saveSettingsHandler() {
     //should log editted prompt data object
-    console.log(this.state);
+    console.log('BY NOW YOU SHOULD BE PASSING THE ARRAY OF PROMPT DATA, NOT JUST INDIVIDUALS');
   }
 
   createChoice(choice) {
@@ -31,29 +31,35 @@ class Prompt extends React.Component {
       correctAnswer: false
     });
     this.setState({ choices: this.state.choices });
+    this.props.updatePromptField(this.state, this.props.index);
   }
 
   updatePrompt(text) {
     this.state.promptText = text;
     this.setState({ choices: this.state.choices });
+    console.log(this.props.index)
     //try updating the parent editor's state using the index props and updatePromptInArray function props
+    this.props.updatePromptField(this.state, this.props.index);
 
   }
 
   toggleTrackAnswerStatus(status) {
     this.state.trackAnswers = status;
     this.setState({ trackAnswers: this.state.trackAnswers });
+    this.props.updatePromptField(this.state, this.props.index);
   }
 
   toggleGiveFeedbackStatus(status) {
     console.log('toggleGiveFeedback status =========', status);
     this.state.giveFeedback = status;
     this.setState({ giveFeedback: this.state.giveFeedback });
+    this.props.updatePromptField(this.state, this.props.index);
   }
 
   selectResponseType(text) {
     this.state.responseType = text;
     this.setState({ responseType: this.state.responseType });
+    this.props.updatePromptField(this.state, this.props.index);
   }
 
   renderResponseFormat() {

@@ -22,6 +22,13 @@ class Editor extends React.Component {
     };
 
     this.updatePromptField = this.updatePromptField.bind(this);
+    this.deletePrompt = this.deletePrompt.bind(this);
+  }
+
+  deletePrompt(index) {
+    let temp = this.state.prompts.slice();
+    let out = temp.splice(index, 1);
+    console.log(out);
   }
 
   updatePromptField(update, index) {
@@ -32,12 +39,11 @@ class Editor extends React.Component {
 
   renderPrompts() {
     // pass promptTemplate down as props to each prompt?
-      // if individual prompt changes, set the state back at editor level to reflect that change 
+      // if individual prompt changes, set the state back at editor level to reflect that change
     const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt key={index} index={index} updatePromptField={this.updatePromptField}/>);
     return listOfPrompts;
   }
 
-// if change to +1 only button, consider the concat option from http://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs
   addPrompt() {
     console.log('adding another prompt');
     let newArray = this.state.prompts.slice();

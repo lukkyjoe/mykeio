@@ -7,13 +7,8 @@ class EditorMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
       roomData: {}
-    }
-=======
-      roomTitle: ''
     };
->>>>>>> many small changes
   }
 
   createRoom() {

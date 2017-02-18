@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 var path = require('path');
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 var BUILD_DIR = path.resolve(__dirname, './app/dist/');
 var APP_DIR = path.resolve(__dirname, './app/src/');

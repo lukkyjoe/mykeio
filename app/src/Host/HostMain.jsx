@@ -23,8 +23,7 @@ class HostMain extends Component {
 
   setUpRoom() {
     this.peer = new Peer({
-      key: 'r8qpysu90fu8r529',
-      config:{ 'iceServers': [{ 'url': 'stun:stun.l.google.com:19302' }] },
+      host:'/peer',
       secure:true,
       debug:2
     });

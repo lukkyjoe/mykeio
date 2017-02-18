@@ -23,10 +23,9 @@ class ClientMain extends Component {
         this.setState({status: 'connecting to host....'});
         this.setState(data);
         this.peer = new Peer({
-          key: 'r8qpysu90fu8r529',
+          host:'/peer',
           secure:true,
-          config:{ 'iceServers': [{ 'url': 'stun:stun.l.google.com:19302' }] },
-          debug:0
+          debug:2
         });
 
         this.peer.on('open', (id)=>{

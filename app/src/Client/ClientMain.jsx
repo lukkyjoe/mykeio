@@ -22,7 +22,11 @@ class ClientMain extends Component {
         console.log(data);
         this.setState({status: 'connecting to host....'});
         this.setState(data);
-        this.peer = new Peer({key: 'r8qpysu90fu8r529'});
+        this.peer = new Peer({
+          host:'/',
+          port:9000,
+          debug:2
+        });
 
         this.peer.on('open', (id)=>{
           this.state.clientData.id = id;

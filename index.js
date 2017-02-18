@@ -25,17 +25,24 @@ app.use('/api', apiRoutes);
 
 const server = require('greenlock-express').create({
 
-  server: 'staging',
+  server: 'https://acme-v01.api.letsencrypt.org/directory',
 
   email: 'sawyer.schumacher@gmail.com',
 
   agreeTos: true,
 
-  approveDomains: [ 'myke.io' ],
+  approveDomains: [ 'myke.io','www.myke.io' ],
 
   app: app
 
 }).listen(80,443);
 
-app.use('/peer', ExpressPeerServer(server, {debug:true}));
+let peerServer = ExpressPeerServer(server, {debug:true});
+
+app.use('/peerjs', peerServer);
+
+peerServer.on('connection', function(id) {
+    console.log(id)
+  console.log(server._clients)
+});
 app.use(express.static(path.join(__dirname, 'app/dist/')));

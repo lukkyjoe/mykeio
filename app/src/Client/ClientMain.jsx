@@ -23,7 +23,8 @@ class ClientMain extends Component {
         this.setState({status: 'connecting to host....'});
         this.setState(data);
         this.peer = new Peer({
-          host:'/peer',
+          host:'/',
+          port:443,
           secure:true,
           debug:2
         });

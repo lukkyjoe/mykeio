@@ -21,8 +21,6 @@ app.use(bodyParser.urlencoded({
 
 app.use('/api', apiRoutes);
 
-
-
 const server = require('greenlock-express').create({
 
   server: 'https://acme-v01.api.letsencrypt.org/directory',
@@ -37,12 +35,4 @@ const server = require('greenlock-express').create({
 
 }).listen(80,443);
 
-let peerServer = ExpressPeerServer(server, {debug:true});
-
-app.use('/peerjs', peerServer);
-
-peerServer.on('connection', function(id) {
-    console.log(id)
-  console.log(server._clients)
-});
 app.use(express.static(path.join(__dirname, 'app/dist/')));

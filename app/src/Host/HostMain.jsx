@@ -24,7 +24,7 @@ class HostMain extends Component {
   setUpRoom() {
     this.peer = new Peer({
       host:'/',
-      port:443,
+      port:9000,
       secure:true,
       debug:2
     });

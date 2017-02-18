@@ -62,6 +62,12 @@ class ClientMain extends Component {
         this.dispatchCall(data.payload);
         break;
       }
+
+      case 'INITIATE_PROMPT': {
+        console.log('it is quiz time and the prompt is ===', data.payload);
+        console.log('do something with the payload, like reveal/hide')
+        break;
+      }
     }
   }
 

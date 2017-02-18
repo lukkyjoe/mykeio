@@ -124,7 +124,6 @@ class VolumeBar extends Component {
 
     // check if we're currently clipping
       if (meter.checkClipping()) {
-        console.log('got here at least');
         canvasContext.fillStyle = 'red';
       } else { 
         canvasContext.fillStyle = 'green'; 

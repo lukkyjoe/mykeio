@@ -36,6 +36,7 @@ class Prompt extends React.Component {
   updatePrompt(text) {
     this.state.promptText = text;
     this.setState({ choices: this.state.choices });
+    //try updating the parent editor's state using the index props and updatePromptInArray function props
 
   }
 

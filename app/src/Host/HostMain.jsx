@@ -136,10 +136,7 @@ class HostMain extends Component {
         {[...users]}
         <p>questions</p>
         {[...questions]}
-<<<<<<< HEAD
-=======
         <button onClick={this.sendPrompt}> send question </button>
->>>>>>> 8f25bf3d4f5b2b74d29a4428da1c0aea3a4db8eb
       </div>
     );
   }

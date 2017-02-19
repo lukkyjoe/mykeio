@@ -62,36 +62,6 @@ class ClientMain extends Component {
         this.dispatchCall(data.payload);
         break;
       }
-<<<<<<< HEAD
-    }
-  }
-
-  dispatchCall(hostid){
-    this.peer.call(hostid, this.state.stream);
-  }
-
-
-  updateHostWithClientData(){
-    this.send('CLIENT_UPDATE');
-  }
-
-  askVoiceQuestion(){
-    this.send('QUESTION_REQUEST');
-    this.setState({hasVoiceQuestion:true});
-  }
-
-  cancelVoiceQuestion(){
-    this.send('CANCEL_QUESTION_REQUEST');
-    this.setState({hasVoiceQuestion:false});
-  }
-
-  send(type, data=this.state.clientData){
-    this.connection.send({ type:type,
-      payload:data
-    })
-  }
-
-=======
 
       case 'INITIATE_PROMPT': {
         console.log('it is quiz time and the prompt is ===', data.payload);
@@ -126,7 +96,6 @@ class ClientMain extends Component {
     })
   }
 
->>>>>>> 8f25bf3d4f5b2b74d29a4428da1c0aea3a4db8eb
   handleQuestionClick(){
     if (this.state.hasVoiceQuestion){
       this.cancelVoiceQuestion();

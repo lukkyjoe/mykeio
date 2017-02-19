@@ -22,4 +22,4 @@ app.use(bodyParser.urlencoded({
 app.use('/api', apiRoutes);
 
 app.use(express.static(path.join(__dirname, 'app/dist/')));
-app.listen(process.env.PORT || 3030);
+app.listen(process.env.PORT || 3100);

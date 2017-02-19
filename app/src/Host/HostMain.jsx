@@ -15,6 +15,7 @@ class HostMain extends Component {
     }
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
+    this.sendPrompt = this.sendPrompt.bind(this);
   }
 
   componentDidMount() {
@@ -23,9 +24,8 @@ class HostMain extends Component {
 
   setUpRoom() {
     this.peer = new Peer({
-      key: 'r8qpysu90fu8r529',
-      config:{ 'iceServers': [{ 'url': 'stun:stun.l.google.com:19302' }] },
-      secure:true,
+      host:'/',
+      port:9000,
       debug:2
     });
     this.peer.on('open', (id)=>{
@@ -40,6 +40,11 @@ class HostMain extends Component {
     });
 
     this.peer.on('connection', (conn)=>{
+      console.log('connection event =====' , conn);
+      console.log('this.connection hash =====' , this.connectionHash)
+      //somewhere here is a good place to add to connectionHash
+      //client.id not what you're looking for? client ids create the connection
+      // use the connections
       conn.on('data', (data)=>{
         this.handlePeerData(data, conn);
       });
@@ -113,6 +118,13 @@ class HostMain extends Component {
     return newList;
   }
 
+  sendPrompt(event) {
+    for (let connection in this.connectionHash) {
+      console.log(this.connectionHash[connection]);
+      this.connectionHash[connection].send({type: 'INITIATE_PROMPT', payload: "insert target value x"})
+    }
+  }
+
   render() {
     console.log(this.stream);
     let users = this.state.clients.map(a=><p>{a.id}</p>);
@@ -124,6 +136,10 @@ class HostMain extends Component {
         {[...users]}
         <p>questions</p>
         {[...questions]}
+<<<<<<< HEAD
+=======
+        <button onClick={this.sendPrompt}> send question </button>
+>>>>>>> 8f25bf3d4f5b2b74d29a4428da1c0aea3a4db8eb
       </div>
     );
   }

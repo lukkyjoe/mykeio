@@ -23,10 +23,9 @@ class ClientMain extends Component {
         this.setState({status: 'connecting to host....'});
         this.setState(data);
         this.peer = new Peer({
-          key: 'r8qpysu90fu8r529',
-          secure:true,
-          config:{ 'iceServers': [{ 'url': 'stun:stun.l.google.com:19302' }] },
-          debug:0
+          host:'/',
+          port:9000,
+          debug:2
         });
 
         this.peer.on('open', (id)=>{
@@ -63,6 +62,7 @@ class ClientMain extends Component {
         this.dispatchCall(data.payload);
         break;
       }
+<<<<<<< HEAD
     }
   }
 
@@ -91,6 +91,42 @@ class ClientMain extends Component {
     })
   }
 
+=======
+
+      case 'INITIATE_PROMPT': {
+        console.log('it is quiz time and the prompt is ===', data.payload);
+        console.log('do something with the payload, like reveal/hide')
+        break;
+      }
+    }
+  }
+
+  dispatchCall(hostid){
+    this.peer.call(hostid, this.state.stream);
+  }
+
+
+  updateHostWithClientData(){
+    this.send('CLIENT_UPDATE');
+  }
+
+  askVoiceQuestion(){
+    this.send('QUESTION_REQUEST');
+    this.setState({hasVoiceQuestion:true});
+  }
+
+  cancelVoiceQuestion(){
+    this.send('CANCEL_QUESTION_REQUEST');
+    this.setState({hasVoiceQuestion:false});
+  }
+
+  send(type, data=this.state.clientData){
+    this.connection.send({ type:type,
+      payload:data
+    })
+  }
+
+>>>>>>> 8f25bf3d4f5b2b74d29a4428da1c0aea3a4db8eb
   handleQuestionClick(){
     if (this.state.hasVoiceQuestion){
       this.cancelVoiceQuestion();

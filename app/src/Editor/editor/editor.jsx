@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Prompt from './prompt.jsx';
+import neoPrompt from './neoPrompt.jsx';
 import PromptCount from './promptCount.jsx';
 
 class Editor extends React.Component {
@@ -25,7 +26,7 @@ class Editor extends React.Component {
   renderPrompts() {
     // pass promptTemplate down as props to each prompt?
       // if individual prompt changes, set the state back at editor level to reflect that change 
-    const listOfPrompts = this.state.prompts.map((prompt, index) => <Prompt key={index} index={index} updatePromptField={this.updatePromptField}/>);
+    const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt key={index} index={index} updatePromptField={this.updatePromptField}/>);
     return listOfPrompts;
   }
 

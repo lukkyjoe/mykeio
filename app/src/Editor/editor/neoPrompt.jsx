@@ -8,7 +8,7 @@ import GiveFeedbackBoolean from './giveFeedbackBoolean.jsx';
 
 const foo = 'bar';
 
-class Prompt extends React.Component {
+class NeoPrompt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -107,4 +107,4 @@ class Prompt extends React.Component {
     );
   }
 }
-export default Prompt;
+export default NeoPrompt;

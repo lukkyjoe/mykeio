@@ -2,17 +2,6 @@ import React from 'react';
 import ChoicesList from './choicesList.jsx';
 import CreateItem from './createItem.jsx';
 
-// const choices = [
-// {
-//   choice: "huzzah",
-//   isSelected: true
-// },
-// {
-//   choice: "foo",
-//   isSelected: false
-// }
-// ]
-
 export default class MultipleChoiceBuilder extends React.Component {
   constructor(props) {
     super(props)

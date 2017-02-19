@@ -26,9 +26,13 @@ class Editor extends React.Component {
   }
 
   deletePrompt(index) {
+    console.log('this is the state: ', this.state.prompts);
+    console.log('this is index', index);
     let temp = this.state.prompts.slice();
-    let out = temp.splice(index, 1);
-    console.log(out);
+    console.log('unspliced', temp);
+    temp.splice(index, 1);
+    console.log('this is spliced: ', temp);
+    this.setState({prompts: temp});
   }
 
   updatePromptField(update, index) {

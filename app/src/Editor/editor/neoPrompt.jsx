@@ -77,6 +77,7 @@ class NeoPrompt extends React.Component {
         index={this.props.index}
         correctAnswerExists={this.state.correctAnswerExists}
         createChoice={this.createChoice.bind(this)}
+        saveChoice={this.saveChoice.bind(this)}
         choices={this.state.choices}/>
       );
     }

@@ -17,7 +17,7 @@ export default class MultipleChoiceBuilder extends React.Component {
         <ChoicesList 
           choices={this.state.choices}
           createChoice={this.props.createChoice}
-          saveChoice={this.saveChoice.bind(this)}
+          saveChoice={this.props.saveChoice}
           deleteChoice={this.deleteChoice.bind(this)}
           selectAsCorrect={this.selectAsCorrect.bind(this)}
           />
@@ -25,12 +25,12 @@ export default class MultipleChoiceBuilder extends React.Component {
     )
   }
 
-  saveChoice(oldChoice, newChoice) {
-    const foundChoice = _.find(this.state.choices, choice => choice.choice === oldChoice);
-    console.log('saveChoice method foundchoice', foundChoice);
-    foundChoice.choice = newChoice;
-    this.setState({choices: this.state.choices });
-  }
+  // saveChoice(oldChoice, newChoice) {
+  //   const foundChoice = _.find(this.state.choices, choice => choice.choice === oldChoice);
+  //   console.log('saveChoice method foundchoice', foundChoice);
+  //   foundChoice.choice = newChoice;
+  //   this.setState({choices: this.state.choices });
+  // }
 
   deleteChoice(choiceToDelete) {
     _.remove(this.state.choices, choice => choice.choice === choiceToDelete);

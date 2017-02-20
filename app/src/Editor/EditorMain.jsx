@@ -14,6 +14,7 @@ class EditorMain extends Component {
       prompts: []
     }
     this.updatePromptField = this.updatePromptField.bind(this);
+    this.setRoomTitle = this.setRoomTitle.bind(this);
   }
 
   updatePromptField(update, index) {
@@ -27,6 +28,14 @@ class EditorMain extends Component {
       // if individual prompt changes, set the state back at editor level to reflect that change 
     const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt key={index} index={index} updatePromptField={this.updatePromptField}/>);
     return listOfPrompts;
+  }
+
+  removePrompt() {
+    //this should remove the selected prompt
+  }
+
+  setRoomTitle() {
+
   }
 
 // if change to +1 only button, consider the concat option from http://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs
@@ -53,6 +62,10 @@ class EditorMain extends Component {
     return (
       <div className={styles.base}>
         <Editor />
+        <form>
+          <label>Room name:</label>
+            <input type="text" placeholder="Set a room name" size="30" />
+        </form>
         <PromptCount addPrompt={this.addPrompt.bind(this)} /> 
         <h2>Settings</h2>   
         {this.renderPrompts()}

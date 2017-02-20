@@ -16,7 +16,7 @@ class HostQuestion extends React.Component {
         <span> Question/Prompt: </span>
         <span> <i> {this.props.promptText} </i> </span>
         <form>
-          <input type="text" placeholder={this.props.promptText} ref="promptInput" size="60"/>
+          <input type="text"   ref="promptInput" size="60"/>
           <button onClick={this.handleUpdateClick.bind(this)}> Update </button>
         </form>
       </div>

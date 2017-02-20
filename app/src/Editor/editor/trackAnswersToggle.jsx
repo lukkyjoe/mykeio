@@ -10,6 +10,6 @@ export default class TrackAnswersToggle extends React.Component {
             <th>Action</th>
           </tr>
         </thead>
-    )
+    );
   }
 }

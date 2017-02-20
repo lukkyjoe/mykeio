@@ -20,6 +20,7 @@ class PromptCount extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          
           <input type="submit" value="Add new prompt"/>
         </form>
       </div>

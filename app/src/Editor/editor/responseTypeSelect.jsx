@@ -27,7 +27,7 @@ class ResponseTypeSelect extends React.Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 

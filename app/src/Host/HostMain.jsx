@@ -9,10 +9,10 @@ class HostMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      settingUp:true,
-      clients:[],
-      questions:[]
-    }
+      settingUp: true,
+      clients: [],
+      questions: []
+    };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
     this.sendPrompt = this.sendPrompt.bind(this);
@@ -29,7 +29,7 @@ class HostMain extends Component {
       debug:2
     });
     this.peer.on('open', (id)=>{
-      this.setState({peerid:id});
+      this.setState({peerid: id});
       $.post('/api/updateHost', {roomid: this.props.params.roomid, peerid: id})
         .done(()=>{
           console.log('host data updated');
@@ -56,7 +56,7 @@ class HostMain extends Component {
       call.on('stream', (mediaStream)=>{
         let clientAudio = new Audio(window.URL.createObjectURL(mediaStream));
         clientAudio.play();
-      })
+      });
     });
 
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
@@ -74,11 +74,11 @@ class HostMain extends Component {
     case 'CLIENT_UPDATE': {
       let currentList = this.state.clients.slice();
       if (currentList.find(a=>a.id === data.payload.id)) {
-          this.setState({clients: this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
-        } else {
-          this.setState({clients: this.addToList(this.state.clients, data.payload)});
-          this.connectionHash[data.payload.id] = conn;
-        }
+        this.setState({clients: this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
+      } else {
+        this.setState({clients: this.addToList(this.state.clients, data.payload)});
+        this.connectionHash[data.payload.id] = conn;
+      }
       break;
     }
     case 'CLIENT_DISCONNECT': {
@@ -127,8 +127,8 @@ class HostMain extends Component {
 
   render() {
     console.log(this.stream);
-    let users = this.state.clients.map(a=><p>{a.id}</p>);
-    let questions = this.state.questions.map(a=><Question connection={a.connection} host={this.state.peerid}/>);
+    let users = this.state.clients.map((a, i)=><p key={i}>{a.id}</p>);
+    let questions = this.state.questions.map((a, index)=> (<Question key={index} connection={a.connection} host={this.state.peerid}/>));
     console.log('questions length ', questions.length);
     return (
       <div className={styles.base}>

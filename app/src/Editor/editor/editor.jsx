@@ -4,52 +4,73 @@ import ReactDOM from 'react-dom';
 import Prompt from './prompt.jsx';
 import NeoPrompt from './neoPrompt.jsx';
 import PromptCount from './promptCount.jsx';
+import ShortID from 'shortid';
 
 class Editor extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      // promptTemplate: {}
+      promptTemplate: 
+      {
+        promptText: 'Here is a scary example question',
+        responseType: 'none',
+        choices: [{choice: 'dummy choice', correctAnswer: false}],
+        trackAnswers: false,
+        giveFeedback: false
+      }, 
       prompts: []
     };
 
     this.updatePromptField = this.updatePromptField.bind(this);
+    this.deletePrompt = this.deletePrompt.bind(this);
+  }
+
+  deletePrompt(index) {
+    let temp = this.state.prompts.slice();
+    temp.splice(index, 1);
+    this.setState({prompts: temp}, function() {
+      console.log(this.state.prompts);
+    });
   }
 
   updatePromptField(update, index) {
     let newArray = this.state.prompts.slice();
-    newArray[index] = update;
-    this.setState({prompts: newArray})
+    newArray[index] = Object.assign({ uuid: newArray[index].uuid }, update);
+    this.setState({prompts: newArray});
   }
 
-  renderPrompts() {
+  renderPrompts(prompts) {
     // pass promptTemplate down as props to each prompt?
-      // if individual prompt changes, set the state back at editor level to reflect that change 
-    const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt key={index} index={index} updatePromptField={this.updatePromptField}/>);
+      // if individual prompt changes, set the state back at editor level to reflect that change
+    const listOfPrompts = prompts.map((prompt, index) => {
+      return (
+        <NeoPrompt 
+          deletePrompt={() => this.deletePrompt(index)} 
+          key={prompt.uuid} 
+          index={index} 
+          updatePromptField={this.updatePromptField} />
+      );
+    });
     return listOfPrompts;
   }
 
-// if change to +1 only button, consider the concat option from http://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs
   addPrompt() {
-    console.log('adding another prompt');
     let newArray = this.state.prompts.slice();
-    newArray.push(this.state.promptTemplate);
-    this.setState({prompts: newArray}) ;
+    var newPrompt = Object.assign({uuid: ShortID.generate()}, this.state.promptTemplate);
+    newArray.push(newPrompt);
+    this.setState({prompts: newArray});
   }
   
   render() {
     return (
       <div>
         <PromptCount addPrompt={this.addPrompt.bind(this)} /> 
-        <h2>Settings</h2>   
-        {this.renderPrompts()}
+        <h2>Settings</h2> 
+        {this.renderPrompts(this.state.prompts)}
       </div>
     );
   }
 }
 
 export default Editor;
-
-//remove when not testing
-ReactDOM.render(<Editor />, document.getElementById('app'));

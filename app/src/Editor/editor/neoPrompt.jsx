@@ -25,7 +25,7 @@ class NeoPrompt extends React.Component {
   updatePrompt(text) {
     this.state.promptText = text;
     this.setState({ choices: this.state.choices });
-    console.log(this.props.index)
+    console.log(this.props.index);
     //try updating the parent editor's state using the index props and updatePromptInArray function props
     this.props.updatePromptField(this.state, this.props.index);
 
@@ -114,7 +114,8 @@ class NeoPrompt extends React.Component {
   render() {  
     return (
       <div className="prompt">
-        <h3>Prompt #{this.props.index+1}</h3>
+        <button onClick={this.props.deletePrompt}>Delete</button>
+        <h3>Prompt #{this.props.index + 1}</h3>
         <HostQuestion promptText={this.state.promptText} updatePrompt={this.updatePrompt.bind(this)}/>
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         {this.renderResponseFormat()}

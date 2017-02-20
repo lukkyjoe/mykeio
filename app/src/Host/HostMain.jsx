@@ -134,8 +134,10 @@ class HostMain extends Component {
       <div className={styles.base}>
         <a href={'/#/' + this.props.params.roomid}>go to client</a>
         {[...users]}
-        <p>questions</p>
-        {[...questions]}
+        <div className={styles.questionContainer}>
+          <p>questions</p>
+          {[...questions]}
+        </div>
         <button onClick={this.sendPrompt}> send question </button>
       </div>
     );

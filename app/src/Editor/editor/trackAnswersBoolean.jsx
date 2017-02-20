@@ -5,7 +5,7 @@ class TrackAnswersBoolean extends React.Component {
   handleClick(event) {
     console.log(event);
     console.log(this.props);
-    console.log('target value ====', event.currentTarget.value)
+    console.log('target value ====', event.currentTarget.value);
     this.props.toggleTrackAnswerStatus(event.currentTarget.value);
   }
   render() {
@@ -27,7 +27,7 @@ class TrackAnswersBoolean extends React.Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 

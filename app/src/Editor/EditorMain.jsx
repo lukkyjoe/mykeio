@@ -15,6 +15,7 @@ class EditorMain extends Component {
     }
     this.updatePromptField = this.updatePromptField.bind(this);
     this.setRoomTitle = this.setRoomTitle.bind(this);
+    this.deletePrompt = this.deletePrompt.bind(this);
   }
 
   updatePromptField(update, index) {
@@ -23,10 +24,19 @@ class EditorMain extends Component {
     this.setState({prompts: newArray})
   }
 
+  deletePrompt(index) {
+    let copyArray = this.state.prompts.slice();
+    let newArray = copyArray.splice(index, 1);
+    console.log('new array after delete is', copyArray)
+    this.setState({prompts: copyArray});
+  }
+
   renderPrompts() {
     // pass promptTemplate down as props to each prompt?
       // if individual prompt changes, set the state back at editor level to reflect that change 
-    const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt key={index} index={index} updatePromptField={this.updatePromptField}/>);
+    const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt key={index} index={index} 
+    updatePromptField={this.updatePromptField}
+    deletePrompt={this.deletePrompt} />);
     return listOfPrompts;
   }
 
@@ -66,7 +76,7 @@ class EditorMain extends Component {
           <label>Room name:</label>
             <input type="text" placeholder="Set a room name" size="30" />
         </form>
-        <PromptCount addPrompt={this.addPrompt.bind(this)} /> 
+        <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
         <h2>Settings</h2>   
         {this.renderPrompts()}
         <button onClick={this.createRoom.bind(this)}>Create Room with Fake Data</button>

@@ -110,7 +110,6 @@ class NeoPrompt extends React.Component {
     }
   }
 
-
   render() {  
     return (
       <div className="prompt">

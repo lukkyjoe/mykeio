@@ -19,7 +19,7 @@ class NeoPrompt extends React.Component {
   }
   saveSettingsHandler() {
     //should log editted prompt data object
-    console.log('BY NOW YOU SHOULD BE PASSING THE ARRAY OF PROMPT DATA, NOT JUST INDIVIDUALS');
+    console.log(this.state);
   }
 
   updatePrompt(text) {

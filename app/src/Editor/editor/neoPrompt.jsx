@@ -6,8 +6,6 @@ import MultipleChoiceBuilder from './multipleChoice/multipleChoiceBuilder.jsx';
 import TrackAnswersBoolean from './trackAnswersBoolean.jsx';
 import GiveFeedbackBoolean from './giveFeedbackBoolean.jsx';
 
-const foo = 'bar';
-
 class NeoPrompt extends React.Component {
   constructor(props) {
     super(props);

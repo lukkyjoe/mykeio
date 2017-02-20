@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Prompt from './prompt.jsx';
 import NeoPrompt from './neoPrompt.jsx';
 import PromptCount from './promptCount.jsx';
+import ShortID from 'shortid';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -26,32 +27,38 @@ class Editor extends React.Component {
   }
 
   deletePrompt(index) {
-    console.log('this is the state: ', this.state.prompts);
-    console.log('this is index', index);
     let temp = this.state.prompts.slice();
-    console.log('unspliced', temp);
     temp.splice(index, 1);
-    console.log('this is spliced: ', temp);
-    this.setState({prompts: temp});
+    this.setState({prompts: temp}, function() {
+      console.log(this.state.prompts);
+    });
   }
 
   updatePromptField(update, index) {
     let newArray = this.state.prompts.slice();
-    newArray[index] = update;
+    newArray[index] = Object.assign({ uuid: newArray[index].uuid }, update);
     this.setState({prompts: newArray});
   }
 
-  renderPrompts() {
+  renderPrompts(prompts) {
     // pass promptTemplate down as props to each prompt?
       // if individual prompt changes, set the state back at editor level to reflect that change
-    const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt key={index} index={index} updatePromptField={this.updatePromptField}/>);
+    const listOfPrompts = prompts.map((prompt, index) => {
+      return (
+        <NeoPrompt 
+          deletePrompt={() => this.deletePrompt(index)} 
+          key={prompt.uuid} 
+          index={index} 
+          updatePromptField={this.updatePromptField} />
+      );
+    });
     return listOfPrompts;
   }
 
   addPrompt() {
-    console.log('adding another prompt');
     let newArray = this.state.prompts.slice();
-    newArray.push(this.state.promptTemplate);
+    var newPrompt = Object.assign({uuid: ShortID.generate()}, this.state.promptTemplate);
+    newArray.push(newPrompt);
     this.setState({prompts: newArray});
   }
   
@@ -60,7 +67,7 @@ class Editor extends React.Component {
       <div>
         <PromptCount addPrompt={this.addPrompt.bind(this)} /> 
         <h2>Settings</h2> 
-        {this.renderPrompts()}
+        {this.renderPrompts(this.state.prompts)}
       </div>
     );
   }

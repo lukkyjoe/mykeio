@@ -39,36 +39,8 @@ class EditorMain extends Component {
   }
 
   createRoom() {
-    console.log(this.state);
-    $.post('/api/createRoom', {
-      roomTitle: 'A v hella dank room.',
-      feedback: [ 
-        {
-          type: 'MULTIPLE_CHOICE',
-          prompt: 'WHAT IS LOVE?',
-          trackAnsweres: false,
-          giveFeedback: true,
-          options: [
-            {
-              text: 'baby dont hurt me',
-              isCorrect: true
-            },
-            {
-              text: 'dont hurt me',
-              isCorrect: true
-            },
-            {
-              text: 'no more',
-              isCorrect: true
-            },
-          ]
-        },
-        {
-          type: 'TEXT',
-          prompt: 'This one time at band camp you:'
-        }
-      ]
-    }
+    console.log('HERE IS THE ROOM DATA', this.state);
+    $.post('/api/createRoom', this.state
   )
       .done((data)=>{
         window.location.href = '/#/host/' + data;

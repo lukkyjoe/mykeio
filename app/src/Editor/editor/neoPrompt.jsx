@@ -17,10 +17,10 @@ class NeoPrompt extends React.Component {
       giveFeedback: false
     };
   }
-  saveSettingsHandler() {
-    //should log editted prompt data object
-    console.log(this.state);
-  }
+  // saveSettingsHandler() {
+  //   //should log editted prompt data object
+  //   console.log(this.state);
+  // }
 
   updatePrompt(text) {
     this.state.promptText = text;
@@ -122,7 +122,6 @@ class NeoPrompt extends React.Component {
         <TrackAnswersBoolean trackAnswers={this.state.trackAnswers} toggleTrackAnswerStatus={this.toggleTrackAnswerStatus.bind(this)}/>
         <br></br>
         {this.renderGiveFeedbackSection()}        
-        <button onClick={this.saveSettingsHandler.bind(this)}>Confirm prompt settings</button>
 
       </div>
     );

@@ -5,11 +5,20 @@ export default class ChoicesListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isEditing: false
+      isEditing: false,
+      isCorrectAnswer: false
     }
+  }
+
+  renderCorrectness() {
+    
   }
   renderChoiceSection() {
     const {choice } = this.props;
+    // const choiceStyle = {
+    //   color: isCorrectAnswer ? 'green' : black,
+    //   cursor: 'pointer'
+    // };
     if (this.state.isEditing) {
       return (
         <td>

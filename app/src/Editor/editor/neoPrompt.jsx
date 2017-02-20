@@ -116,11 +116,9 @@ class NeoPrompt extends React.Component {
   render() {  
     return (
       <div className="prompt">
-        <h3>Prompt</h3>
+        <h3>Prompt #{this.props.index+1}</h3>
         <HostQuestion promptText={this.state.promptText} updatePrompt={this.updatePrompt.bind(this)}/>
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
-        <br></br>
-        <br></br>
         {this.renderResponseFormat()}
         <TrackAnswersBoolean trackAnswers={this.state.trackAnswers} toggleTrackAnswerStatus={this.toggleTrackAnswerStatus.bind(this)}/>
         <br></br>

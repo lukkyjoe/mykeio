@@ -25,13 +25,6 @@ export default class MultipleChoiceBuilder extends React.Component {
     )
   }
 
-  createChoice(choice) {
-    this.state.choices.push({
-      choice: choice,
-    });
-    this.setState({ choices: this.state.choices })
-  }
-
   saveChoice(oldChoice, newChoice) {
     const foundChoice = _.find(this.state.choices, choice => choice.choice === oldChoice);
     console.log('saveChoice method foundchoice', foundChoice);

@@ -18,8 +18,8 @@ export default class MultipleChoiceBuilder extends React.Component {
           choices={this.state.choices}
           createChoice={this.props.createChoice}
           saveChoice={this.props.saveChoice}
-          deleteChoice={this.deleteChoice.bind(this)}
-          selectAsCorrect={this.selectAsCorrect.bind(this)}
+          deleteChoice={this.props.deleteChoice}
+          selectAsCorrect={this.props.selectAsCorrect}
           />
       </div>
     )
@@ -32,15 +32,15 @@ export default class MultipleChoiceBuilder extends React.Component {
   //   this.setState({choices: this.state.choices });
   // }
 
-  deleteChoice(choiceToDelete) {
-    _.remove(this.state.choices, choice => choice.choice === choiceToDelete);
-    this.setState({choices: this.state.choices});
-  }
+  // deleteChoice(choiceToDelete) {
+  //   _.remove(this.state.choices, choice => choice.choice === choiceToDelete);
+  //   this.setState({choices: this.state.choices});
+  // }
 
-  selectAsCorrect(target) {
-    const foundChoice = _.find(this.state.choices, choice => choice.choice === target);
-    console.log(foundChoice);
-    foundChoice.correctAnswer = !foundChoice.correctAnswer;
-    this.setState({choices: this.state.choices });
-  }
+  // selectAsCorrect(target) {
+  //   const foundChoice = _.find(this.state.choices, choice => choice.choice === target);
+  //   console.log(foundChoice);
+  //   foundChoice.correctAnswer = !foundChoice.correctAnswer;
+  //   this.setState({choices: this.state.choices });
+  // }
 }

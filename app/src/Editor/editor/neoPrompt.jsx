@@ -24,6 +24,15 @@ class NeoPrompt extends React.Component {
     console.log('BY NOW YOU SHOULD BE PASSING THE ARRAY OF PROMPT DATA, NOT JUST INDIVIDUALS');
   }
 
+  updatePrompt(text) {
+    this.state.promptText = text;
+    this.setState({ choices: this.state.choices });
+    console.log(this.props.index)
+    //try updating the parent editor's state using the index props and updatePromptInArray function props
+    this.props.updatePromptField(this.state, this.props.index);
+
+  }
+
   createChoice(choice) {
     this.state.choices.push({
       choice: choice,
@@ -41,14 +50,18 @@ class NeoPrompt extends React.Component {
     this.props.updatePromptField(this.state, this.props.index);
   }
 
-
-  updatePrompt(text) {
-    this.state.promptText = text;
-    this.setState({ choices: this.state.choices });
-    console.log(this.props.index)
-    //try updating the parent editor's state using the index props and updatePromptInArray function props
+  deleteChoice(choiceToDelete) {
+    _.remove(this.state.choices, choice => choice.choice === choiceToDelete);
+    this.setState({choices: this.state.choices});
     this.props.updatePromptField(this.state, this.props.index);
+  }
 
+  selectAsCorrect(target) {
+    const foundChoice = _.find(this.state.choices, choice => choice.choice === target);
+    console.log(foundChoice);
+    foundChoice.correctAnswer = !foundChoice.correctAnswer;
+    this.setState({choices: this.state.choices });
+    this.props.updatePromptField(this.state, this.props.index);
   }
 
   toggleTrackAnswerStatus(status) {
@@ -75,9 +88,10 @@ class NeoPrompt extends React.Component {
       return (
         <MultipleChoiceBuilder updatePromptField={this.props.updatePromptField}
         index={this.props.index}
-        correctAnswerExists={this.state.correctAnswerExists}
         createChoice={this.createChoice.bind(this)}
         saveChoice={this.saveChoice.bind(this)}
+        deleteChoice={this.deleteChoice.bind(this)}
+        selectAsCorrect={this.selectAsCorrect.bind(this)}
         choices={this.state.choices}/>
       );
     }

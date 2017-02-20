@@ -33,6 +33,15 @@ class NeoPrompt extends React.Component {
     this.props.updatePromptField(this.state, this.props.index);
   }
 
+  saveChoice(oldChoice, newChoice) {
+    const foundChoice = _.find(this.state.choices, choice => choice.choice === oldChoice);
+    console.log('saveChoice method foundchoice', foundChoice);
+    foundChoice.choice = newChoice;
+    this.setState({choices: this.state.choices });
+    this.props.updatePromptField(this.state, this.props.index);
+  }
+
+
   updatePrompt(text) {
     this.state.promptText = text;
     this.setState({ choices: this.state.choices });

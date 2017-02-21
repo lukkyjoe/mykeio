@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Editor from './editor/editor.jsx';
 import NeoPrompt from './editor/neoPrompt.jsx';
 import PromptCount from './editor/promptCount.jsx';
+import ShortID from 'shortid';
 
 class EditorMain extends Component {
 
@@ -43,8 +44,11 @@ class EditorMain extends Component {
   renderPrompts() {
     // pass promptTemplate down as props to each prompt?
       // if individual prompt changes, set the state back at editor level to reflect that change 
-    const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt key={index} index={index} 
-    updatePromptField={this.updatePromptField} />);
+    const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt 
+          deletePrompt={() => this.deletePrompt(index)} 
+          key={prompt.uuid} 
+          index={index} 
+          updatePromptField={this.updatePromptField} />);
     return listOfPrompts;
   }
 

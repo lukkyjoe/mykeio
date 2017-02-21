@@ -61,12 +61,6 @@ class NeoPrompt extends React.Component {
     this.props.updatePromptField(this.state, this.props.index);
   }
 
-  toggleTrackAnswerStatus(status) {
-    this.state.trackAnswers = status;
-    this.setState({ trackAnswers: this.state.trackAnswers });
-    this.props.updatePromptField(this.state, this.props.index);
-  }
-
   toggleGiveFeedbackStatus(status) {
     console.log('toggleGiveFeedback status =========', status);
     this.state.giveFeedback = status;

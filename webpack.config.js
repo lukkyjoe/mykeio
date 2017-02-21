@@ -20,9 +20,17 @@ var config = {
         loader : 'babel-loader'
       },
       {
+        test: /\.css$/,
+        loader: 'style-loader'
+      },
+      {
         test : /\.css?/,
-        include:APP_DIR,
-        loader : 'style-loader!css-loader'
+          include:APP_DIR,
+          loader : 'css-loader',
+          query: {
+            modules: true,
+            localIdentName: '[name]__[local]___[hash:base64:5]'
+          }
       }
     ]
   },
@@ -30,4 +38,4 @@ var config = {
 
 }
 
-  module.exports = config;
+module.exports = config;

@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './Question.css';
 
+
 class Question extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      hasVoiceQuestion:false
+      isOnCall:false
     }
   }
 
@@ -19,9 +20,12 @@ class Question extends Component {
 
   render() {
     return (
-      <div className={styles.base}>
-        <p>{this.props.peerid}</p>
-        <button onClick={this.onAnswerClick.bind(this)}>Answer</button>
+      <div className={styles.container}>
+        <div className={styles.buttonContainer}>
+          <div className={styles.button}>
+            <img className={styles.check} src='img/check.png'></img>
+          </div>
+        </div>
       </div>
     );
   }

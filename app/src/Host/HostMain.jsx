@@ -127,15 +127,14 @@ class HostMain extends Component {
 
   render() {
     console.log(this.stream);
-    let users = this.state.clients.map((a, i)=><p key={i}>{a.id}</p>);
     let questions = this.state.questions.map((a, index)=> (<Question key={index} connection={a.connection} host={this.state.peerid}/>));
-    console.log('questions length ', questions.length);
     return (
       <div className={styles.base}>
-        <a href={'/#/' + this.props.params.roomid}>go to client</a>
-        {[...users]}
-        <p>questions</p>
-        {[...questions]}
+        <div className={styles.questionContainer}>
+          <a href={'/#/' + this.props.params.roomid}>go to client</a>
+          <p>questions</p>
+          {[...questions]}
+        </div>
         <button onClick={this.sendPrompt}> send question </button>
       </div>
     );

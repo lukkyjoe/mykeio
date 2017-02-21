@@ -22,7 +22,6 @@ class EditorMain extends Component {
       prompts: []
     };
     this.updatePromptField = this.updatePromptField.bind(this);
-    this.setRoomTitle = this.setRoomTitle.bind(this);
     this.deletePrompt = this.deletePrompt.bind(this);
   }
 
@@ -60,7 +59,7 @@ class EditorMain extends Component {
   }
 
   createRoom() {
-    console.log('HERE IS THE ROOM DATA', this.state);
+    console.log('Room data:', this.state);
     $.post('/api/createRoom', this.state
   )
       .done((data)=>{

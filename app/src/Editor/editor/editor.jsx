@@ -16,7 +16,6 @@ class Editor extends React.Component {
         promptText: 'Here is a scary example question',
         responseType: 'none',
         choices: [{choice: 'dummy choice', correctAnswer: false}],
-        trackAnswers: false,
         giveFeedback: false
       }, 
       prompts: []

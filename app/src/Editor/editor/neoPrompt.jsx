@@ -3,7 +3,6 @@ import HostQuestion from './hostQuestion.jsx';
 import ResponseTypeSelect from './responseTypeSelect.jsx';
 import ResponseField from './responseField.jsx';
 import MultipleChoiceBuilder from './multipleChoice/multipleChoiceBuilder.jsx';
-import TrackAnswersBoolean from './trackAnswersBoolean.jsx';
 import GiveFeedbackBoolean from './giveFeedbackBoolean.jsx';
 
 class NeoPrompt extends React.Component {
@@ -62,16 +61,9 @@ class NeoPrompt extends React.Component {
     this.props.updatePromptField(this.state, this.props.index);
   }
 
-  toggleTrackAnswerStatus(status) {
-    this.state.trackAnswers = status;
-    this.setState({ trackAnswers: this.state.trackAnswers });
-    this.props.updatePromptField(this.state, this.props.index);
-  }
-
   toggleGiveFeedbackStatus(status) {
     console.log('toggleGiveFeedback status =========', status);
-    this.state.giveFeedback = status;
-    this.setState({ giveFeedback: this.state.giveFeedback });
+    this.setState({ giveFeedback: !!this.state.giveFeedback });
     this.props.updatePromptField(this.state, this.props.index);
   }
 
@@ -100,16 +92,6 @@ class NeoPrompt extends React.Component {
     }
   }
 
-  renderGiveFeedbackSection() {
-    if (this.state.trackAnswers === 'true') {
-      return (
-        <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/>
-      );
-    } else {
-      return;
-    }
-  }
-
   render() {  
     return (
       <div className="prompt">
@@ -118,9 +100,8 @@ class NeoPrompt extends React.Component {
         <HostQuestion promptText={this.state.promptText} updatePrompt={this.updatePrompt.bind(this)}/>
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         {this.renderResponseFormat()}
-        <TrackAnswersBoolean trackAnswers={this.state.trackAnswers} toggleTrackAnswerStatus={this.toggleTrackAnswerStatus.bind(this)}/>
         <br></br>
-        {this.renderGiveFeedbackSection()}        
+        <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/>      
 
       </div>
     );

@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
-
-
+import ResponsesView from './Responses/ResponsesView.jsx';
 import Question from './Question.jsx';
 import Feedback from './Feedback.jsx';
 

@@ -6,7 +6,7 @@ import ResponseField from './responseField.jsx';
 import MultipleChoiceBuilder from './multipleChoice/multipleChoiceBuilder.jsx';
 import GiveFeedbackBoolean from './giveFeedbackBoolean.jsx';
 
-class Prompt extends React.Component {
+class NeoPrompt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -107,4 +107,4 @@ class Prompt extends React.Component {
     );
   }
 }
-export default Prompt;
+export default NeoPrompt;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PromptCount extends Component {
+class AddPrompt extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,4 +28,4 @@ class PromptCount extends Component {
   }
 }
 
-export default PromptCount;
+export default AddPrompt;

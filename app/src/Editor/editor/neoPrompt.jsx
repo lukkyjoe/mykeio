@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './neoPrompt.css';
 import HostQuestion from './hostQuestion.jsx';
 import ResponseTypeSelect from './responseTypeSelect.jsx';
 import ResponseField from './responseField.jsx';
@@ -94,7 +95,7 @@ class NeoPrompt extends React.Component {
 
   render() {  
     return (
-      <div className="prompt">
+      <div className={styles.promptContainer}>
         <button onClick={this.props.deletePrompt}>Delete</button>
         <h3>Prompt #{this.props.index + 1}</h3>
         <HostQuestion promptText={this.state.promptText} updatePrompt={this.updatePrompt.bind(this)}/>

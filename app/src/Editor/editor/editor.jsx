@@ -1,7 +1,6 @@
 
 import React from 'react';
-// import ReactDOM from 'react-dom';
-// import Prompt from './prompt.jsx';
+import ReactDOM from 'react-dom';
 import NeoPrompt from './neoPrompt.jsx';
 import PromptCount from './promptCount.jsx';
 import ShortID from 'shortid';

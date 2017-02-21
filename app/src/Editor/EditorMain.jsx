@@ -51,10 +51,6 @@ class EditorMain extends Component {
     return listOfPrompts;
   }
 
-  setRoomTitle() {
-
-  }
-
 // if change to +1 only button, consider the concat option from http://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs
   addPrompt() {
     let newArray = this.state.prompts.slice();

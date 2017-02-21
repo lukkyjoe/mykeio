@@ -51,10 +51,6 @@ class EditorMain extends Component {
     return listOfPrompts;
   }
 
-  removePrompt() {
-    //this should remove the selected prompt
-  }
-
   setRoomTitle() {
 
   }

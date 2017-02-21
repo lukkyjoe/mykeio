@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dev-peer.js & webpack -w & nodemon dev-index.js & clear",
+    "start": "node dev-peer.js & webpack -w & nodemon dev-index.js --ignore ./app/ & clear",
     "test": "echo \"Error: no test specified\" && exit 1",
     "jest": "jest --verbose"
   },

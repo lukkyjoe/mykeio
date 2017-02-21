@@ -1,5 +1,8 @@
+body{
+  margin:0;
+  padding:0;
+}
 .questionContainer{
-  width:200px;
+  width:350px;
   display:inline-block;
-  border:2px solid black;
 }

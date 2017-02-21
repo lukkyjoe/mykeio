@@ -144,6 +144,8 @@ class HostMain extends Component {
           <p>questions</p>
           {[...questions]}
         </div>
+        <button onClick={this.sendPrompt}> send question </button>
+        <ResponsesView />
         <div className={styles.feedbackContainer}>
           {[...feedback]}
         </div>

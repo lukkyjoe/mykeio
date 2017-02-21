@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './ClientMain.css';
 import $ from 'jquery';
+
 import VolumeBar from './VolumeBar.jsx';
+import FeedbackMain from './feedback/FeedbackMain.jsx';
+
+
 class ClientMain extends Component {
 
   constructor(props) {
@@ -14,7 +18,8 @@ class ClientMain extends Component {
       isReady: false,
       clientData: {
         username: 'Anonymous',
-      }
+      },
+      quizId: undefined,
     };
   }
 
@@ -72,6 +77,7 @@ class ClientMain extends Component {
     }    
     case 'START_FEEDBACK': {
       console.log('qwepqwejqw', data.payload);
+      this.setState({quizId: data.payload});
       break;
     }     
     }
@@ -132,6 +138,7 @@ class ClientMain extends Component {
         <div className={styles.base}>
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
+          <FeedbackMain />
           {this.state.showAudio ? <VolumeBar/> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>

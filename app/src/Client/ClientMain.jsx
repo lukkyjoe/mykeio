@@ -18,9 +18,6 @@ class ClientMain extends Component {
     };
   }
 
-  componentDidMount() {
-
-  }
 
   connectToHost(){
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
@@ -60,21 +57,21 @@ class ClientMain extends Component {
     window.onbeforeunload = ()=>{ 
       this.send('CLIENT_DISCONNECT');
     };
+    this.setState({isReady:true});
   }
-  handleHostData(data) {
-  }
+
   handleHostData(data) {
     switch (data.type) {
-    case 'ANSWER_REQUEST': {
-      this.dispatchCall(data.payload);
-      break;
-    }
- 
-    case 'INITIATE_PROMPT': {
-      console.log('it is quiz time and the prompt is ===', data.payload);
-      console.log('do something with the payload, like reveal/hide');
-      break;
-    }
+      case 'ANSWER_REQUEST': {
+        this.dispatchCall(data.payload);
+        break;
+      }
+
+      case 'INITIATE_PROMPT': {
+        console.log('it is quiz time and the prompt is ===', data.payload);
+        console.log('do something with the payload, like reveal/hide');
+        break;
+      }
     }
   }
 
@@ -116,15 +113,30 @@ class ClientMain extends Component {
     }
   }
 
+  handleUsernameInput(e){
+    this.setState({username:e.target.value}) 
+  }
+
   render() {
-    return (
-      <div className={styles.base}>
-        <p>{this.state.status}</p>
-        <h2>{this.state.roomTitle}</h2>
-        {this.state.showAudio ? <VolumeBar/> : undefined}
-        <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
-      </div>
-    );
+    if (!this.state.isReady){
+      return (
+        <div className={styles.usernameContainer}>
+          Username:<input type='text' onChange={this.handleUsernameInput.bind(this)}/>
+          <button onClick={this.connectToHost.bind(this)}>Connect to host</button>
+        </div>
+      )
+    }
+    else{
+      return (
+        <div className={styles.base}>
+          <p>{this.state.status}</p>
+          <h2>{this.state.roomTitle}</h2>
+          {this.state.showAudio ? <VolumeBar/> : undefined}
+          <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
+        </div>
+      );
+
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './EditorMain.css';
 import $ from 'jquery';
-// import Editor from './editor/editor.jsx';
+import Editor from './editor/editor.jsx';
 import NeoPrompt from './editor/neoPrompt.jsx';
 import PromptCount from './editor/promptCount.jsx';
 
@@ -10,33 +10,41 @@ class EditorMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      roomData: "hi",
+      roomTitle: 'New Room',
+      promptTemplate: 
+      {
+        promptText: 'Here is a scary example question',
+        responseType: 'none',
+        choices: [{choice: 'dummy choice', correctAnswer: false}],
+        trackAnswers: false,
+        giveFeedback: false
+      }, 
       prompts: []
-    }
+    };
     this.updatePromptField = this.updatePromptField.bind(this);
     this.setRoomTitle = this.setRoomTitle.bind(this);
     this.deletePrompt = this.deletePrompt.bind(this);
   }
 
-  updatePromptField(update, index) {
-    let newArray = this.state.prompts.slice();
-    newArray[index] = update;
-    this.setState({prompts: newArray})
+  deletePrompt(index) {
+    let temp = this.state.prompts.slice();
+    temp.splice(index, 1);
+    this.setState({prompts: temp}, function() {
+      console.log(this.state.prompts);
+    });
   }
 
-  deletePrompt(index) {
-    let copyArray = this.state.prompts.slice();
-    let newArray = copyArray.splice(index, 1);
-    console.log('new array after delete is', copyArray)
-    this.setState({prompts: copyArray});
+  updatePromptField(update, index) {
+    let newArray = this.state.prompts.slice();
+    newArray[index] = Object.assign({ uuid: newArray[index].uuid }, update);
+    this.setState({prompts: newArray});
   }
 
   renderPrompts() {
     // pass promptTemplate down as props to each prompt?
       // if individual prompt changes, set the state back at editor level to reflect that change 
     const listOfPrompts = this.state.prompts.map((prompt, index) => <NeoPrompt key={index} index={index} 
-    updatePromptField={this.updatePromptField}
-    deletePrompt={this.deletePrompt} />);
+    updatePromptField={this.updatePromptField} />);
     return listOfPrompts;
   }
 
@@ -50,11 +58,10 @@ class EditorMain extends Component {
 
 // if change to +1 only button, consider the concat option from http://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs
   addPrompt() {
-    console.log('adding another prompt');
     let newArray = this.state.prompts.slice();
-    newArray.push(this.state.promptTemplate);
-    this.setState({prompts: newArray}) ;
-    console.log('this.state is', this.state)
+    var newPrompt = Object.assign({uuid: ShortID.generate()}, this.state.promptTemplate);
+    newArray.push(newPrompt);
+    this.setState({prompts: newArray});
   }
 
   createRoom() {
@@ -71,7 +78,6 @@ class EditorMain extends Component {
   render() {
     return (
       <div className={styles.base}>
-        <Editor />
         <form>
           <label>Room name:</label>
             <input type="text" placeholder="Set a room name" size="30" />

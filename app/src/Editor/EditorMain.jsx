@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './EditorMain.css';
 import $ from 'jquery';
-import Editor from './editor/editor.jsx';
 import NeoPrompt from './editor/neoPrompt.jsx';
 import PromptCount from './editor/promptCount.jsx';
 import ShortID from 'shortid';

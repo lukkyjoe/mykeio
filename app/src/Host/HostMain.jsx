@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
-import ResponsesView from './Responses/ResponsesView.jsx';
 
 
 import Question from './Question.jsx';
@@ -145,14 +144,9 @@ class HostMain extends Component {
           <p>questions</p>
           {[...questions]}
         </div>
-<<<<<<< HEAD
-        <button onClick={this.sendPrompt}> send question </button>
-        <ResponsesView />
-=======
         <div className={styles.feedbackContainer}>
           {[...feedback]}
         </div>
->>>>>>> 82f8607dfd8febc7d0b0a1e651b03b70487b6d6d
       </div>
     );
   }

@@ -3,13 +3,18 @@ import React from 'react';
 class GiveFeedbackBoolean extends React.Component {
 
   handleClick(event) {
+<<<<<<< HEAD
     console.log('target value ====', event.currentTarget.value)
+=======
+    console.log(event);
+    console.log(this.props);
+    console.log('target value ====', event.currentTarget.value);
+>>>>>>> 82f8607dfd8febc7d0b0a1e651b03b70487b6d6d
     this.props.toggleGiveFeedbackStatus(event.currentTarget.value);
   }
   render() {
     return (
       <div>
-        <h3>Give immediate feedback? {this.props.trackAnswers}</h3>
         <form>
           <div>
             <label>
@@ -25,7 +30,7 @@ class GiveFeedbackBoolean extends React.Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 

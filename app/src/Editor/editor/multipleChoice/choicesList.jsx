@@ -6,11 +6,11 @@ import ChoicesListItem from './choicesListItem.jsx';
 
 export default class ChoicesList extends React.Component {
   renderItems() {
-    const props = _.omit(this.props, 'choices');
+    const props = _.omit(this.props, 'choices')
     return _.map(this.props.choices, (choice, index) => <ChoicesListItem key={index} {...choice} {...props}/>
-    );
+    )
   }
-   
+  
   render() {
     return (
       <table>
@@ -19,6 +19,6 @@ export default class ChoicesList extends React.Component {
           {this.renderItems()}
         </tbody>
       </table>
-    );
+    )
   }
 }

@@ -11,8 +11,10 @@ class HostQuestion extends React.Component {
   render() {
     return (
       <div className="hostQuestion">
+        <span> Question/Prompt: </span>
+        <span> <i> {this.props.promptText} </i> </span>
         <form>
-         Prompt: <input type="text" ref="promptInput" size="60" onChange={this.handleUpdateClick.bind(this)}/>
+          <input type="text"   ref="promptInput" size="60" onChange={this.handleUpdateClick.bind(this)}/>
         </form>
       </div>
     );

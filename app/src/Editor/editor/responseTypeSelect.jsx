@@ -10,6 +10,8 @@ class ResponseTypeSelect extends React.Component {
   render() {
     return (
       <div>
+        <h3>Select the participant response type</h3>
+        <h4>Currently selected response type: <i>{this.props.responseType}</i></h4>
         <form>
           <div>
             <label>

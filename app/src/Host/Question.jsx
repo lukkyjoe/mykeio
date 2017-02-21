@@ -5,17 +5,17 @@ import styles from './Question.css';
 class Question extends Component {
 
   constructor(props) {
-    super(props);    
+    super(props);
     this.state = {
-      isOnCall: false
-    };
+      isOnCall:false
+    }
   }
 
-  onAnswerClick() {
+  onAnswerClick(){
     this.props.connection.send({
-      type: 'ANSWER_REQUEST',
-      payload: this.props.host
-    });
+      type:"ANSWER_REQUEST",
+      payload:this.props.host
+    })
   }
 
   render() {

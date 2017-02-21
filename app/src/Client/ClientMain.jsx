@@ -10,7 +10,7 @@ class ClientMain extends Component {
     this.state = {
       status: 'connecting to server...',
       hasVoiceQuestion: false,
-      userNameIsSet: false,
+      userNameIsSet:false,
       isReady: false,
       clientData: {
         username: 'Anonymous',
@@ -19,7 +19,7 @@ class ClientMain extends Component {
   }
 
 
-  connectToHost() {
+  connectToHost(){
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
         console.log(data);
@@ -57,19 +57,21 @@ class ClientMain extends Component {
     window.onbeforeunload = ()=>{ 
       this.send('CLIENT_DISCONNECT');
     };
-    this.setState({isReady: true});
+    this.setState({isReady:true});
   }
 
   handleHostData(data) {
     switch (data.type) {
-    case 'ANSWER_REQUEST': {
-      this.dispatchCall(data.payload);
-      break;
-    }
-    case 'START_FEEDBACK': {
-      console.log('qwepqwejqw', data.payload);
-      break;
-    }     
+      case 'ANSWER_REQUEST': {
+        this.dispatchCall(data.payload);
+        break;
+      }
+
+      case 'INITIATE_PROMPT': {
+        console.log('it is quiz time and the prompt is ===', data.payload);
+        console.log('do something with the payload, like reveal/hide');
+        break;
+      }
     }
   }
 
@@ -111,19 +113,20 @@ class ClientMain extends Component {
     }
   }
 
-  handleUsernameInput(e) {
-    this.setState({username: e.target.value}); 
+  handleUsernameInput(e){
+    this.setState({username:e.target.value}) 
   }
 
   render() {
-    if (!this.state.isReady) {
+    if (!this.state.isReady){
       return (
         <div className={styles.usernameContainer}>
           Username:<input type='text' onChange={this.handleUsernameInput.bind(this)}/>
           <button onClick={this.connectToHost.bind(this)}>Connect to host</button>
         </div>
-      );
-    } else {
+      )
+    }
+    else{
       return (
         <div className={styles.base}>
           <p>{this.state.status}</p>

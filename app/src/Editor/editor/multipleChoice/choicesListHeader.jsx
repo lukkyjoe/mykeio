@@ -6,10 +6,10 @@ export default class ChoicesListHeader extends React.Component {
     return (
         <thead>
           <tr>
-            <th>Items</th>
-            <th>Actions</th>
+            <th>Item</th>
+            <th>Action</th>
           </tr>
         </thead>
-    );
+    )
   }
 }

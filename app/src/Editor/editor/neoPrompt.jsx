@@ -97,7 +97,6 @@ class NeoPrompt extends React.Component {
     return (
       <div className={styles.promptContainer}>
         <button onClick={this.props.deletePrompt}>Delete</button>
-        <h3>Prompt #{this.props.index + 1}</h3>
         <HostQuestion promptText={this.state.promptText} updatePrompt={this.updatePrompt.bind(this)}/>
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         {this.renderResponseFormat()}

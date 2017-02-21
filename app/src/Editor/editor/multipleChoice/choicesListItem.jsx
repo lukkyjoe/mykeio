@@ -7,12 +7,13 @@ export default class ChoicesListItem extends React.Component {
     this.state = {
       isEditing: false,
       isCorrectAnswer: false
-    }
+    };
   }
 
   renderCorrectness() {
     
   }
+  
   renderChoiceSection() {
     const {choice } = this.props;
     // const choiceStyle = {
@@ -26,7 +27,7 @@ export default class ChoicesListItem extends React.Component {
             <input type="text" defaultValue={choice} ref="editInput" />
           </form>
         </td>
-      )
+      );
     }
   }
 
@@ -45,7 +46,7 @@ export default class ChoicesListItem extends React.Component {
           <button onClick={this.props.deleteChoice.bind(this, this.props.choice)}>Delete</button>
           <button onClick={this.onSelectAsCorrectClick.bind(this)}>Select as correct answer(s)</button>
         </td>
-    )
+    );
   }
   render() {
     return (
@@ -54,13 +55,13 @@ export default class ChoicesListItem extends React.Component {
           {this.renderChoiceSection()}
           {this.renderActionsSection()}
         </tr>
-    )
+    );
   }
   onEditClick() {
-    this.setState({ isEditing: true })
+    this.setState({ isEditing: true });
   }
   onCancelClick() {
-    this.setState({ isEditing: false})
+    this.setState({ isEditing: false});
   }
   onSaveClick(event) {
     event.preventDefault();

@@ -22,8 +22,11 @@ class Question extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.buttonContainer}>
-          <div className={styles.button}>
+          <div className={styles.button} onClick={this.onAnswerClick.bind(this)}>
             <img className={styles.check} src='img/check.png'></img>
+          </div>
+          <div className={styles.button}>
+            <img className={styles.cross} src='img/cross.png'></img>
           </div>
         </div>
       </div>

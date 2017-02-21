@@ -10,6 +10,7 @@ class ClientMain extends Component {
     this.state = {
       status: 'connecting to server...',
       hasVoiceQuestion: false,
+      userNameIsSet:false,
       isReady: false,
       clientData: {
         username: 'Anonymous',
@@ -18,6 +19,10 @@ class ClientMain extends Component {
   }
 
   componentDidMount() {
+
+  }
+
+  connectToHost(){
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
         console.log(data);
@@ -55,6 +60,8 @@ class ClientMain extends Component {
     window.onbeforeunload = ()=>{ 
       this.send('CLIENT_DISCONNECT');
     };
+  }
+  handleHostData(data) {
   }
   handleHostData(data) {
     switch (data.type) {

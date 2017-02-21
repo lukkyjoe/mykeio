@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
 
+
 import Question from './Question.jsx';
+import Feedback from './Feedback.jsx';
 
 class HostMain extends Component {
 
@@ -24,9 +26,9 @@ class HostMain extends Component {
 
   setUpRoom() {
     this.peer = new Peer({
-      host:'/',
-      port:9000,
-      debug:2
+      host: '/',
+      port: 9000,
+      debug: 2
     });
     this.peer.on('open', (id)=>{
       this.setState({peerid: id});
@@ -40,8 +42,8 @@ class HostMain extends Component {
     });
 
     this.peer.on('connection', (conn)=>{
-      console.log('connection event =====' , conn);
-      console.log('this.connection hash =====' , this.connectionHash)
+      console.log('connection event =====', conn);
+      console.log('this.connection hash =====', this.connectionHash);
       //somewhere here is a good place to add to connectionHash
       //client.id not what you're looking for? client ids create the connection
       // use the connections
@@ -61,6 +63,7 @@ class HostMain extends Component {
 
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
+        console.log('THIS IS THE DATA', data);
         this.setState({roomData: data});
       })
       .fail(()=>{
@@ -121,13 +124,19 @@ class HostMain extends Component {
   sendPrompt(event) {
     for (let connection in this.connectionHash) {
       console.log(this.connectionHash[connection]);
-      this.connectionHash[connection].send({type: 'INITIATE_PROMPT', payload: "insert target value x"})
+      this.connectionHash[connection].send({type: 'INITIATE_PROMPT', payload: 'insert target value x'});
     }
   }
 
   render() {
     console.log(this.stream);
+    
     let questions = this.state.questions.map((a, index)=> (<Question key={index} connection={a.connection} host={this.state.peerid}/>));
+    let feedback = [];
+    if (this.state.roomData) {
+      feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} connections={this.connectionHash} clients={this.state.clients}promptText={a.promptText} />));
+      console.log(this.state.roomData.prompts);
+    }
     return (
       <div className={styles.base}>
         <div className={styles.questionContainer}>
@@ -135,7 +144,9 @@ class HostMain extends Component {
           <p>questions</p>
           {[...questions]}
         </div>
-        <button onClick={this.sendPrompt}> send question </button>
+        <div className={styles.feedbackContainer}>
+          {[...feedback]}
+        </div>
       </div>
     );
   }

@@ -129,7 +129,10 @@ class HostMain extends Component {
   }
 
   selectPrompt(text) {
+    displayData = fakeResponseData2;
+    console.log('displayData =========', displayData);
     console.log('responds to click on prompt and shows:', text)
+    this.setState({promptDisplay: displayData});
   }
 
   render() {
@@ -149,6 +152,8 @@ class HostMain extends Component {
           <p>questions</p>
           {[...questions]}
         </div>
+        <button onClick={this.sendPrompt}> send question </button>
+        <ResponsesView displayData={displayData}/>
         <div className={styles.feedbackContainer}>
           {[...feedback]}
         </div>
@@ -156,5 +161,22 @@ class HostMain extends Component {
     );
   }
 }
+
+//fake data. should be deleted as soon as ready
+const fakeResponseData = [
+  {choice: 'hey', tally: 3}, 
+  {choice: 'hello', tally: 7},
+  {choice: 'sup', tally: 3},
+  {choice: 'yo', tally: 6}
+  ]
+
+const fakeResponseData2 = [
+  {choice: 'red', tally: 300}, 
+  {choice: 'blue', tally: 700},
+  {choice: 'ruby red', tally: 300},
+  {choice: 'vodka', tally: 400}
+]
+
+let displayData = fakeResponseData;
 
 export default HostMain;

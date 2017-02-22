@@ -19,7 +19,7 @@ class Feedback extends Component {
   }
 
   onPromptClick() {
-    this.props.selectPrompt();
+    this.props.selectPrompt(this.props.promptText);
   }
 
   render() {

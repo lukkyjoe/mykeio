@@ -24,7 +24,6 @@ class ClientMain extends Component {
     };
   }
 
-
   connectToHost() {
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
@@ -84,10 +83,12 @@ class ClientMain extends Component {
     }
   }
 
-  renderQuestions(payload) {
-    this.setState({feedback: _.find(this.state.prompts, () => {
-      return this.state.prompts.uuid === payload;
-    })
+  renderQuestions(targetId) {
+    var target = _.find(this.state.prompts, (item) => {
+      return item.uuid === targetId;
+    });
+    this.setState({feedback: target}, () => {
+      console.log('LETS GO', this.state.feedback);
     });
   }
 
@@ -99,7 +100,6 @@ class ClientMain extends Component {
       that.setState({showAudio: false});
     });
   }
-
 
   updateHostWithClientData() {
     this.send('CLIENT_UPDATE');
@@ -146,12 +146,11 @@ class ClientMain extends Component {
         <div className={styles.base}>
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
-          {this.state.feedback ? <FeedbackMain feedback={this.state.feedback}/>:undefined}
+          {this.state.feedback ? <FeedbackMain feedback={this.state.feedback}/> : undefined}
           {this.state.showAudio ? <VolumeBar/> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>
       );
-
     }
   }
 }

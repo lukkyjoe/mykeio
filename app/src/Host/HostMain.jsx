@@ -73,33 +73,33 @@ class HostMain extends Component {
 
   handlePeerData(data, conn) {
     switch (data.type) {
-    case 'CLIENT_UPDATE': {
-      let currentList = this.state.clients.slice();
-      if (currentList.find(a=>a.id === data.payload.id)) {
-        this.setState({clients: this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
-      } else {
-        this.setState({clients: this.addToList(this.state.clients, data.payload)});
-        this.connectionHash[data.payload.id] = conn;
+      case 'CLIENT_UPDATE': {
+        let currentList = this.state.clients.slice();
+        if (currentList.find(a=>a.id === data.payload.id)) {
+          this.setState({clients: this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
+        } else {
+          this.setState({clients: this.addToList(this.state.clients, data.payload)});
+          this.connectionHash[data.payload.id] = conn;
+        }
+        break;
       }
-      break;
-    }
-    case 'CLIENT_DISCONNECT': {
-      this.setState({clients: this.removeFromList(this.state.clients, a=> a.id === data.payload.id)});
-      this.setState({questions: this.removeFromList(this.state.questions, a=> a.id === data.payload.id)});
-      this.connectionHash[data.payload.id] = undefined;
-      break;
-    }
+      case 'CLIENT_DISCONNECT': {
+        this.setState({clients: this.removeFromList(this.state.clients, a=> a.id === data.payload.id)});
+        this.setState({questions: this.removeFromList(this.state.questions, a=> a.id === data.payload.id)});
+        this.connectionHash[data.payload.id] = undefined;
+        break;
+      }
 
-    case 'QUESTION_REQUEST': {
-      data.payload.connection = conn;
-      this.setState({questions: this.addToList(this.state.questions, data.payload)});
-      break;
-    } 
+      case 'QUESTION_REQUEST': {
+        data.payload.connection = conn;
+        this.setState({questions: this.addToList(this.state.questions, data.payload)});
+        break;
+      } 
 
-    case 'CANCEL_QUESTION_REQUEST': {
-      this.setState({questions: this.removeFromList(this.state.questions, a => a.id === data.payload.id)});
-      break;
-    }
+      case 'CANCEL_QUESTION_REQUEST': {
+        this.setState({questions: this.removeFromList(this.state.questions, a => a.id === data.payload.id)});
+        break;
+      }
 
     }
   }
@@ -132,8 +132,9 @@ class HostMain extends Component {
     let questions = this.state.questions.map((a, index)=> (<Question key={index} onCancelQuestion={this.onCancelQuestion.bind(this)} user={a} connection={a.connection} host={this.state.peerid}/>));
     let feedback = [];
     if (this.state.roomData) {
-      feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} connections={this.connectionHash} clients={this.state.clients}promptText={a.promptText} />));
-      console.log(this.state.roomData.prompts);
+      if (this.state.roomData.prompts){
+        feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} connections={this.connectionHash} clients={this.state.clients}promptText={a.promptText} />));
+      }
     }
     return (
       <div className={styles.base}>

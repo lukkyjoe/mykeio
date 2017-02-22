@@ -129,9 +129,6 @@ class HostMain extends Component {
   }
 
   selectPrompt(text) {
-    displayData = fakeResponseData2;
-    console.log('displayData =========', displayData);
-    console.log('responds to click on prompt and shows:', text)
     let target = _.find(this.state.roomData.prompts, function(prompt) {
       return prompt.uuid === text;
     })

@@ -1,11 +1,12 @@
 import React from 'react';
+import styles from './ResponseTally.css';
 
 const ResponseTally = ({response, index}) => {
   
   return (
-    <tr>
+    <tr className={styles.responseTally}>
       <td>
-        {response}
+        {response.tally}
       </td>
     </tr>
   )

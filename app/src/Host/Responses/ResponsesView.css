@@ -1,5 +1,7 @@
-.container{
+.responsesView{
   border:2px solid black;
   margin: auto;
   width: 30%;
+  border-collapse: collapse;
+
 }

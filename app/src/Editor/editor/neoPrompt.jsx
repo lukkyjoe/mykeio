@@ -86,11 +86,7 @@ class NeoPrompt extends React.Component {
         choices={this.state.choices}/>
       );
     }
-    if (this.state.responseType === 'TEXT') {
-      return (
-        <div> Raw input field </div>
-      );
-    }
+
   }
 
   render() {  

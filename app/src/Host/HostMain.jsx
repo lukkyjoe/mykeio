@@ -12,7 +12,8 @@ class HostMain extends Component {
     this.state = {
       settingUp: true,
       clients: [],
-      questions: []
+      questions: [],
+      promptDisplay: []
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -127,8 +128,8 @@ class HostMain extends Component {
     })
   }
 
-  selectPrompt() {
-    console.log('responds to click on prompt')
+  selectPrompt(text) {
+    console.log('responds to click on prompt and shows:', text)
   }
 
   render() {

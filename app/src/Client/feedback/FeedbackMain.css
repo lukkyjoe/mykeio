@@ -8,19 +8,3 @@
   height:40px;
   text-align: center;
 }
-
-.button{
-  border: 3px solid black;
-  border-radius:30px;
-  height:28px;
-  width:28px;
-  display:inline-block;
-  margin-left:3px;
-}
-
-.check{
-  height:19px;
-  width:19px;
-  margin-top: 5px;
-  margin-left: 4px;
-}

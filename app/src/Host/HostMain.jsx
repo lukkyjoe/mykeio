@@ -121,17 +121,12 @@ class HostMain extends Component {
     return newList;
   }
 
-  sendPrompt(event) {
-    for (let connection in this.connectionHash) {
-      console.log(this.connectionHash[connection]);
-      this.connectionHash[connection].send({type: 'INITIATE_PROMPT', payload: 'insert target value x'});
-    }
+  onCancelQuestion(peerid){
+    this.setState({questions:this.state.questions.filter((a)=>a.id===peerid)})
   }
 
   render() {
-    console.log(this.stream);
-    
-    let questions = this.state.questions.map((a, index)=> (<Question key={index} connection={a.connection} host={this.state.peerid}/>));
+    let questions = this.state.questions.map((a, index)=> (<Question key={index} onCancelQuestion={this.onCancelQuestion.bind(this)} user={a} connection={a.connection} host={this.state.peerid}/>));
     let feedback = [];
     if (this.state.roomData) {
       feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} connections={this.connectionHash} clients={this.state.clients}promptText={a.promptText} />));
@@ -144,8 +139,6 @@ class HostMain extends Component {
           <p>questions</p>
           {[...questions]}
         </div>
-        <button onClick={this.sendPrompt}> send question </button>
-        <ResponsesView />
         <div className={styles.feedbackContainer}>
           {[...feedback]}
         </div>

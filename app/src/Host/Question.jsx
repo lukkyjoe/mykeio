@@ -6,6 +6,7 @@ class Question extends Component {
 
   constructor(props) {
     super(props);    
+    console.log(props.user);
     this.state = {
       isOnCall: false
     };
@@ -18,14 +19,16 @@ class Question extends Component {
     });
   }
 
+
   render() {
     return (
       <div className={styles.container}>
+        <h2 className={styles.username}>{this.props.user.username}</h2>
         <div className={styles.buttonContainer}>
           <div className={styles.button} onClick={this.onAnswerClick.bind(this)}>
             <img className={styles.check} src='img/check.png'></img>
           </div>
-          <div className={styles.button}>
+          <div className={styles.button} onClick={this.props.onCancel}>
             <img className={styles.cross} src='img/cross.png'></img>
           </div>
         </div>

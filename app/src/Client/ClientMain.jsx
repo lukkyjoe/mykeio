@@ -112,7 +112,7 @@ class ClientMain extends Component {
   }
 
   handleUsernameInput(e) {
-    this.setState({username: e.target.value}); 
+    this.setState({clientData:Object.assign({},this.state.clientData,{username:e.target.value})}); 
   }
 
   render() {

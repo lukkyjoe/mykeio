@@ -24,7 +24,8 @@ class ClientMain extends Component {
     };
   }
 
-  connectToHost() {
+  connectToHost(e) {
+    e.preventDefault();
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
         console.log(data);
@@ -137,8 +138,10 @@ class ClientMain extends Component {
     if (!this.state.isReady) {
       return (
         <div className={styles.usernameContainer}>
-          Username:<input type='text' onChange={this.handleUsernameInput.bind(this)}/>
-          <button onClick={this.connectToHost.bind(this)}>Connect to host</button>
+          <form onSubmit={this.connectToHost.bind(this)}>
+            Username:<input type='text' onChange={this.handleUsernameInput.bind(this)}/>
+            <button onClick={this.connectToHost.bind(this)}>Connect to host</button>
+          </form>
         </div>
       );
     } else {

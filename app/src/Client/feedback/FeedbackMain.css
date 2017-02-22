@@ -1,15 +1,14 @@
 .container{
   border:1px solid black;
   border-width:0px 2px 2px 2px;
+  width: 50%;
   margin-top:5px;
   margin-bottom:5px;
+  margin: auto;
   height:40px;
+  text-align: center;
 }
-.buttonContainer{
-  float:right;
-  margin-top:3px;
-  margin-right:3px;
-}
+
 .button{
   border: 3px solid black;
   border-radius:30px;
@@ -17,28 +16,11 @@
   width:28px;
   display:inline-block;
   margin-left:3px;
-  
 }
+
 .check{
   height:19px;
   width:19px;
   margin-top: 5px;
   margin-left: 4px;
-}
-
-.button:hover{
-  background-color:gray;
-}
-
-.cross{
-  height:19px;
-  width:19px;
-  margin-top: 5px;
-  margin-left: 4px;
-}
-
-.promptText{
-  display: inline-block;
-  margin: 0px;
-  padding: 0px;
 }

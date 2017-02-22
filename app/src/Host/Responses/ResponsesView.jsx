@@ -9,6 +9,9 @@ const fakeResponseData = [
   {choice: 'yo', tally: 4}
   ]
 
+// 1. render different multiple choices and tallies based on selected prompt (from right column)
+// 2. up the tally based on a selection on client side (assume client clicks and selects one)
+
 const ResponsesView = (props) => {
   const responseList = fakeResponseData.map((response, index) => {
     return (

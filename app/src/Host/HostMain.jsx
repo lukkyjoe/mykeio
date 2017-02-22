@@ -127,12 +127,18 @@ class HostMain extends Component {
     })
   }
 
+  selectPrompt() {
+    console.log('responds to click on prompt')
+  }
+
   render() {
     let questions = this.state.questions.map((a, index)=> (<Question key={index} onCancelQuestion={this.onCancelQuestion.bind(this)} user={a} connection={a.connection} host={this.state.peerid}/>));
     let feedback = [];
     if (this.state.roomData) {
       if (this.state.roomData.prompts){
-        feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} connections={this.connectionHash} clients={this.state.clients}promptText={a.promptText} />));
+        feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} 
+      connections={this.connectionHash} clients={this.state.clients}
+      promptText={a.promptText} selectPrompt={this.selectPrompt.bind(this)} />));
       }
     }
     return (

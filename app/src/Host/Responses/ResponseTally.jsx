@@ -6,6 +6,9 @@ const ResponseTally = ({response, index}) => {
   return (
     <tr className={styles.responseTally}>
       <td>
+        {response.choice}
+      </td>
+      <td>
         {response.tally}
       </td>
     </tr>

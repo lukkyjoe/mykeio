@@ -6,7 +6,7 @@ class FeedbackMain extends Component {
     this.state = {
 
     };
-    console.log('qwieio', props);
+    console.log('props in feedbackMain', props);
   }
   render() {
     return (

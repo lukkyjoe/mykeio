@@ -15,7 +15,7 @@ class EditorMain extends Component {
       {
         promptText: 'Here is a scary example question',
         responseType: 'none',
-        choices: [{choice: 'dummy choice', correctAnswer: false}],
+        choices: [],
         trackAnswers: false,
         giveFeedback: false
       }, 

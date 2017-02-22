@@ -17,10 +17,6 @@ class NeoPrompt extends React.Component {
       giveFeedback: false
     };
   }
-  // saveSettingsHandler() {
-  //   //should log editted prompt data object
-  //   console.log(this.state);
-  // }
 
   updatePrompt(text) {
     this.state.promptText = text;

@@ -17,7 +17,6 @@ class HostMain extends Component {
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
-    this.sendPrompt = this.sendPrompt.bind(this);
   }
 
   componentDidMount() {
@@ -122,7 +121,11 @@ class HostMain extends Component {
   }
 
   onCancelQuestion(peerid){
-    this.setState({questions:this.state.questions.filter((a)=>a.id===peerid)})
+    this.setState({questions:this.state.questions.filter((a)=>a.id!==peerid)})
+    this.connectionHash[peerid].send({
+      type:"QUESTION_CANCEL",
+      payload:peerid
+    })
   }
 
   render() {

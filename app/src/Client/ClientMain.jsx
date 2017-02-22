@@ -66,6 +66,10 @@ class ClientMain extends Component {
       this.dispatchCall(data.payload);
       break;
     }
+    case 'QUESTION_CANCEL': {
+      this.setState({hasVoiceQuestion:false})
+      break;
+    }    
     case 'START_FEEDBACK': {
       console.log('qwepqwejqw', data.payload);
       break;

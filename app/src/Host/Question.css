@@ -1,6 +1,6 @@
 .container{
   border:1px solid black;
-  border-width:2px 2px 2px 0px;
+  border-width:2px 2px 0px 2px;
   margin-top:5px;
   margin-bottom:5px;
   height:40px;
@@ -27,7 +27,7 @@
 }
 
 .button:hover{
-  background-color:gray;
+  background-color:#4286f4;
 }
 
 .cross{
@@ -35,4 +35,11 @@
   width:19px;
   margin-top: 5px;
   margin-left: 4px;
+}
+
+.username{
+  display:inline-block;
+  margin:0;
+  padding:0;
+  margin-left:10px;
 }

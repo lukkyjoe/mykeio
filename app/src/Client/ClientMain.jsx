@@ -66,6 +66,10 @@ class ClientMain extends Component {
       this.dispatchCall(data.payload);
       break;
     }
+    case 'QUESTION_CANCEL': {
+      this.setState({hasVoiceQuestion:false})
+      break;
+    }    
     case 'START_FEEDBACK': {
       console.log('qwepqwejqw', data.payload);
       break;
@@ -112,7 +116,7 @@ class ClientMain extends Component {
   }
 
   handleUsernameInput(e) {
-    this.setState({username: e.target.value}); 
+    this.setState({clientData:Object.assign({},this.state.clientData,{username:e.target.value})}); 
   }
 
   render() {

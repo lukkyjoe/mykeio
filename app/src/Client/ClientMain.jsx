@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './ClientMain.css';
 import $ from 'jquery';
+import _ from 'lodash';
 
 import VolumeBar from './VolumeBar.jsx';
 import FeedbackMain from './feedback/FeedbackMain.jsx';
@@ -76,11 +77,18 @@ class ClientMain extends Component {
       break;
     }    
     case 'START_FEEDBACK': {
-      console.log('qwepqwejqw', data.payload);
-      this.setState({quizId: data.payload});
+      console.log('THIS THE DATA PAYLOADBRUUHHH', data.payload);
+      this.renderQuestions(data.payload);
       break;
-    }     
+    } 
     }
+  }
+
+  renderQuestions(payload) {
+    this.setState({feedback: _.find(this.state.prompts, () => {
+      return this.state.prompts.uuid === payload;
+    })
+    });
   }
 
   dispatchCall(hostid) {
@@ -138,7 +146,7 @@ class ClientMain extends Component {
         <div className={styles.base}>
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
-          <FeedbackMain />
+          {this.state.feedback ? <FeedbackMain feedback={this.state.feedback}/>:undefined}
           {this.state.showAudio ? <VolumeBar/> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>

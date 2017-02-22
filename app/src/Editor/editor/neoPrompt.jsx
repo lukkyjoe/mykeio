@@ -101,8 +101,7 @@ class NeoPrompt extends React.Component {
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         {this.renderResponseFormat()}
         <br></br>
-        <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/>      
-
+        <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/>
       </div>
     );
   }

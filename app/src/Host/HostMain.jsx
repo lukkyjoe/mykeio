@@ -73,7 +73,7 @@ class HostMain extends Component {
 
   handlePeerData(data, conn) {
     switch (data.type) {
-      case 'CLIENT_UPDATE': {
+    case 'CLIENT_UPDATE': {
         let currentList = this.state.clients.slice();
         if (currentList.find(a=>a.id === data.payload.id)) {
           this.setState({clients: this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
@@ -83,20 +83,20 @@ class HostMain extends Component {
         }
         break;
       }
-      case 'CLIENT_DISCONNECT': {
+    case 'CLIENT_DISCONNECT': {
         this.setState({clients: this.removeFromList(this.state.clients, a=> a.id === data.payload.id)});
         this.setState({questions: this.removeFromList(this.state.questions, a=> a.id === data.payload.id)});
         this.connectionHash[data.payload.id] = undefined;
         break;
       }
 
-      case 'QUESTION_REQUEST': {
+    case 'QUESTION_REQUEST': {
         data.payload.connection = conn;
         this.setState({questions: this.addToList(this.state.questions, data.payload)});
         break;
       } 
 
-      case 'CANCEL_QUESTION_REQUEST': {
+    case 'CANCEL_QUESTION_REQUEST': {
         this.setState({questions: this.removeFromList(this.state.questions, a => a.id === data.payload.id)});
         break;
       }
@@ -119,20 +119,19 @@ class HostMain extends Component {
     newList.splice(newList.findIndex(selectionFunction), 1, itemToAdd);
     return newList;
   }
-
-  onCancelQuestion(peerid){
-    this.setState({questions:this.state.questions.filter((a)=>a.id!==peerid)})
+  onCancelQuestion(peerid) {
+    this.setState({questions: this.state.questions.filter((a)=>a.id !== peerid)});
     this.connectionHash[peerid].send({
-      type:"QUESTION_CANCEL",
-      payload:peerid
-    })
+      type: 'QUESTION_CANCEL',
+      payload: peerid
+    });
   }
 
   selectPrompt(text) {
     let target = _.find(this.state.roomData.prompts, function(prompt) {
       return prompt.uuid === text;
-    })
-    console.log('find the target prompts arr of choices' , target.choices)
+    });
+    console.log('find the target prompts arr of choices', target.choices);
     this.setState({promptDisplay: target.choices});
   }
 
@@ -140,7 +139,7 @@ class HostMain extends Component {
     let questions = this.state.questions.map((a, index)=> (<Question key={index} onCancelQuestion={this.onCancelQuestion.bind(this)} user={a} connection={a.connection} host={this.state.peerid}/>));
     let feedback = [];
     if (this.state.roomData) {
-      if (this.state.roomData.prompts){
+      if (this.state.roomData.prompts) {
         feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} 
       connections={this.connectionHash} clients={this.state.clients}
       promptText={a.promptText} selectPrompt={this.selectPrompt.bind(this)} />));
@@ -153,7 +152,6 @@ class HostMain extends Component {
           <p>questions</p>
           {[...questions]}
         </div>
-        <button onClick={this.sendPrompt}> send question </button>
         <ResponsesView displayData={this.state.promptDisplay}/>
         <div className={styles.feedbackContainer}>
           {[...feedback]}

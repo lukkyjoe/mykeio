@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
-
-
+import ResponsesView from './Responses/ResponsesView.jsx';
 import Question from './Question.jsx';
 import Feedback from './Feedback.jsx';
 
@@ -13,7 +12,8 @@ class HostMain extends Component {
     this.state = {
       settingUp: true,
       clients: [],
-      questions: []
+      questions: [],
+      promptDisplay: []
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -128,12 +128,22 @@ class HostMain extends Component {
     })
   }
 
+  selectPrompt(text) {
+    let target = _.find(this.state.roomData.prompts, function(prompt) {
+      return prompt.uuid === text;
+    })
+    console.log('find the target prompts arr of choices' , target.choices)
+    this.setState({promptDisplay: target.choices});
+  }
+
   render() {
     let questions = this.state.questions.map((a, index)=> (<Question key={index} onCancelQuestion={this.onCancelQuestion.bind(this)} user={a} connection={a.connection} host={this.state.peerid}/>));
     let feedback = [];
     if (this.state.roomData) {
       if (this.state.roomData.prompts){
-        feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} connections={this.connectionHash} clients={this.state.clients}promptText={a.promptText} />));
+        feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} 
+      connections={this.connectionHash} clients={this.state.clients}
+      promptText={a.promptText} selectPrompt={this.selectPrompt.bind(this)} />));
       }
     }
     return (
@@ -143,6 +153,8 @@ class HostMain extends Component {
           <p>questions</p>
           {[...questions]}
         </div>
+        <button onClick={this.sendPrompt}> send question </button>
+        <ResponsesView displayData={this.state.promptDisplay}/>
         <div className={styles.feedbackContainer}>
           {[...feedback]}
         </div>

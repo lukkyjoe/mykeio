@@ -18,9 +18,13 @@ class Feedback extends Component {
     }
   }
 
+  onPromptClick() {
+    this.props.selectPrompt(this.props.uuid);
+  }
+
   render() {
     return (
-      <div className={styles.container}>
+      <div className={styles.container} onClick={this.onPromptClick.bind(this)}>
         <div className={styles.buttonContainer}>
           <p className={styles.promptText}>
             {this.props.promptText}     

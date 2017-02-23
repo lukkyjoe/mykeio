@@ -73,7 +73,10 @@ class ClientMain extends Component {
       break;
     }
     case 'QUESTION_CANCEL': {
-      this.setState({hasVoiceQuestion:false})
+      if (this.state.hasVoiceQuestion === true){
+        this.setState({hasVoiceQuestion:false})
+        this.mediaConnection.close();
+      }
       break;
     }    
     case 'START_FEEDBACK': {
@@ -94,10 +97,10 @@ class ClientMain extends Component {
   }
 
   dispatchCall(hostid) {
-    let mediaConnection = this.peer.call(hostid, this.state.stream);
+    this.mediaConnection = this.peer.call(hostid, this.state.stream);
     this.setState({showAudio: true});
     let that = this;
-    mediaConnection.on('close', () =>{
+    this.mediaConnection.on('close', () =>{
       that.setState({showAudio: false});
     });
   }
@@ -114,6 +117,9 @@ class ClientMain extends Component {
   cancelVoiceQuestion() {
     this.send('CANCEL_QUESTION_REQUEST');
     this.setState({hasVoiceQuestion: false});
+    if (this.mediaConnection){
+      this.mediaConnection.close();
+    }
   }
 
   send(type, data = this.state.clientData) {

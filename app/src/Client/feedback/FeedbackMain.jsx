@@ -7,11 +7,24 @@ class FeedbackMain extends Component {
     this.state = {
 
     };
-    console.log('props in feedbackMain', props);
+    this.submitAnswer = this.submitAnswer.bind(this);
   }
+
+    
+  submitAnswer(index) {
+    this.props.connection.send({
+      type: 'FEEDBACK_RESPONSE',
+      payload: {
+        peerid: this.props.peerid,
+        quizuuid: this.props.feedback.uuid,
+        index: index
+      }
+    });
+  } 
+
   render() {
-    let options = this.props.feedback.choices.map((a, index)=>(<div className={styles.container} key={index}>{a.choice}</div>));
-    return (
+    let options = this.props.feedback.choices.map((a, index)=>(<div value={a.choice} onClick={()=>{ this.submitAnswer(index); }} className={styles.container} key={index}>{a.choice}</div>));
+    return ( 
       <div>
         <div className={styles.container}>
           {this.props.feedback.promptText}

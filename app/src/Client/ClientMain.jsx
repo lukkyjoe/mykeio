@@ -149,7 +149,7 @@ class ClientMain extends Component {
         <div className={styles.base}>
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
-          {this.state.feedback ? <FeedbackMain feedback={this.state.feedback}/> : undefined}
+          {this.state.feedback ? <FeedbackMain peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
           {this.state.showAudio ? <VolumeBar/> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>

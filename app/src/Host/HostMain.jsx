@@ -101,6 +101,11 @@ class HostMain extends Component {
         break;
       }
 
+    case 'FEEDBACK_RESPONSE': {
+      console.log(data);
+      break;
+    }
+
     }
   }
   //pure, returns new array

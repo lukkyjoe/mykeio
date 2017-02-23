@@ -1,6 +1,6 @@
 
 import React from 'react';
-import NeoPrompt from './neoPrompt.jsx';
+import Prompt from './Prompt.jsx';
 import PromptCount from './promptCount.jsx';
 import ShortID from 'shortid';
 
@@ -42,7 +42,7 @@ class Editor extends React.Component {
       // if individual prompt changes, set the state back at editor level to reflect that change
     const listOfPrompts = prompts.map((prompt, index) => {
       return (
-        <NeoPrompt 
+        <Prompt 
           deletePrompt={() => this.deletePrompt(index)} 
           key={prompt.uuid} 
           index={index} 

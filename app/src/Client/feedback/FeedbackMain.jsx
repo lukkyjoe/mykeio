@@ -58,7 +58,9 @@ class FeedbackMain extends Component {
           {this.props.feedback.promptText}
         </div>
         {[...options]}
-        <button onClick={()=>{ this.submitAnswer(); }}>Submt</button>
+        <div style={{textAlign: 'center'}}>
+          <button onClick={()=>{ this.submitAnswer(); }}>Submit</button>
+        </div>
       </div>
     );
   }

@@ -13,7 +13,6 @@ class HostMain extends Component {
       settingUp: true,
       clients: [],
       questions: [],
-      responseTally: {}
       promptDisplay: []
     };
     this.connectionHash = {};
@@ -139,6 +138,9 @@ class HostMain extends Component {
     });
     console.log('find the target prompts arr of choices', target.choices);
     console.log('find the target', target);
+    if (!target.choices[0].hasOwnProperty('tally')){
+      target.choices.forEach((choice) => choice.tally = 0);
+    }
     this.setState({promptDisplay: target.choices});
   }
 

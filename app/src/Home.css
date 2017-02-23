@@ -1,0 +1,33 @@
+.splashMain{
+  width:100%;
+  height:900px;
+  background-color:#FCFAF9;
+}
+
+.headerMain{
+  text-align:center;
+  padding-top:20px;
+}
+
+.logo{
+  font-family: 'Patua One', cursive;
+  font-size:70pt;
+  color:#48E5C2;
+  margin:0;
+  padding:0;
+}
+
+.subhead{
+  font-family: 'Patua One', cursive;
+  font-size:20pt;
+  color:#5E5E5E;
+
+}
+
+.dev{
+  display:none;
+}
+
+.connectionImage{
+  height:300px;
+}

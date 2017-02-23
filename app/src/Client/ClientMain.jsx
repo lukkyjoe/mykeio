@@ -73,8 +73,8 @@ class ClientMain extends Component {
       break;
     }
     case 'QUESTION_CANCEL': {
-      if (this.state.hasVoiceQuestion === true){
-        this.setState({hasVoiceQuestion:false})
+      if (this.state.hasVoiceQuestion === true) {
+        this.setState({hasVoiceQuestion: false});
         this.mediaConnection.close();
       }
       break;
@@ -117,7 +117,7 @@ class ClientMain extends Component {
   cancelVoiceQuestion() {
     this.send('CANCEL_QUESTION_REQUEST');
     this.setState({hasVoiceQuestion: false});
-    if (this.mediaConnection){
+    if (this.mediaConnection) {
       this.mediaConnection.close();
     }
   }
@@ -137,7 +137,7 @@ class ClientMain extends Component {
   }
 
   handleUsernameInput(e) {
-    this.setState({clientData:Object.assign({},this.state.clientData,{username:e.target.value})}); 
+    this.setState({clientData: Object.assign({}, this.state.clientData, {username: e.target.value})}); 
   }
 
   render() {

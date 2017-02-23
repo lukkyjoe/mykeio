@@ -75,46 +75,45 @@ class HostMain extends Component {
 
   handlePeerData(data, conn) {
     switch (data.type) {
-      case 'CLIENT_UPDATE': {
-        let currentList = this.state.clients.slice();
-        if (currentList.find(a=>a.id === data.payload.id)) {
-          this.setState({clients: this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
-        } else {
-          this.setState({clients: this.addToList(this.state.clients, data.payload)});
-          this.connectionHash[data.payload.id] = conn;
-        }
-        break;
-      }
-      case 'CLIENT_DISCONNECT': {
-        this.setState({clients: this.removeFromList(this.state.clients, a=> a.id === data.payload.id)});
-        this.setState({questions: this.removeFromList(this.state.questions, a=> a.id === data.payload.id)});
-        this.connectionHash[data.payload.id] = undefined;
-        break;
-      }
+    case 'CLIENT_UPDATE': { 
+      let currentList = this.state.clients.slice();
+      if (currentList.find(a=>a.id === data.payload.id)) {
+        this.setState({clients: this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
+      } else {
+        this.setState({clients: this.addToList(this.state.clients, data.payload)});
+        this.connectionHash[data.payload.id] = conn;
+      }  
+      break;
+    }
+    case 'CLIENT_DISCONNECT': {
+      this.setState({clients: this.removeFromList(this.state.clients, a=> a.id === data.payload.id)});
+      this.setState({questions: this.removeFromList(this.state.questions, a=> a.id === data.payload.id)});
+      this.connectionHash[data.payload.id] = undefined;
+      break;
+    }
 
-      case 'QUESTION_REQUEST': {
-        data.payload.connection = conn;
-        this.setState({questions: this.addToList(this.state.questions, data.payload)});
-        break;
-      } 
+    case 'QUESTION_REQUEST': {
+      data.payload.connection = conn;
+      this.setState({questions: this.addToList(this.state.questions, data.payload)});
+      break;
+    } 
 
-      case 'CANCEL_QUESTION_REQUEST': {
-        this.setState({questions: this.removeFromList(this.state.questions, a => a.id === data.payload.id)});
-        break;
-      }
+    case 'CANCEL_QUESTION_REQUEST': {
+      this.setState({questions: this.removeFromList(this.state.questions, a => a.id === data.payload.id)});
+      break;
+    }
 
-      case 'FEEDBACK_RESPONSE': {
-        let newArray = this.state.roomData.prompts.slice();
-        let targetIndex = _.findIndex(newArray, 
+    case 'FEEDBACK_RESPONSE': {
+      let newArray = this.state.roomData.prompts.slice();
+      let targetIndex = _.findIndex(newArray, 
         (prompt) => prompt.uuid === data.payload.quizuuid);
-        newArray[targetIndex].choices[data.payload.index].tally = newArray[targetIndex].choices[data.payload.index].tally + 1;
-        let newRoomData = Object.assign({}, this.state.roomData);
-        newRoomData.prompts = newArray;
-        this.setState({roomData: newRoomData
-        });
-        break;
-      }
-
+      newArray[targetIndex].choices[data.payload.index].tally = newArray[targetIndex].choices[data.payload.index].tally + 1;
+      let newRoomData = Object.assign({}, this.state.roomData);
+      newRoomData.prompts = newArray;
+      this.setState({roomData: newRoomData
+      });
+      break;
+    }
     }
   }
   //pure, returns new array
@@ -148,16 +147,16 @@ class HostMain extends Component {
     console.log('find the target prompts arr of choices', target.choices);
     console.log('find the target', target);
     //note to self: refactor so the below doesn't mutate
-    if (target.responseType === "MULTIPLE_CHOICE"){
-      if (!target.choices[0].hasOwnProperty('tally')){
+    if (target.responseType === 'MULTIPLE_CHOICE') {
+      if (!target.choices[0].hasOwnProperty('tally')) {
         target.choices.forEach((choice) => choice.tally = 0);
       }
       this.setState({responseType: 'MULTIPLE_CHOICE'});
       this.setState({promptDisplay: target.choices}); 
     }
-    if (target.responseType === "TEXT") {
+    if (target.responseType === 'TEXT') {
       this.setState({responseType: 'TEXT'});
-      this.setState({promptDisplay: []}) //
+      this.setState({promptDisplay: []}); //
     }
 
     //may have to expand this to include more
@@ -192,8 +191,8 @@ class HostMain extends Component {
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>
-          <p className={styles.title}>{this.state.roomData?this.state.roomData.roomTitle:"connecting..."}</p>
-          <p className={styles.counter}>{this.state.clients.length + " clients connected"}</p>
+          <p className={styles.title}>{this.state.roomData ? this.state.roomData.roomTitle : 'connecting...'}</p>
+          <p className={styles.counter}>{this.state.clients.length + ' clients connected'}</p>
         </div>
         <div className={styles.contentMain}>
           <div className={styles.questionContainer}>

@@ -12,13 +12,13 @@ class GiveFeedbackBoolean extends React.Component {
           <div>
             <label>
               <input type="radio" name="foo" value={true} onChange={this.handleClick.bind(this)} />
-              Give immediate feedback
+              Give immediate feedback to audience
             </label>
           </div>
           <div>
             <label>
               <input type="radio" name="foo" value={false} onChange={this.handleClick.bind(this)}/>
-              Do NOT give immediate feedback
+              Do NOT give immediate feedback to audience
             </label>
           </div>
         </form>

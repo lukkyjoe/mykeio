@@ -12,7 +12,7 @@ class NeoPrompt extends React.Component {
     this.state = {
       promptText: 'Here is a scary example question',
       responseType: 'none',
-      choices: [{choice: 'dummy choice', correctAnswer: false}],
+      choices: [],
       trackAnswers: false,
       giveFeedback: false
     };
@@ -101,8 +101,7 @@ class NeoPrompt extends React.Component {
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         {this.renderResponseFormat()}
         <br></br>
-        <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/>      
-
+        <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/>
       </div>
     );
   }

@@ -1,7 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './ClientMain.css';
 import $ from 'jquery';
+import _ from 'lodash';
+
 import VolumeBar from './VolumeBar.jsx';
+import FeedbackMain from './feedback/FeedbackMain.jsx';
+
+
 class ClientMain extends Component {
 
   constructor(props) {
@@ -14,12 +19,13 @@ class ClientMain extends Component {
       isReady: false,
       clientData: {
         username: 'Anonymous',
-      }
+      },
+      quizId: undefined,
     };
   }
 
-
-  connectToHost() {
+  connectToHost(e) {
+    e.preventDefault();
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
         console.log(data);
@@ -71,10 +77,20 @@ class ClientMain extends Component {
       break;
     }    
     case 'START_FEEDBACK': {
-      console.log('qwepqwejqw', data.payload);
+      console.log('THIS THE DATA PAYLOADBRUUHHH', data.payload);
+      this.renderQuestions(data.payload);
       break;
-    }     
+    } 
     }
+  }
+
+  renderQuestions(targetId) {
+    var target = _.find(this.state.prompts, (item) => {
+      return item.uuid === targetId;
+    });
+    this.setState({feedback: target}, () => {
+      console.log('LETS GO', this.state.feedback);
+    });
   }
 
   dispatchCall(hostid) {
@@ -85,7 +101,6 @@ class ClientMain extends Component {
       that.setState({showAudio: false});
     });
   }
-
 
   updateHostWithClientData() {
     this.send('CLIENT_UPDATE');
@@ -123,8 +138,10 @@ class ClientMain extends Component {
     if (!this.state.isReady) {
       return (
         <div className={styles.usernameContainer}>
-          Username:<input type='text' onChange={this.handleUsernameInput.bind(this)}/>
-          <button onClick={this.connectToHost.bind(this)}>Connect to host</button>
+          <form onSubmit={this.connectToHost.bind(this)}>
+            Username:<input type='text' onChange={this.handleUsernameInput.bind(this)}/>
+            <button onClick={this.connectToHost.bind(this)}>Connect to host</button>
+          </form>
         </div>
       );
     } else {
@@ -132,11 +149,11 @@ class ClientMain extends Component {
         <div className={styles.base}>
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
+          {this.state.feedback ? <FeedbackMain peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
           {this.state.showAudio ? <VolumeBar/> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>
       );
-
     }
   }
 }

@@ -22,7 +22,6 @@ class EditorMain extends Component {
       prompts: []
     };
     this.updatePromptField = this.updatePromptField.bind(this);
-    this.setRoomTitle = this.setRoomTitle.bind(this);
     this.deletePrompt = this.deletePrompt.bind(this);
   }
 
@@ -51,9 +50,6 @@ class EditorMain extends Component {
     return listOfPrompts;
   }
 
-  setRoomTitle() {
-
-  }
 
 // if change to +1 only button, consider the concat option from http://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs
   addPrompt() {
@@ -64,14 +60,17 @@ class EditorMain extends Component {
   }
 
   createRoom() {
-    console.log('HERE IS THE ROOM DATA', this.state);
-    $.post('/api/createRoom', this.state
-  )
-      .done((data)=>{
-        window.location.href = '/#/host/' + data;
-      }).fail((data)=>{
-        console.log(data);
-      });
+    //validate here
+    if (this.state.prompts.length >= 1) {
+      alert('Please create at least 2 choices for multiple choice')
+    } else {
+      $.post('/api/createRoom', this.state)
+        .done((data)=>{
+          window.location.href = '/#/host/' + data;
+        }).fail((data)=>{
+          console.log(data);
+        });
+    }
   }
 
   render() {

@@ -20,6 +20,10 @@ class Home extends Component {
     window.location.href = '/#/' + this.state.roomName;
   }
 
+  onCreateRoom(){
+    window.location.href = '/#/editor';
+  }
+
   render() {
     return (
       <div> 
@@ -38,7 +42,14 @@ class Home extends Component {
           <div className={styles.headerMain}>
             <h2 className={styles.logo}>myke.io</h2>
             <h3 className={styles.subhead}>Fast, realtime feedback engine for teachers and presenters</h3>
-            <img src='./img/network.svg' className={styles.connectionImage}/>
+            <div className={styles.create} onClick={this.onCreateRoom}>
+              <p className={styles.createText}>Create Room</p>
+            </div>
+            <img src='./img/quiz.svg' className={styles.connectionImage}/>
+            <h3 className={styles.subhead}>Send out quizes and questionares and get realtime answers</h3>
+
+            <img src='./img/quest.svg' className={styles.connectionImage}/>
+            <h3 className={styles.subhead}>Crowd members can ask questions straight from their phone, all audio is streamed to the hosts computer with ultra low latency.</h3>
           </div>
         </div>
       </div>

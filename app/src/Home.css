@@ -1,7 +1,8 @@
 .splashMain{
   width:100%;
-  height:900px;
   background-color:#FCFAF9;
+  text-align:center;
+  padding-bottom:30px;
 }
 
 .headerMain{
@@ -19,8 +20,10 @@
 
 .subhead{
   font-family: 'Patua One', cursive;
-  font-size:20pt;
+  font-size:17pt;
   color:#5E5E5E;
+  margin-left:10%;
+  margin-right:10%;
 
 }
 
@@ -29,5 +32,32 @@
 }
 
 .connectionImage{
-  height:300px;
+  height:250px;
+}
+
+.create{
+  height:40px;
+  width:180px;
+  border: 2px solid #5E5E5E;
+  border-radius:7px;
+  text-align:center;
+  margin:auto;
+  margin-bottom:50px;
+  margin-top:50px;
+  background-color:#FFFFFF;
+}
+
+.create:hover{
+  background-color:#48E5C2;
+}
+
+.createText{
+  margin:0;
+  padding:0;
+  margin-top:8px;
+  margin-bottom:3px;
+  font-size:16pt;
+  color: #5E5E5E;
+  font-family:helvetica;
+  cursor:default;
 }

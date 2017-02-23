@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './neoPrompt.css';
+import styles from './Prompt.css';
 import HostQuestion from './hostQuestion.jsx';
 import ResponseTypeSelect from './responseTypeSelect.jsx';
 import ResponseField from './responseField.jsx';
 import MultipleChoiceBuilder from './multipleChoice/multipleChoiceBuilder.jsx';
 import GiveFeedbackBoolean from './giveFeedbackBoolean.jsx';
 
-class NeoPrompt extends React.Component {
+class Prompt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,10 +17,6 @@ class NeoPrompt extends React.Component {
       giveFeedback: false
     };
   }
-  // saveSettingsHandler() {
-  //   //should log editted prompt data object
-  //   console.log(this.state);
-  // }
 
   updatePrompt(text) {
     this.state.promptText = text;
@@ -86,11 +82,7 @@ class NeoPrompt extends React.Component {
         choices={this.state.choices}/>
       );
     }
-    if (this.state.responseType === 'TEXT') {
-      return (
-        <div> Raw input field </div>
-      );
-    }
+
   }
 
   render() {  
@@ -106,4 +98,4 @@ class NeoPrompt extends React.Component {
     );
   }
 }
-export default NeoPrompt;
+export default Prompt;

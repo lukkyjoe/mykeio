@@ -13,6 +13,7 @@ class HostMain extends Component {
       settingUp: true,
       clients: [],
       questions: [],
+      responseTally: {}
       promptDisplay: []
     };
     this.connectionHash = {};
@@ -137,6 +138,7 @@ class HostMain extends Component {
       return prompt.uuid === text;
     });
     console.log('find the target prompts arr of choices', target.choices);
+    console.log('find the target', target);
     this.setState({promptDisplay: target.choices});
   }
 

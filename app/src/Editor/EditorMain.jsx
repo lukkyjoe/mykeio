@@ -61,8 +61,8 @@ class EditorMain extends Component {
 
   createRoom() {
     //validate here
-    if (this.state.prompts.length >= 1) {
-      alert('Please create at least 2 choices for multiple choice')
+    if (1 === 2) {
+      console.log('placeholder for a validation test for empty array of choices');
     } else {
       $.post('/api/createRoom', this.state)
         .done((data)=>{

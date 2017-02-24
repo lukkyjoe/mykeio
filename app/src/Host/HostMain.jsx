@@ -13,7 +13,8 @@ class HostMain extends Component {
       settingUp: true,
       clients: [],
       questions: [],
-      promptDisplay: []
+      promptDisplay: [],
+      responseType: '',
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -145,12 +146,19 @@ class HostMain extends Component {
     console.log('find the target prompts arr of choices', target.choices);
     console.log('find the target', target);
     //WARNING: MUTATION IS HAPPENING HERE. dangerous!
-    if (target.responseType === "MULTIPLE_CHOICE" && !target.choices[0].hasOwnProperty('tally')){
-      target.choices.forEach((choice) => choice.tally = 0);
+    if (target.responseType === "MULTIPLE_CHOICE"){
+      if (!target.choices[0].hasOwnProperty('tally')){
+        target.choices.forEach((choice) => choice.tally = 0);
+      }
+      this.setState({responseType: 'MULTIPLE_CHOICE'});
     }
+    if (target.responseType === "TEXT") {
+      this.setState({responseType: 'TEXT'})
+    }
+    this.setState({promptDisplay: target.choices}); //problematic
     //may have to expand this to include more
     //problem: switching between prompts overwrites the object that holds the prompt tallies
-    this.setState({promptDisplay: target.choices});
+
   }
 
   render() {

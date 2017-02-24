@@ -10,7 +10,7 @@ class Prompt extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      promptText: 'Here is a scary example question',
+      promptText: '',
       responseType: 'none',
       choices: [],
       trackAnswers: false,

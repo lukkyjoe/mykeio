@@ -15,6 +15,7 @@ class HostMain extends Component {
       questions: [],
       promptDisplay: [],
       responseType: '',
+      textResponses: [],
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -101,17 +102,17 @@ class HostMain extends Component {
         break;
       }
 
-    case 'FEEDBACK_RESPONSE': {
-      let newArray = this.state.roomData.prompts.slice();
-      let targetIndex = _.findIndex(newArray, 
-      (prompt) => prompt.uuid === data.payload.quizuuid);
-      newArray[targetIndex].choices[data.payload.index].tally = newArray[targetIndex].choices[data.payload.index].tally + 1;
-      let newRoomData = Object.assign({}, this.state.roomData);
-      newRoomData.prompts = newArray;
-      this.setState({roomData: newRoomData
-      });
-      break;
-    }
+      case 'FEEDBACK_RESPONSE': {
+        let newArray = this.state.roomData.prompts.slice();
+        let targetIndex = _.findIndex(newArray, 
+        (prompt) => prompt.uuid === data.payload.quizuuid);
+        newArray[targetIndex].choices[data.payload.index].tally = newArray[targetIndex].choices[data.payload.index].tally + 1;
+        let newRoomData = Object.assign({}, this.state.roomData);
+        newRoomData.prompts = newArray;
+        this.setState({roomData: newRoomData
+        });
+        break;
+      }
 
     }
   }
@@ -145,17 +146,17 @@ class HostMain extends Component {
     });
     console.log('find the target prompts arr of choices', target.choices);
     console.log('find the target', target);
-    //WARNING: MUTATION IS HAPPENING HERE. dangerous!
+    //note to self: refactor so the below doesn't mutate
     if (target.responseType === "MULTIPLE_CHOICE"){
       if (!target.choices[0].hasOwnProperty('tally')){
         target.choices.forEach((choice) => choice.tally = 0);
       }
       this.setState({responseType: 'MULTIPLE_CHOICE'});
-      this.setState({promptDisplay: target.choices}); //problematic
+      this.setState({promptDisplay: target.choices}); 
     }
     if (target.responseType === "TEXT") {
       this.setState({responseType: 'TEXT'});
-      this.setState({promptDisplay: []})
+      this.setState({promptDisplay: []}) //
     }
 
     //may have to expand this to include more

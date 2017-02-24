@@ -151,11 +151,13 @@ class HostMain extends Component {
         target.choices.forEach((choice) => choice.tally = 0);
       }
       this.setState({responseType: 'MULTIPLE_CHOICE'});
+      this.setState({promptDisplay: target.choices}); //problematic
     }
     if (target.responseType === "TEXT") {
-      this.setState({responseType: 'TEXT'})
+      this.setState({responseType: 'TEXT'});
+      this.setState({promptDisplay: []})
     }
-    this.setState({promptDisplay: target.choices}); //problematic
+
     //may have to expand this to include more
     //problem: switching between prompts overwrites the object that holds the prompt tallies
 

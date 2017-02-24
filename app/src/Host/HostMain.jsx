@@ -72,7 +72,7 @@ class HostMain extends Component {
 
   handlePeerData(data, conn) {
     switch (data.type) {
-    case 'CLIENT_UPDATE': {
+      case 'CLIENT_UPDATE': {
         let currentList = this.state.clients.slice();
         if (currentList.find(a=>a.id === data.payload.id)) {
           this.setState({clients: this.updateItemInList(this.state.clients, a=>a.id === data.payload.id, data.payload)});
@@ -82,20 +82,20 @@ class HostMain extends Component {
         }
         break;
       }
-    case 'CLIENT_DISCONNECT': {
+      case 'CLIENT_DISCONNECT': {
         this.setState({clients: this.removeFromList(this.state.clients, a=> a.id === data.payload.id)});
         this.setState({questions: this.removeFromList(this.state.questions, a=> a.id === data.payload.id)});
         this.connectionHash[data.payload.id] = undefined;
         break;
       }
 
-    case 'QUESTION_REQUEST': {
+      case 'QUESTION_REQUEST': {
         data.payload.connection = conn;
         this.setState({questions: this.addToList(this.state.questions, data.payload)});
         break;
       } 
 
-    case 'CANCEL_QUESTION_REQUEST': {
+      case 'CANCEL_QUESTION_REQUEST': {
         this.setState({questions: this.removeFromList(this.state.questions, a => a.id === data.payload.id)});
         break;
       }
@@ -159,20 +159,26 @@ class HostMain extends Component {
     if (this.state.roomData) {
       if (this.state.roomData.prompts) {
         feedback = this.state.roomData.prompts.map((a, index) => (<Feedback key={a.uuid} uuid={a.uuid} 
-      connections={this.connectionHash} clients={this.state.clients}
-      promptText={a.promptText} selectPrompt={this.selectPrompt.bind(this)} />));
+          connections={this.connectionHash} clients={this.state.clients}
+          promptText={a.promptText} selectPrompt={this.selectPrompt.bind(this)} />));
       }
     }
     return (
       <div className={styles.base}>
-        <div className={styles.questionContainer}>
-          <a href={'/#/' + this.props.params.roomid}>go to client</a>
-          <p>questions</p>
-          {[...questions]}
+        <div className={styles.topBar}>
+          <p className={styles.title}>{this.state.roomData?this.state.roomData.roomTitle:"connecting..."}</p>
+          <p className={styles.counter}>{this.state.clients.length + " clients connected"}</p>
         </div>
-        <ResponsesView displayData={this.state.promptDisplay}/>
-        <div className={styles.feedbackContainer}>
-          {[...feedback]}
+        <div className={styles.contentMain}>
+          <div className={styles.questionContainer}>
+            <a href={'/#/' + this.props.params.roomid}>go to client</a>
+            <p>questions</p>
+            {[...questions]}
+          </div>
+          <ResponsesView displayData={this.state.promptDisplay}/>
+          <div className={styles.feedbackContainer}>
+            {[...feedback]}
+          </div>
         </div>
       </div>
     );

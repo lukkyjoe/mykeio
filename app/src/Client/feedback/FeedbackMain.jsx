@@ -27,6 +27,11 @@ class FeedbackMain extends Component {
     });
   }
     
+  submitMaster() {
+    this.submitAnswer();
+    this.props.renderPrompt();
+  }
+
   submitAnswer() {
     this.props.connection.send({
       type: 'FEEDBACK_RESPONSE',
@@ -59,7 +64,7 @@ class FeedbackMain extends Component {
         </div>
         {[...options]}
         <div style={{textAlign: 'center'}}>
-          <button onClick={()=>{ this.submitAnswer(); }}>Submit</button>
+          <button onClick={()=>{ this.submitMaster(); }}>Submit</button>
         </div>
       </div>
     );

@@ -22,6 +22,8 @@ class ClientMain extends Component {
       },
       quizId: undefined,
     };
+
+    this.renderPrompt = this.renderPrompt.bind(this);
   }
 
   connectToHost(e) {
@@ -136,6 +138,10 @@ class ClientMain extends Component {
     }
   }
 
+  renderPrompt() {
+    this.setState({feedback: undefined});
+  }
+
   handleUsernameInput(e) {
     this.setState({clientData: Object.assign({}, this.state.clientData, {username: e.target.value})}); 
   }
@@ -155,7 +161,7 @@ class ClientMain extends Component {
         <div className={styles.base}>
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
-          {this.state.feedback ? <FeedbackMain peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
+          {this.state.feedback ? <FeedbackMain renderPrompt={this.renderPrompt} peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
           {this.state.showAudio ? <VolumeBar/> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>

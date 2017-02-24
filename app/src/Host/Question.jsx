@@ -10,7 +10,6 @@ class Question extends Component {
     this.state = {
       isOnCall: false
     };
-
     this.user = props.user;
   }
 
@@ -28,7 +27,7 @@ class Question extends Component {
         <h2 className={styles.username}>{this.props.user.username}</h2>
         <div className={styles.buttonContainer}>
           <div className={styles.button} onClick={this.onAnswerClick.bind(this)}>
-            <img className={styles.check} src='img/check.png'></img>
+            <img className={styles.check} src='img/microphone.png'></img>
           </div>
           <div className={styles.button} onClick={()=>(this.props.onCancelQuestion(this.props.user.id))}>
             <img className={styles.cross} src='img/cross.png'></img>

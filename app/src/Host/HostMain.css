@@ -11,3 +11,26 @@ body{
   width:350px;
   float: right;
 }
+
+.topBar{
+  position:fixed;
+  height:50px;
+  width:100%;
+  background-color:#353535;
+  text-align:center;
+}
+
+.contentMain{
+  padding-top:50px;
+}
+
+.title{
+  font-family: 'Patua One', cursive;
+  color:#FFFFFF;
+}
+.counter{
+  margin:0;
+  padding:0;
+  display:inline-block;
+  float:right;
+}

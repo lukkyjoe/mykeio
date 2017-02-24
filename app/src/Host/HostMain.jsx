@@ -101,24 +101,14 @@ class HostMain extends Component {
       }
 
     case 'FEEDBACK_RESPONSE': {
-      console.log('payload data ========', data);
-      console.log('this.state.roomData.prompts', this.state.roomData.prompts)
-      console.log('payload is ===========', data.payload);
       let newArray = this.state.roomData.prompts.slice();
-      console.log('newArray =====', newArray);
-      console.log('data.payload.uuid', data.payload.quizuuid)
       let targetIndex = _.findIndex(newArray, 
       (prompt) => prompt.uuid === data.payload.quizuuid);
-      console.log('targetIndex =====', targetIndex);
-      console.log('newArray[targetIndex]', newArray[targetIndex])
       newArray[targetIndex].choices[data.payload.index].tally = newArray[targetIndex].choices[data.payload.index].tally + 1;
       let newRoomData = Object.assign({}, this.state.roomData);
-      console.log('newRoomData', newRoomData);
       newRoomData.prompts = newArray;
-      console.log('newRoomData.prompts', newRoomData.prompts);
       this.setState({roomData: newRoomData
       });
-
       break;
     }
 

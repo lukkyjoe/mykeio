@@ -21,6 +21,7 @@ class ClientMain extends Component {
         username: 'Anonymous',
       },
       quizId: undefined,
+      showAnswer: false
     };
 
     this.renderPrompt = this.renderPrompt.bind(this);
@@ -42,7 +43,6 @@ class ClientMain extends Component {
         this.peer.on('open', (id)=>{
           this.state.clientData.id = id;
           this.connection = this.peer.connect(this.state.adminPeerId);
-
           this.connection.on('open', ()=>{
             this.setState({status: 'connected to host.'});
             this.updateHostWithClientData();
@@ -53,10 +53,7 @@ class ClientMain extends Component {
               that.setState({hasMedia: false});
             });
           });
-
           this.connection.on('data', this.handleHostData.bind(this));
-
-
         });
       }).fail(()=>{
         this.setState({status: 'Could not connect to the server'});
@@ -140,6 +137,7 @@ class ClientMain extends Component {
 
   renderPrompt() {
     this.setState({feedback: undefined});
+    
   }
 
   handleUsernameInput(e) {
@@ -163,6 +161,7 @@ class ClientMain extends Component {
           <h2>{this.state.roomTitle}</h2>
           {this.state.feedback ? <FeedbackMain renderPrompt={this.renderPrompt} peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
           {this.state.showAudio ? <VolumeBar/> : undefined}
+          {this.state.showAnswer ? this.state.correctAnswer : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>
       );

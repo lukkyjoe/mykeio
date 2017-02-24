@@ -13,7 +13,7 @@ class EditorMain extends Component {
       roomTitle: 'New Room',
       promptTemplate: 
       {
-        promptText: 'Here is a scary example question',
+        promptText: '',
         responseType: 'none',
         choices: [],
         trackAnswers: false,
@@ -61,7 +61,7 @@ class EditorMain extends Component {
 
   createRoom() {
     //validate here
-    let multipleChoicestatus = this.state.prompts.reduce(function(acc, val){
+    let multipleChoicestatus = this.state.prompts.reduce(function(acc, val) {
       if (acc === false) {
         return false;
       } else if (val.choices.length <= 1 && val.responseType === "MULTIPLE_CHOICE"){
@@ -70,8 +70,22 @@ class EditorMain extends Component {
         return true;
       }
     }, true);
-    if (!multipleChoicestatus) {
-      alert('please put in more than one choice for multiple choice responses')
+
+    let promptsHaveText = this.state.prompts.reduce(function(acc, val) {
+      if (acc === false) {
+        return false;
+      } else if (val.promptText.length <= 0) {
+        return false;
+      } else {
+        return true;
+      }
+    }, true)
+    console.log('multipleChoicestatus', multipleChoicestatus);
+    console.log('promptsHaveText', promptsHaveText);
+
+
+    if (!(multipleChoicestatus && promptsHaveText)) {
+      alert('please fill out prompt or put in more than one choice for multiple choice responses')
     } else {
       $.post('/api/createRoom', this.state)
         .done((data)=>{

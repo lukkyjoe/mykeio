@@ -2,8 +2,8 @@ import React from 'react';
 
 
 
-const TextResponseList = ({displayData}) => {
-  const textResponseList = displayData.map((response, index) => {
+const TextResponseList = ({textResponses}) => {
+  const textResponseList = textResponses.map((response, index) => {
     return (
       <div>{response} </div>
     )

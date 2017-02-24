@@ -64,7 +64,7 @@ class EditorMain extends Component {
     let status = this.state.prompts.reduce(function(acc, val){
       if (acc === false) {
         return false;
-      } else if (val.choices.length === 0){
+      } else if (val.choices.length <= 1 && val.responseType === "MULTIPLE_CHOICE"){
         return false;
       } else {
         return true;

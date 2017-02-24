@@ -163,6 +163,8 @@ class HostMain extends Component {
           promptText={a.promptText} selectPrompt={this.selectPrompt.bind(this)} />));
       }
     }
+
+    //need to explore modifying displayData props to accomodate non-multi-choice format.
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>

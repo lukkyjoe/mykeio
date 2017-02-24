@@ -12,7 +12,7 @@ class HostQuestion extends React.Component {
     return (
       <div className="hostQuestion">
         <form onSubmit={this.handleUpdateClick.bind(this)}>
-         Prompt: <input type="text" ref="promptInput" size="60" onChange={this.handleUpdateClick.bind(this)}/>
+         Prompt: <textarea name="myTextarea" ref="promptInput" placeholder="Leave a comment." cols="60" rows="6" required onChange={this.handleUpdateClick.bind(this)}></textarea>
         </form>
       </div>
     );

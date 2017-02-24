@@ -102,9 +102,10 @@ class EditorMain extends Component {
           <label>Room name:</label>
             <input type="text" placeholder="Set a room name" size="30" />
         </form>
+        <h2>Add Questions:</h2>   
         <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
-        <h2>Prompts:</h2>   
         {this.renderPrompts()}
+        <br></br>
         <button onClick={this.createRoom.bind(this)}>Create Room</button>
       </div>
     );

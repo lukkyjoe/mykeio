@@ -145,7 +145,7 @@ class HostMain extends Component {
     console.log('find the target prompts arr of choices', target.choices);
     console.log('find the target', target);
     //WARNING: MUTATION IS HAPPENING HERE. dangerous!
-    if (!target.choices[0].hasOwnProperty('tally')){
+    if (target.responseType === "MULTIPLE_CHOICE" && !target.choices[0].hasOwnProperty('tally')){
       target.choices.forEach((choice) => choice.tally = 0);
     }
     //may have to expand this to include more

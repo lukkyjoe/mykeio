@@ -70,7 +70,6 @@ class HostMain extends Component {
 
   }
 
-
   handlePeerData(data, conn) {
     switch (data.type) {
     case 'CLIENT_UPDATE': {
@@ -102,7 +101,24 @@ class HostMain extends Component {
       }
 
     case 'FEEDBACK_RESPONSE': {
-      console.log(data);
+      console.log('payload data ========', data);
+      console.log('this.state.roomData.prompts', this.state.roomData.prompts)
+      console.log('payload is ===========', data.payload);
+      let newArray = this.state.roomData.prompts.slice();
+      console.log('newArray =====', newArray);
+      console.log('data.payload.uuid', data.payload.quizuuid)
+      let targetIndex = _.findIndex(newArray, 
+      (prompt) => prompt.uuid === data.payload.quizuuid);
+      console.log('targetIndex =====', targetIndex);
+      console.log('newArray[targetIndex]', newArray[targetIndex])
+      newArray[targetIndex].choices[data.payload.index].tally = newArray[targetIndex].choices[data.payload.index].tally + 1;
+      let newRoomData = Object.assign({}, this.state.roomData);
+      console.log('newRoomData', newRoomData);
+      newRoomData.prompts = newArray;
+      console.log('newRoomData.prompts', newRoomData.prompts);
+      this.setState({roomData: newRoomData
+      });
+
       break;
     }
 
@@ -138,9 +154,12 @@ class HostMain extends Component {
     });
     console.log('find the target prompts arr of choices', target.choices);
     console.log('find the target', target);
+    //WARNING: MUTATION IS HAPPENING HERE. dangerous!
     if (!target.choices[0].hasOwnProperty('tally')){
       target.choices.forEach((choice) => choice.tally = 0);
     }
+    //may have to expand this to include more
+    //problem: switching between prompts overwrites the object that holds the prompt tallies
     this.setState({promptDisplay: target.choices});
   }
 

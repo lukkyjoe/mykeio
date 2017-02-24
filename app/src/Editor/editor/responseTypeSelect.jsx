@@ -19,7 +19,7 @@ class ResponseTypeSelect extends React.Component {
           </div>
           <div>
             <label>
-              <input type="radio" name="foo" value="TEXT" checked="checked" onChange={this.handleClick.bind(this)}/>
+              <input type="radio" name="foo" value="TEXT" onChange={this.handleClick.bind(this)}/>
               Text
             </label>
           </div>

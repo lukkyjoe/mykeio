@@ -61,7 +61,7 @@ class EditorMain extends Component {
 
   createRoom() {
     //validate here
-    let status = this.state.prompts.reduce(function(acc, val){
+    let multipleChoicestatus = this.state.prompts.reduce(function(acc, val){
       if (acc === false) {
         return false;
       } else if (val.choices.length <= 1 && val.responseType === "MULTIPLE_CHOICE"){
@@ -70,9 +70,8 @@ class EditorMain extends Component {
         return true;
       }
     }, true);
-    console.log('status', status);
-    if (1 === 2) {
-      console.log('placeholder for a validation test for empty array of choices');
+    if (!multipleChoicestatus) {
+      alert('please put in more than one choice for multiple choice responses')
     } else {
       $.post('/api/createRoom', this.state)
         .done((data)=>{

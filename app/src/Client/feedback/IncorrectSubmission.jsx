@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class IncorrectSubmission extends Component {
   render() {
     return (
-      <div style={{textAlign: 'center'}}>
+      <div>
         WRONG!
       </div>
     );

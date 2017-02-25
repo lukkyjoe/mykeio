@@ -18,6 +18,9 @@ class Question extends Component {
       type: 'ANSWER_REQUEST',
       payload: this.props.host
     });
+    this.setState({
+      isOnCall: true
+    });
   }
 
 
@@ -26,7 +29,7 @@ class Question extends Component {
       <div className={styles.container}>
         <h2 className={styles.username}>{this.props.user.username}</h2>
         <div className={styles.buttonContainer}>
-          <div className={styles.button} onClick={this.onAnswerClick.bind(this)}>
+          <div style={this.state.isOnCall ? {backgroundColor: "red"} : undefined} className={styles.button} onClick={this.onAnswerClick.bind(this)}>
             <img className={styles.check} src='img/microphone.png'></img>
           </div>
           <div className={styles.button} onClick={()=>(this.props.onCancelQuestion(this.props.user.id))}>

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class CorrectSubmission extends Component {
   render() {
     return (
-      <div style={{textAlign: 'center'}}>
+      <div>
         GOOD JOB!
       </div>
     );

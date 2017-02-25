@@ -5,31 +5,88 @@ class FeedbackMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      hasClicked: false,
+      optionsIsClicked: [],
+      submissionIndex: undefined,
     };
     this.submitAnswer = this.submitAnswer.bind(this);
+    this.toggleHasClicked = this.toggleHasClicked.bind(this);
+
+    props.feedback.choices.forEach(()=>{ this.state.optionsIsClicked.push(false); });
+    console.log(props.feedback.choices);
   }
 
-    
-  submitAnswer(index) {
+  toggleHasClicked(index) {
+    let temp = this.state.optionsIsClicked.map(() => {
+      return false;
+    });
+    temp[index] = true;
+    this.setState({
+      optionsIsClicked: temp,
+      submissionIndex: index
+    });
+  }
+  //submit the answer, then unrender the prompt
+  submitMaster() {
+    this.submitAnswer();
+    this.props.unrenderPrompt();
+    this.checkAnswer();
+  }
+
+  //submit the answer sends data to host
+  submitAnswer() {
     this.props.connection.send({
       type: 'FEEDBACK_RESPONSE',
       payload: {
         peerid: this.props.peerid,
         quizuuid: this.props.feedback.uuid,
-        index: index
-      }
-    });
+        index: this.state.submissionIndex,
+      }    
+    }); 
   } 
 
+  checkAnswer() {
+    if (this.props.feedback.choices[this.state.submissionIndex].correctAnswer === 'true') {
+      this.props.renderCorrect();
+    } else if (this.props.feedback.choices[this.state.submissionIndex].correctAnswer === 'false') {
+      this.props.renderIncorrect();
+    }
+  }
+
+  renderCorrect() {
+
+  }
+
+  renderIncorrect() {
+
+  }
+
+
+
+
   render() {
-    let options = this.props.feedback.choices.map((a, index)=>(<div value={a.choice} onClick={()=>{ this.submitAnswer(index); }} className={styles.container} key={index}>{a.choice}</div>));
+    let options = this.props.feedback.choices.map((a, index)=> {
+      return (
+        <div 
+          onClick={() => this.toggleHasClicked(index)} 
+          value={a.choice} 
+          className={styles.containerOptions}
+          style={this.state.optionsIsClicked[index] ? {backgroundColor: 'blue'} : undefined} 
+          key={index}>
+          {a.choice}
+        </div>
+      );
+    });
+
     return ( 
       <div>
         <div className={styles.container}>
           {this.props.feedback.promptText}
         </div>
         {[...options]}
+        <div style={{textAlign: 'center'}}>
+          <button onClick={()=>{ this.submitMaster(); }}>Submit</button>
+        </div>
       </div>
     );
   }

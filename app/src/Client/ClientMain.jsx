@@ -5,10 +5,10 @@ import _ from 'lodash';
 
 import VolumeBar from './VolumeBar.jsx';
 import FeedbackMain from './feedback/FeedbackMain.jsx';
-
+import CorrectSubmission from './feedback/CorrectSubmission.jsx';
+import IncorrectSubmission from './feedback/IncorrectSubmission.jsx';
 
 class ClientMain extends Component {
-
   constructor(props) {
     super(props);
 
@@ -21,7 +21,13 @@ class ClientMain extends Component {
         username: 'Anonymous',
       },
       quizId: undefined,
+      correctSubmission: null,
+      
     };
+
+    this.unrenderPrompt = this.unrenderPrompt.bind(this);
+    this.renderCorrect = this.renderCorrect.bind(this);
+    this.renderIncorrect = this.renderIncorrect.bind(this);
   }
 
   connectToHost(e) {
@@ -40,7 +46,6 @@ class ClientMain extends Component {
         this.peer.on('open', (id)=>{
           this.state.clientData.id = id;
           this.connection = this.peer.connect(this.state.adminPeerId);
-
           this.connection.on('open', ()=>{
             this.setState({status: 'connected to host.'});
             this.updateHostWithClientData();
@@ -51,10 +56,7 @@ class ClientMain extends Component {
               that.setState({hasMedia: false});
             });
           });
-
           this.connection.on('data', this.handleHostData.bind(this));
-
-
         });
       }).fail(()=>{
         this.setState({status: 'Could not connect to the server'});
@@ -73,8 +75,8 @@ class ClientMain extends Component {
       break;
     }
     case 'QUESTION_CANCEL': {
-      if (this.state.hasVoiceQuestion === true){
-        this.setState({hasVoiceQuestion:false})
+      if (this.state.hasVoiceQuestion === true) {
+        this.setState({hasVoiceQuestion: false});
         this.mediaConnection.close();
       }
       break;
@@ -117,7 +119,7 @@ class ClientMain extends Component {
   cancelVoiceQuestion() {
     this.send('CANCEL_QUESTION_REQUEST');
     this.setState({hasVoiceQuestion: false});
-    if (this.mediaConnection){
+    if (this.mediaConnection) {
       this.mediaConnection.close();
     }
   }
@@ -136,8 +138,28 @@ class ClientMain extends Component {
     }
   }
 
+  unrenderPrompt() {
+    this.setState({feedback: undefined});
+  }
+  
+  renderCorrect() {
+    if (this.state.feedback) { 
+      this.setState({
+        correctSubmission: true,
+        incorrectSubmission: false
+      });
+    }
+  }
+
+  renderIncorrect() {
+    this.setState({
+      correctSubmission: false,
+      incorrectSubmission: true
+    });
+  }
+
   handleUsernameInput(e) {
-    this.setState({clientData:Object.assign({},this.state.clientData,{username:e.target.value})}); 
+    this.setState({clientData: Object.assign({}, this.state.clientData, {username: e.target.value})}); 
   }
 
   render() {
@@ -155,8 +177,10 @@ class ClientMain extends Component {
         <div className={styles.base}>
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
-          {this.state.feedback ? <FeedbackMain peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
-          {this.state.showAudio ? <VolumeBar/> : undefined}
+          {this.state.feedback ? <FeedbackMain renderCorrect={this.renderCorrect} renderIncorrect={this.renderIncorrect} unrenderPrompt={this.unrenderPrompt} peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
+          {this.state.showAudio ? <VolumeBar /> : undefined}
+          {this.state.correctSubmission ? <CorrectSubmission /> : undefined}
+          {this.state.incorrectSubmission ? <IncorrectSubmission /> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>
       );

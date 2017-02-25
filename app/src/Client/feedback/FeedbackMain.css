@@ -1,4 +1,4 @@
-.container{
+.container {
   border:1px solid black;
   border-width:0px 2px 2px 2px;
   width: 50%;
@@ -8,3 +8,20 @@
   height:40px;
   text-align: center;
 }
+
+.containerOptions {
+  border:1px solid black;
+  border-width:0px 2px 2px 2px;
+  width: 50%;
+  margin-top:5px;
+  margin-bottom:5px;
+  margin: auto;
+  height:40px;
+  text-align: center;
+}
+
+.containerOptions:hover {
+  background-color: green;
+}
+
+

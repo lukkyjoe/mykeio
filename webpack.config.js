@@ -12,30 +12,30 @@ var config = {
 
   },
   devtool: 'source-map',  
-  module:{
-    loaders:[
+  module: {
+    loaders: [
       {
-        test : /\.jsx?/,
+        test: /\.jsx?/,
         include: APP_DIR,
-        loader : 'babel-loader'
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,
         loader: 'style-loader'
       },
       {
-        test : /\.css?/,
-          include:APP_DIR,
-          loader : 'css-loader',
-          query: {
-            modules: true,
-            localIdentName: '[name]__[local]___[hash:base64:5]'
-          }
+        test: /\.css?/,
+        include: APP_DIR,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]'
+        }
       }
     ]
   },
 
 
-}
+};
 
 module.exports = config;

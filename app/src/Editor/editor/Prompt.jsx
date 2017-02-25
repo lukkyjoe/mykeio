@@ -13,7 +13,6 @@ class Prompt extends React.Component {
       promptText: '',
       responseType: 'none',
       choices: [],
-      trackAnswers: false,
       giveFeedback: false
     };
   }
@@ -88,7 +87,7 @@ class Prompt extends React.Component {
   render() {  
     return (
       <div className={styles.promptContainer}>
-          <button className={styles.alignRight} onClick={this.props.deletePrompt}>Delete</button>
+          <button className={styles.alignRight} onClick={this.props.deletePrompt}>&#10007;</button>
         <HostQuestion promptText={this.state.promptText} updatePrompt={this.updatePrompt.bind(this)}/>
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         {this.renderResponseFormat()}

@@ -16,7 +16,6 @@ class EditorMain extends Component {
         promptText: '',
         responseType: 'none',
         choices: [],
-        trackAnswers: false,
         giveFeedback: false
       }, 
       prompts: []
@@ -58,13 +57,12 @@ class EditorMain extends Component {
     newArray.push(newPrompt);
     this.setState({prompts: newArray});
   }
-
   createRoom() {
     //validate here
     let multipleChoicestatus = this.state.prompts.reduce(function(acc, val) {
       if (acc === false) {
         return false;
-      } else if (val.choices.length <= 1 && val.responseType === "MULTIPLE_CHOICE"){
+      } else if (val.choices.length <= 1 && val.responseType === 'MULTIPLE_CHOICE') {
         return false;
       } else {
         return true;
@@ -79,13 +77,13 @@ class EditorMain extends Component {
       } else {
         return true;
       }
-    }, true)
+    }, true);
     console.log('multipleChoicestatus', multipleChoicestatus);
     console.log('promptsHaveText', promptsHaveText);
 
 
     if (!(multipleChoicestatus && promptsHaveText)) {
-      alert('please fill out prompt or put in more than one choice for multiple choice responses')
+      alert('please fill out prompt or put in more than one choice for multiple choice responses');
     } else {
       $.post('/api/createRoom', this.state)
         .done((data)=>{
@@ -99,14 +97,15 @@ class EditorMain extends Component {
   render() {
     return (
       <div className={styles.base}>
-        <form>
+        <form onSubmit={this.createRoom.bind(this)}>
           <label>Room name:</label>
             <input type="text" placeholder="Set a room name" size="30" />
         </form>
+        <h2>Add Questions:</h2>   
         <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
-        <h2>Settings</h2>   
         {this.renderPrompts()}
-        <button onClick={this.createRoom.bind(this)}>Create Room with Fake Data</button>
+        <br></br>
+        <button onClick={this.createRoom.bind(this)}>Create Room</button>
       </div>
     );
   }

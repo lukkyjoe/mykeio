@@ -1,17 +1,11 @@
 import React from 'react';
 
-
 export default class ChoicesListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isEditing: false,
-      isCorrectAnswer: false
+      isEditing: false
     };
-  }
-
-  renderCorrectness() {
-    
   }
   
   renderChoiceSection() {
@@ -44,7 +38,7 @@ export default class ChoicesListItem extends React.Component {
         <td>
           <button onClick={this.onEditClick.bind(this)}>&#10000;</button>
           <button onClick={this.props.deleteChoice.bind(this, this.props.choice)}>&#10007;</button>
-          <button onClick={this.onSelectAsCorrectClick.bind(this)}>Select as correct answer(s)</button>
+          <input type="checkbox" onChange={this.onChangeTest.bind(this)} />
         </td>
     );
   }
@@ -76,5 +70,10 @@ export default class ChoicesListItem extends React.Component {
     console.log(this.props.choice);
     const target = this.props.choice;
     this.props.selectAsCorrect(target);
+  }
+
+  onChangeTest(event) {
+    console.log('toggling?', event);
+    this.props.selectAsCorrect(this.props.choice);
   }
 }

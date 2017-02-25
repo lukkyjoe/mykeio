@@ -51,10 +51,10 @@ class Prompt extends React.Component {
 
   selectAsCorrect(target) {
     const foundChoice = _.find(this.state.choices, choice => choice.choice === target);
-    console.log(foundChoice);
     foundChoice.correctAnswer = !foundChoice.correctAnswer;
     this.setState({choices: this.state.choices });
     this.props.updatePromptField(this.state, this.props.index);
+    console.log(foundChoice);
   }
 
   toggleGiveFeedbackStatus(status) {

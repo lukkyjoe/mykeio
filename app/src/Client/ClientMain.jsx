@@ -5,10 +5,10 @@ import _ from 'lodash';
 
 import VolumeBar from './VolumeBar.jsx';
 import FeedbackMain from './feedback/FeedbackMain.jsx';
-
+import CorrectSubmission from './feedback/CorrectSubmission.jsx';
+import IncorrectSubmission from './feedback/IncorrectSubmission.jsx';
 
 class ClientMain extends Component {
-
   constructor(props) {
     super(props);
 
@@ -21,8 +21,8 @@ class ClientMain extends Component {
         username: 'Anonymous',
       },
       quizId: undefined,
-      correctAnswers: [],
-      clientCorrect: undefined
+      correctSubmission: null,
+      
     };
 
     this.unrenderPrompt = this.unrenderPrompt.bind(this);
@@ -143,11 +143,17 @@ class ClientMain extends Component {
   }
   
   renderCorrect() {
-    console.log('render correct');
+    this.setState({
+      correctSubmission: true,
+      incorrectSubmission: false
+    });
   }
 
   renderIncorrect() {
-    console.log('render incorrect');
+    this.setState({
+      correctSubmission: false,
+      incorrectSubmission: true
+    });
   }
 
   handleUsernameInput(e) {
@@ -170,8 +176,9 @@ class ClientMain extends Component {
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
           {this.state.feedback ? <FeedbackMain renderCorrect={this.renderCorrect} renderIncorrect={this.renderIncorrect} unrenderPrompt={this.unrenderPrompt} peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
-          {this.state.showAudio ? <VolumeBar/> : undefined}
-          {this.state.showAnswer ? this.state.correctAnswer : undefined}
+          {this.state.showAudio ? <VolumeBar /> : undefined}
+          {this.state.correctSubmission ? <CorrectSubmission /> : undefined}
+          {this.state.incorrectSubmission ? <IncorrectSubmission /> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>
       );

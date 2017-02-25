@@ -9,10 +9,6 @@ export default class ChoicesListItem extends React.Component {
       isCorrectAnswer: false
     };
   }
-
-  renderCorrectness() {
-    
-  }
   
   renderChoiceSection() {
     const {choice } = this.props;
@@ -44,7 +40,8 @@ export default class ChoicesListItem extends React.Component {
         <td>
           <button onClick={this.onEditClick.bind(this)}>&#10000;</button>
           <button onClick={this.props.deleteChoice.bind(this, this.props.choice)}>&#10007;</button>
-          <button onClick={this.onSelectAsCorrectClick.bind(this)}>Select as correct answer(s)</button>
+          <input type="checkbox" 
+          onClick={this.onSelectAsCorrectClick.bind(this)} />
         </td>
     );
   }

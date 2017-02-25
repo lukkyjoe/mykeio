@@ -83,7 +83,7 @@ class EditorMain extends Component {
 
 
     if (!(multipleChoicestatus && promptsHaveText)) {
-      alert('please fill out prompt or put in more than one choice for multiple choice responses');
+      alert('please fill out the prompt\'s title or put in more than one choice for multiple choice responses');
     } else {
       $.post('/api/createRoom', this.state)
         .done((data)=>{
@@ -97,11 +97,11 @@ class EditorMain extends Component {
   render() {
     return (
       <div className={styles.base}>
+        <h2>Room Settings:</h2> 
         <form onSubmit={this.createRoom.bind(this)}>
           <label>Room name:</label>
             <input type="text" placeholder="Set a room name" size="30" />
-        </form>
-        <h2>Add Questions:</h2>   
+        </form>  
         <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
         {this.renderPrompts()}
         <br></br>

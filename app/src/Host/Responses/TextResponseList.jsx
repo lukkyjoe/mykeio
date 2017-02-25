@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styles from './ResponsesView.css';
 
 
 const TextResponseList = ({textResponses}) => {
@@ -11,7 +11,7 @@ const TextResponseList = ({textResponses}) => {
   
   return (
     <div>
-      <table>
+      <table className={styles.responsesView}>
         <tbody>
           {textResponseList}
         </tbody>

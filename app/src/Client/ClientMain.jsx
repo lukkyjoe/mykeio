@@ -21,10 +21,13 @@ class ClientMain extends Component {
         username: 'Anonymous',
       },
       quizId: undefined,
-      showAnswer: false
+      correctAnswers: [],
+      clientCorrect: undefined
     };
 
-    this.renderPrompt = this.renderPrompt.bind(this);
+    this.unrenderPrompt = this.unrenderPrompt.bind(this);
+    this.renderCorrect = this.renderCorrect.bind(this);
+    this.renderIncorrect = this.renderIncorrect.bind(this);
   }
 
   connectToHost(e) {
@@ -135,9 +138,16 @@ class ClientMain extends Component {
     }
   }
 
-  renderPrompt() {
+  unrenderPrompt() {
     this.setState({feedback: undefined});
-    
+  }
+  
+  renderCorrect() {
+    console.log('render correct');
+  }
+
+  renderIncorrect() {
+    console.log('render incorrect');
   }
 
   handleUsernameInput(e) {
@@ -159,7 +169,7 @@ class ClientMain extends Component {
         <div className={styles.base}>
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
-          {this.state.feedback ? <FeedbackMain renderPrompt={this.renderPrompt} peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
+          {this.state.feedback ? <FeedbackMain renderCorrect={this.renderCorrect} renderIncorrect={this.renderIncorrect} unrenderPrompt={this.unrenderPrompt} peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
           {this.state.showAudio ? <VolumeBar/> : undefined}
           {this.state.showAnswer ? this.state.correctAnswer : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>

@@ -26,12 +26,14 @@ class FeedbackMain extends Component {
       submissionIndex: index
     });
   }
-    
+  //submit the answer, then unrender the prompt
   submitMaster() {
     this.submitAnswer();
-    this.props.renderPrompt();
+    this.props.unrenderPrompt();
+    this.checkAnswer();
   }
 
+  //submit the answer sends data to host
   submitAnswer() {
     this.props.connection.send({
       type: 'FEEDBACK_RESPONSE',
@@ -40,8 +42,27 @@ class FeedbackMain extends Component {
         quizuuid: this.props.feedback.uuid,
         index: this.state.submissionIndex,
       }    
-    });
+    }); 
   } 
+
+  checkAnswer() {
+    if (this.props.feedback.choices[this.state.submissionIndex].correctAnswer === 'true') {
+      this.props.renderCorrect();
+    } else if (this.props.feedback.choices[this.state.submissionIndex].correctAnswer === 'false') {
+      this.props.renderIncorrect();
+    }
+  }
+
+  renderCorrect() {
+
+  }
+
+  renderIncorrect() {
+
+  }
+
+
+
 
   render() {
     let options = this.props.feedback.choices.map((a, index)=> {

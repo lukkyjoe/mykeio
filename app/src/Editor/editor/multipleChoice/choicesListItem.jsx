@@ -5,8 +5,7 @@ export default class ChoicesListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isEditing: false,
-      isCorrectAnswer: false
+      isEditing: false
     };
   }
   
@@ -41,7 +40,8 @@ export default class ChoicesListItem extends React.Component {
           <button onClick={this.onEditClick.bind(this)}>&#10000;</button>
           <button onClick={this.props.deleteChoice.bind(this, this.props.choice)}>&#10007;</button>
           <input type="checkbox" 
-          onClick={this.onSelectAsCorrectClick.bind(this)} />
+          onClick={this.onSelectAsCorrectClick.bind(this)} 
+          />
         </td>
     );
   }

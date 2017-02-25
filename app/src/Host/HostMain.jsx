@@ -4,6 +4,7 @@ import $ from 'jquery';
 import ResponsesView from './Responses/ResponsesView.jsx';
 import Question from './Question.jsx';
 import Feedback from './Feedback.jsx';
+import TextResponseList from './Responses/TextResponseList.jsx';
 
 class HostMain extends Component {
 
@@ -168,6 +169,11 @@ class HostMain extends Component {
       return (
         <ResponsesView displayData={this.state.promptDisplay}/>
       )
+    } else if (this.state.responseType === "TEXT") {
+        return (
+          <TextResponseList textResponses={this.state.textResponses}/>
+        )
+
     }
   }
 

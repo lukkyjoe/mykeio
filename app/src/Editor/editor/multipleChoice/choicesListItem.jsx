@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './choiceListItem.css';
 
 export default class ChoicesListItem extends React.Component {
   constructor(props) {

@@ -143,10 +143,12 @@ class ClientMain extends Component {
   }
   
   renderCorrect() {
-    this.setState({
-      correctSubmission: true,
-      incorrectSubmission: false
-    });
+    if (this.state.feedback) { 
+      this.setState({
+        correctSubmission: true,
+        incorrectSubmission: false
+      });
+    }
   }
 
   renderIncorrect() {

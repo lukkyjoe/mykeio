@@ -13,7 +13,6 @@ class Prompt extends React.Component {
       promptText: '',
       responseType: 'none',
       choices: [],
-      trackAnswers: false,
       giveFeedback: false
     };
   }

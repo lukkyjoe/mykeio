@@ -7,7 +7,6 @@ db.HostRoomData.create(
       {
         responseType: 'MULTIPLE_CHOICE',
         promptText: 'Who is the greatest athlete ever?',
-        trackAnswers: false,
         giveFeedback: false,
         options: [
           {
@@ -26,7 +25,7 @@ db.HostRoomData.create(
       {
         responseType: 'MULTIPLE_CHOICE',
         promptText: 'Who is the greatest musician?',
-        trackAnswers: false,
+        trackAswers: false,
         giveFeedback: false,
         options: [
           {

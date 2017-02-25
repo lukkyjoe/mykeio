@@ -16,7 +16,6 @@ class EditorMain extends Component {
         promptText: '',
         responseType: 'none',
         choices: [],
-        trackAnswers: false,
         giveFeedback: false
       }, 
       prompts: []

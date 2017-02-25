@@ -164,16 +164,15 @@ class HostMain extends Component {
   }
 
   renderList() {
-    if (this.state.responseType === "MULTIPLE_CHOICE") {
+    if (this.state.responseType === 'MULTIPLE_CHOICE') {
       return (
         <ResponsesView displayData={this.state.promptDisplay}/>
-      )
-    } else if (this.state.responseType === "TEXT") {
-        return (
+      );
+    } else if (this.state.responseType === 'TEXT') {
+      return (
           <TextResponseList textResponses={this.state.textResponses}/>
-        )
-
-    }
+      );
+    }  
   }
 
   render() {

@@ -1,5 +1,4 @@
 import React from 'react';
-import Checkbox from './checkbox.jsx';
 
 export default class ChoicesListItem extends React.Component {
   constructor(props) {

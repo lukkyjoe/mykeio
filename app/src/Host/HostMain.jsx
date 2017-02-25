@@ -4,7 +4,6 @@ import $ from 'jquery';
 import ResponsesView from './Responses/ResponsesView.jsx';
 import Question from './Question.jsx';
 import Feedback from './Feedback.jsx';
-import TextResponseList from './TextResponseList.jsx';
 
 class HostMain extends Component {
 
@@ -16,7 +15,7 @@ class HostMain extends Component {
       questions: [],
       promptDisplay: [],
       responseType: '',
-      textResponses: ['hehe', 'haha', 'this text', 'is great'],
+      textResponses: ['fee', 'fi', 'foh', 'fum'],
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -157,19 +156,18 @@ class HostMain extends Component {
     }
     if (target.responseType === "TEXT") {
       this.setState({responseType: 'TEXT'});
-      this.setState({promptDisplay: []}) //perhaps not necessary
+      this.setState({promptDisplay: []}) //
     }
 
     //may have to expand this to include more
     //problem: switching between prompts overwrites the object that holds the prompt tallies
-
   }
 
-  renderListType() {
-    if (this.state.responseType === 'MULTIPLE_CHOICE') {
-      return (<ResponsesView displayData={this.state.promptDisplay}/>)
-    } else if (this.state.responseType === 'TEXT') {
-      return (<TextResponseList textResponses={this.state.textResponses} />)
+  renderList() {
+    if (this.state.responseType === "MULTIPLE_CHOICE") {
+      return (
+        <ResponsesView displayData={this.state.promptDisplay}/>
+      )
     }
   }
 
@@ -197,7 +195,7 @@ class HostMain extends Component {
             <p>questions</p>
             {[...questions]}
           </div>
-          {this.renderListType.bind(this)}
+          {this.renderList()}
           <div className={styles.feedbackContainer}>
             {[...feedback]}
           </div>

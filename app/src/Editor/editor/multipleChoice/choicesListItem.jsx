@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './choicesListItem.css';
 
 export default class ChoicesListItem extends React.Component {
   constructor(props) {
@@ -38,7 +39,7 @@ export default class ChoicesListItem extends React.Component {
         <td>
           <button onClick={this.onEditClick.bind(this)}>&#10000;</button>
           <button onClick={this.props.deleteChoice.bind(this, this.props.choice)}>&#10007;</button>
-          <input type="checkbox" onChange={this.onChangeTest.bind(this)} />
+          <input type="checkbox" onChange={this.onChangeTest.bind(this)} className={styles.checkboxwarning}/>
         </td>
     );
   }

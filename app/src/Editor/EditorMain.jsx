@@ -97,8 +97,11 @@ class EditorMain extends Component {
   render() {
     return (
       <div className={styles.base}>
-        <h2>Room Settings:</h2> 
-        <form onSubmit={this.createRoom.bind(this)}>
+        <div className={styles.topBar}>
+          <h3 className={styles.title}>Room Settings</h3>
+        </div>
+ 
+        <form className={styles.contentMain} onSubmit={this.createRoom.bind(this)}>
           <label>Room name:</label>
             <input type="text" placeholder="Set a room name" size="30" />
         </form>  

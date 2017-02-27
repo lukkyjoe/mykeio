@@ -57,10 +57,14 @@ class Prompt extends React.Component {
     console.log(foundChoice);
   }
 
-  toggleGiveFeedbackStatus(status) {
-    console.log('toggleGiveFeedback status =========', status);
-    this.setState({ giveFeedback: !!this.state.giveFeedback });
-    this.props.updatePromptField(this.state, this.props.index);
+  toggleGiveFeedbackStatus() {
+    var temp = this.state.giveFeedback;
+    var newFeedback = !temp;
+    console.log('set ', newFeedback);
+    this.setState({ giveFeedback: newFeedback }, ()=>{
+      console.log('data bound state', this.state);
+      this.props.updatePromptField(this.state, this.props.index);
+    }); 
   }
 
   selectResponseType(text) {

@@ -4,7 +4,7 @@ class CorrectSubmission extends Component {
   render() {
     return (
       <div>
-        GOOD JOB!
+        Correct!
       </div>
     );
   }

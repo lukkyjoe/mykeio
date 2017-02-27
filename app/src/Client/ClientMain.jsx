@@ -22,7 +22,6 @@ class ClientMain extends Component {
       },
       quizId: undefined,
       correctSubmission: null,
-      
     };
 
     this.unrenderPrompt = this.unrenderPrompt.bind(this);
@@ -34,8 +33,8 @@ class ClientMain extends Component {
     e.preventDefault();
     $.get('/api/getRoom', {roomid: this.props.params.roomid})
       .done((data)=>{
-        console.log(data);
-        this.setState({status: 'connecting to host....'});
+        console.log('ths the incoming data', data);
+        this.setState({status: 'connecting to host...'});
         this.setState(data);
         this.peer = new Peer({
           host: '/',
@@ -82,7 +81,7 @@ class ClientMain extends Component {
       break;
     }    
     case 'START_FEEDBACK': {
-      console.log('THIS THE DATA PAYLOADBRUUHHH', data.payload);
+      console.log('THIS THE DATA PAYLOAD', data);
       this.renderQuestions(data.payload);
       break;
     } 
@@ -93,8 +92,13 @@ class ClientMain extends Component {
     var target = _.find(this.state.prompts, (item) => {
       return item.uuid === targetId;
     });
-    this.setState({feedback: target}, () => {
-      console.log('LETS GO', this.state.feedback);
+    this.setState({
+      feedback: target,
+      correctSubmission: undefined,
+      incorrectSubmission: undefined,
+      renderPrompt: true
+    }, () => {
+      console.log('this is state.feedback', this.state.feedback);
     });
   }
 
@@ -139,23 +143,25 @@ class ClientMain extends Component {
   }
 
   unrenderPrompt() {
-    this.setState({feedback: undefined});
+    this.setState({renderPrompt: undefined});
   }
   
   renderCorrect() {
-    if (this.state.feedback) { 
-      this.setState({
+    if (this.state.feedback.giveFeedback === 'true') {
+      { this.setState({
         correctSubmission: true,
         incorrectSubmission: false
-      });
+      }); } 
     }
   }
 
   renderIncorrect() {
-    this.setState({
-      correctSubmission: false,
-      incorrectSubmission: true
-    });
+    if (this.state.feedback.giveFeedback === 'true') { 
+      { this.setState({
+        correctSubmission: false,
+        incorrectSubmission: true
+      }); } 
+    }
   }
 
   handleUsernameInput(e) {
@@ -178,8 +184,8 @@ class ClientMain extends Component {
           <p>{this.state.status}</p>
           <h2>{this.state.roomTitle}</h2>
           {this.state.correctSubmission ? <CorrectSubmission /> : undefined}
-          {this.state.incorrectSubmission ? <IncorrectSubmission /> : undefined}
-          {this.state.feedback ? <FeedbackMain renderCorrect={this.renderCorrect} renderIncorrect={this.renderIncorrect} unrenderPrompt={this.unrenderPrompt} peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
+          {this.state.incorrectSubmission ? <IncorrectSubmission feedback={this.state.feedback} /> : undefined}
+          {this.state.renderPrompt ? <FeedbackMain renderCorrect={this.renderCorrect} renderIncorrect={this.renderIncorrect} unrenderPrompt={this.unrenderPrompt} peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
           {this.state.showAudio ? <VolumeBar /> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>

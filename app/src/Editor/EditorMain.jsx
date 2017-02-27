@@ -4,7 +4,6 @@ import $ from 'jquery';
 import Prompt from './editor/Prompt.jsx';
 import PromptCount from './editor/promptCount.jsx';
 import ShortID from 'shortid';
-import styles from './EditorMain.css';
 
 class EditorMain extends Component {
 
@@ -99,10 +98,10 @@ class EditorMain extends Component {
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>
-          <p className={styles.title}>Room Settings:</p>
+          <h3 className={styles.title}>Room Settings</h3>
         </div>
  
-        <form onSubmit={this.createRoom.bind(this)}>
+        <form className={styles.contentMain} onSubmit={this.createRoom.bind(this)}>
           <label>Room name:</label>
             <input type="text" placeholder="Set a room name" size="30" />
         </form>  

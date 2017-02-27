@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Prompt.css';
 import HostQuestion from './hostQuestion.jsx';
 import ResponseTypeSelect from './responseTypeSelect.jsx';
-import ResponseField from './responseField.jsx';
 import MultipleChoiceBuilder from './multipleChoice/multipleChoiceBuilder.jsx';
 import GiveFeedbackBoolean from './giveFeedbackBoolean.jsx';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import InlineEdit from 'react-edit-inline';
+import styles from './hostQuestion.css'
 
 class HostQuestion extends React.Component {
 
@@ -10,7 +10,7 @@ class HostQuestion extends React.Component {
 
   render() {
     return (
-      <div className="hostQuestion">
+      <div className={styles.hostQuestionContainer}>
         <form onSubmit={this.handleUpdateClick.bind(this)}>
          Title: <input placeholder="Title Required" ref="promptInput" required onChange={this.handleUpdateClick.bind(this)}></input>
          <p></p>

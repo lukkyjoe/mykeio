@@ -5,10 +5,9 @@
   display: flex;
 }
 
-.alignRight{
-  float: right;
+.deleteButton{
+  height: 20px;
 }
-
 body{
   font-family: Helvetica;
 }

@@ -68,13 +68,11 @@ export default class ChoicesListItem extends React.Component {
 
   onSelectAsCorrectClick(event) {
     event.preventDefault();
-    console.log(this.props.choice);
     const target = this.props.choice;
     this.props.selectAsCorrect(target);
   }
 
   onChangeTest(event) {
-    console.log('toggling?', event);
     this.props.selectAsCorrect(this.props.choice);
   }
 }

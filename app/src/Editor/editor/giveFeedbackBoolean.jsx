@@ -2,25 +2,18 @@ import React from 'react';
 
 class GiveFeedbackBoolean extends React.Component {
 
-  handleClick(event) {
-    this.props.toggleGiveFeedbackStatus(event.currentTarget.value);
+  handleClick() {
+    this.props.toggleGiveFeedbackStatus();
   }
+
   render() {
     return (
       <div>
         <form>
           <div>
-            <label>
-              <input type="radio" name="foo" value={true} onChange={this.handleClick.bind(this)} />
-              Give immediate feedback to audience
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="foo" value={false} onChange={this.handleClick.bind(this)}/>
-              Do NOT give immediate feedback to audience
-            </label>
-          </div>
+              <input type="checkbox" onChange={() => { this.handleClick(); }}/>
+              Give Feedback to Audience
+          </div>   
         </form>
       </div>
     );

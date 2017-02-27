@@ -46,22 +46,13 @@ class FeedbackMain extends Component {
   } 
 
   checkAnswer() {
+    console.log('from feedbackMain xxxxxxxxxx', this.props.feedback);
     if (this.props.feedback.choices[this.state.submissionIndex].correctAnswer === 'true') {
       this.props.renderCorrect();
     } else if (this.props.feedback.choices[this.state.submissionIndex].correctAnswer === 'false') {
       this.props.renderIncorrect();
     }
   }
-
-  renderCorrect() {
-
-  }
-
-  renderIncorrect() {
-
-  }
-
-
 
 
   render() {

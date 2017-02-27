@@ -20,6 +20,7 @@ class EditorMain extends Component {
       }, 
       prompts: []
     };
+    
     this.updatePromptField = this.updatePromptField.bind(this);
     this.deletePrompt = this.deletePrompt.bind(this);
   }
@@ -34,7 +35,10 @@ class EditorMain extends Component {
 
   updatePromptField(update, index) {
     let newArray = this.state.prompts.slice();
-    newArray[index] = Object.assign({ uuid: newArray[index].uuid }, update);
+    update.uuid = newArray[index].uuid;
+    newArray[index] = update;
+    console.log('updating state with', newArray[index]);
+
     this.setState({prompts: newArray});
   }
 
@@ -85,6 +89,7 @@ class EditorMain extends Component {
     if (!(multipleChoicestatus && promptsHaveText)) {
       alert('please fill out the prompt\'s title or put in more than one choice for multiple choice responses');
     } else {
+      console.log('posting data', this.state);
       $.post('/api/createRoom', this.state)
         .done((data)=>{
           window.location.href = '/#/host/' + data;

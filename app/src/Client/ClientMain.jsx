@@ -173,7 +173,8 @@ class ClientMain extends Component {
       return (
         <div className={styles.usernameContainer}>
           <form onSubmit={this.connectToHost.bind(this)}>
-            Username:<input type='text' onChange={this.handleUsernameInput.bind(this)}/>
+            <p className={styles.usernamePrompt}>Username</p>
+            <input type='text' className={styles.usernameInput} onChange={this.handleUsernameInput.bind(this)}/>
             <button onClick={this.connectToHost.bind(this)}>Connect to host</button>
           </form>
         </div>

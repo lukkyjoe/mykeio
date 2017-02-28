@@ -26,15 +26,14 @@ class Feedback extends Component {
     return (
       <div className={styles.container} onClick={this.onPromptClick.bind(this)}>
         <div className={styles.buttonContainer}>
-          <p className={styles.promptText}>
-            {this.props.promptText}     
-          </p>
           <div className={styles.button} onClick={this.sendQuiz.bind(this)}>
-            <img className={styles.check} src='img/send.svg'></img>
+            <img className={styles.send} src='img/send.png'></img>
           </div>
-          <div className={styles.button}>
-            <img className={styles.cross} src='img/cross.png'></img>
-          </div>
+          <div className={styles.titleContainer}>
+        <p className={styles.promptText}>
+          {this.props.promptText.length > 15?this.props.promptText.substring(0,15) + '...':this.props.promptText}     
+        </p>
+      </div>
         </div>
       </div>
     );

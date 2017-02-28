@@ -12,8 +12,12 @@ class FeedbackMain extends Component {
     this.submitAnswer = this.submitAnswer.bind(this);
     this.toggleHasClicked = this.toggleHasClicked.bind(this);
 
-    props.feedback.choices.forEach(()=>{ this.state.optionsIsClicked.push(false); });
-    console.log(props.feedback.choices);
+    if (props.feedback.choices) {
+      props.feedback.choices.forEach(()=>{ this.state.optionsIsClicked.push(false); });
+      console.log('props.feedback.choices', props.feedback.choices);
+    } else {
+      console.log('this is not multiple choice!')
+    }
   }
 
   toggleHasClicked(index) {
@@ -56,18 +60,24 @@ class FeedbackMain extends Component {
 
 
   render() {
-    let options = this.props.feedback.choices.map((a, index)=> {
-      return (
-        <div 
-          onClick={() => this.toggleHasClicked(index)} 
-          value={a.choice} 
-          className={styles.containerOptions}
-          style={this.state.optionsIsClicked[index] ? {backgroundColor: 'blue'} : undefined} 
-          key={index}>
-          {a.choice}
-        </div>
-      );
-    });
+    //add condition. map not necessary for short answers
+    console.log('this.props.feedback!!!', this.props.feedback)
+    if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
+      let options = this.props.feedback.choices.map((a, index)=> {
+        return (
+          <div 
+            onClick={() => this.toggleHasClicked(index)} 
+            value={a.choice} 
+            className={styles.containerOptions}
+            style={this.state.optionsIsClicked[index] ? {backgroundColor: 'blue'} : undefined} 
+            key={index}>
+            {a.choice}
+          </div>
+        );
+      });
+    }
+    
+
 
     return ( 
       <div>

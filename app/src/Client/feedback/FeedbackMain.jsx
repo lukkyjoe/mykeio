@@ -58,36 +58,37 @@ class FeedbackMain extends Component {
     }
   }
 
-  clientPromptDisplay() {
-    if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
-      let options = this.props.feedback.choices.map((a, index)=> {
-        return (
-          <div 
-            onClick={() => this.toggleHasClicked(index)} 
-            value={a.choice} 
-            className={styles.containerOptions}
-            style={this.state.optionsIsClicked[index] ? {backgroundColor: 'blue'} : undefined} 
-            key={index}>
-            {a.choice}
-          </div>
-        );
-      });
-      return [...options]
-  } 
-
-    if (this.props.feedback.responseType === 'TEXT') {
-        return (<div> input text area </div>)
-      }
-  }
 
   render() {
-    
+    //add condition. map not necessary for short answers
+    console.log('this.props.feedback!!!', this.props.feedback)
+    let options;
+    if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
+     options = this.props.feedback.choices.map((a, index)=> {
+      return (
+        <div 
+          onClick={() => this.toggleHasClicked(index)} 
+          value={a.choice} 
+          className={styles.containerOptions}
+          style={this.state.optionsIsClicked[index] ? {backgroundColor: 'blue'} : undefined} 
+          key={index}>
+          {a.choice}
+        </div>
+      );
+    });
+    }
+
+
     return ( 
       <div>
         <div className={styles.container}>
           {this.props.feedback.promptText}
         </div>
-        {this.clientPromptDisplay.bind(this)}
+        {
+          (this.props.feedback.responseType === 'MULTIPLE_CHOICE')
+          ? [...options]
+          : <div> input text area! </div>
+        }
         <div style={{textAlign: 'center'}}>
           <button onClick={()=>{ this.submitMaster(); }}>Submit</button>
         </div>

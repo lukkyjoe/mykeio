@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './hostQuestion.css'
+import styles from './hostQuestion.css';
 
 class HostQuestion extends React.Component {
 
@@ -17,7 +17,7 @@ class HostQuestion extends React.Component {
          </div>
          {/*add tiny MCE, THIS TEXT ARE DOESNT GO ANYWHERE YET*/}
          <div>
-           Body: <textarea className={styles.item} name="myTextarea" placeholder="Explain your prompt. (optional)"></textarea>         
+           Body: <textarea className={styles.item} name="myTextarea" placeholder="Explain your prompt (optional)"></textarea>         
          </div>
         </form>
       </div>

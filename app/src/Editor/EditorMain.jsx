@@ -23,6 +23,7 @@ class EditorMain extends Component {
     
     this.updatePromptField = this.updatePromptField.bind(this);
     this.deletePrompt = this.deletePrompt.bind(this);
+    this.changeRoomTitle = this.changeRoomTitle.bind(this);
   }
 
   deletePrompt(index) {
@@ -53,6 +54,12 @@ class EditorMain extends Component {
     return listOfPrompts;
   }
 
+  changeRoomTitle(event) {
+    this.setState({roomTitle: event.target.value}, () => {
+      console.log(this.state.roomTitle);
+    });
+  }  
+
 
 // if change to +1 only button, consider the concat option from http://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs
   addPrompt() {
@@ -61,6 +68,7 @@ class EditorMain extends Component {
     newArray.push(newPrompt);
     this.setState({prompts: newArray});
   }
+  
   createRoom() {
     //validate here
     let multipleChoicestatus = this.state.prompts.reduce(function(acc, val) {
@@ -99,6 +107,8 @@ class EditorMain extends Component {
     }
   }
 
+
+
   render() {
     return (
       <div className={styles.base}>
@@ -108,7 +118,7 @@ class EditorMain extends Component {
         <div className={styles.roomName}>
           <form className={styles.contentMain} onSubmit={this.createRoom.bind(this)}>
             <label>Room name:</label>
-              <input type="text" placeholder="Set a room name" size="30" />
+              <input type="text" onChange={this.changeRoomTitle} placeholder="Set a room name" size="30" />
           </form>  
           <div >
           <PromptCount addPrompt={this.addPrompt.bind(this)}/> 

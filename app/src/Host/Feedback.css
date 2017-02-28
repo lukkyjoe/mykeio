@@ -1,44 +1,47 @@
 .container{
-  border:1px solid black;
   border-width:2px 2px 2px 2px;
   margin-top:5px;
   margin-bottom:5px;
   height:60px;
+  background-color:#6f6f6f;
 }
 
 .buttonContainer{
-  float:right;
-  margin-top:3px;
-  margin-right:3px;
 }
 
 .button{
-  border: 3px solid black;
-  border-radius:30px;
-  height:28px;
-  width:28px;
-  display:inline;
-  margin-left:3px;
-}
-
-.check{
-  height:26px;
-  width:26px;
-  margin-top:1px;
+  height:60px;
+  width:62px;
+  display:inline-block;
+  background-color:#54d8c8;
 }
 
 .button:hover{
-  background-color:gray;
+  background-color:#FFA563;
 }
 
-.cross{
-  height:19px;
-  width:19px;
-  margin-top: 5px;
-  margin-left: 4px;
+.send{
+  height:30px;
+  width:30px;
+  margin-top:15px;
+  margin-left:15px;
+}
+
+.titleContainer{
+  display:inline-block;
+  text-align:center;
+  width:260px;
+  float:right;
+  margin-top:17px;
 }
 
 .promptText{
-  margin: 0px;
-  padding: 0px;
+  margin:0px;
+  padding:0px;
+  font-size:18pt;
+  color:white;
+  font-family:helvetica;
 }
+
+
+

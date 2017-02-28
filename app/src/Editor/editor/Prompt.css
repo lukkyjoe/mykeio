@@ -1,13 +1,14 @@
 .promptContainer{
-  width:500px;
+  width:75%;
   margin: auto;
-  background-color: white
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
-.alignRight{
-  float: right;
+.deleteButton{
+  height: 20px;
 }
-
 body{
   font-family: Helvetica;
 }

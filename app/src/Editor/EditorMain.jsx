@@ -105,15 +105,17 @@ class EditorMain extends Component {
         <div className={styles.topBar}>
           <h3 className={styles.title}>Room Settings</h3>
         </div>
- 
-        <form className={styles.contentMain} onSubmit={this.createRoom.bind(this)}>
-          <label>Room name:</label>
-            <input type="text" placeholder="Set a room name" size="30" />
-        </form>  
-        <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
-        {this.renderPrompts()}
-        <br></br>
-        <button onClick={this.createRoom.bind(this)}>Create Room</button>
+        <div className={styles.roomName}>
+          <form className={styles.contentMain} onSubmit={this.createRoom.bind(this)}>
+            <label>Room name:</label>
+              <input type="text" placeholder="Set a room name" size="30" />
+          </form>  
+          <div >
+          <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
+          <button className={styles.createRoomButton} onClick={this.createRoom.bind(this)}>Create Room</button>
+          {this.renderPrompts()}         
+          </div>
+        </div>
       </div>
     );
   }

@@ -46,10 +46,10 @@ class Home extends Component {
               <p className={styles.createText}>Create Room</p>
             </div>
             <img src='./img/quiz.svg' className={styles.connectionImage}/>
-            <h3 className={styles.subhead}>Send out quizes and questionnaires and get realtime answers</h3>
+            <h3 className={styles.subhead}>Send out quizzes and questionnaires and get realtime answers</h3>
 
             <img src='./img/quest.svg' className={styles.connectionImage}/>
-            <h3 className={styles.subhead}>Crowd members can ask questions straight from their phone, all audio is streamed to the hosts computer with ultra low latency.</h3>
+            <h3 className={styles.subhead}>Crowd members can ask questions straight from their phone, all audio is streamed to the host's computer with ultra low latency.</h3>
           </div>
         </div>
       </div>

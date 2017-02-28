@@ -75,6 +75,8 @@ class FeedbackMain extends Component {
           </div>
         );
       });
+    } else if (this.props.feedback.responseType === 'TEXT') {
+      let options = <div> input text area </div>
     }
     
 

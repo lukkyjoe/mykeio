@@ -8,6 +8,13 @@ const tableStyle = {
   flexDirection: 'column', 
 }
 
+const choiceListStyle = {
+  display: 'flex',
+  justifyContent: 'space-around', 
+  flexWrap: 'wrap',
+  flexDirection: 'column',
+};
+
 
 export default class ChoicesList extends React.Component {
   renderItems() {
@@ -20,7 +27,7 @@ export default class ChoicesList extends React.Component {
     return (
       <table style={tableStyle}>
         <ChoicesListHeader />
-        <tbody>
+        <tbody style={choiceListStyle}>
           {this.renderItems()}
         </tbody>
       </table>

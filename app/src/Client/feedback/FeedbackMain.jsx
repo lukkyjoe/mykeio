@@ -87,7 +87,7 @@ class FeedbackMain extends Component {
         {
           (this.props.feedback.responseType === 'MULTIPLE_CHOICE')
           ? [...options]
-          : <div> input text area! </div>
+          : <textarea> </textarea>
         }
         <div style={{textAlign: 'center'}}>
           <button onClick={()=>{ this.submitMaster(); }}>Submit</button>

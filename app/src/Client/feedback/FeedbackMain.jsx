@@ -87,7 +87,7 @@ class FeedbackMain extends Component {
         <div className={styles.container}>
           {this.props.feedback.promptText}
         </div>
-        {clientPromptDisplay()}
+        {this.clientPromptDisplay.bind(this)}
         <div style={{textAlign: 'center'}}>
           <button onClick={()=>{ this.submitMaster(); }}>Submit</button>
         </div>

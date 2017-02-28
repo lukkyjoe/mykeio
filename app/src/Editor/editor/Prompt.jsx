@@ -94,7 +94,7 @@ class Prompt extends React.Component {
         <ResponseTypeSelect responseType={this.state.responseType} selectResponseType={this.selectResponseType.bind(this)}/>
         {this.renderResponseFormat()}
         <br></br>
-        <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/>
+        {this.state.responseType === 'MULTIPLE_CHOICE' ? <GiveFeedbackBoolean toggleGiveFeedbackStatus={this.toggleGiveFeedbackStatus.bind(this)}/> : undefined }
         <button className={styles.deleteButton} onClick={this.props.deletePrompt}>&#10007;</button>
       </div>
     );

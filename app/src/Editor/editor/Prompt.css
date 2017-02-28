@@ -9,6 +9,8 @@
 .deleteButton{
   height: 20px;
 }
+
 body{
-  font-family: Helvetica;
+  color: dimgrey;
+  font-family: Helvetica-bold;
 }

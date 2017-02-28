@@ -113,6 +113,7 @@ class EditorMain extends Component {
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>
+          <img src='./img/mic-vector-white.svg' className={styles.logoImage}/>
           <h3 className={styles.title}>Room Settings</h3>
         </div>
         <div className={styles.roomName}>

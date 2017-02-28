@@ -11,6 +11,10 @@ body{
   background-color: #ECEDED;
 }
 
+.logoImage{
+  height:40px;
+}
+
 .roomName{
   text-align: center;
   font-size: 15px;

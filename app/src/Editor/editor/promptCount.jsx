@@ -19,10 +19,10 @@ class PromptCount extends Component {
   }
   render() {
     return (
-      <div className={styles.promptAndRoom}>
-        <form onSubmit={this.handleSubmit}>
-          <input type="submit" value="Add new prompt"/>
-        </form>
+      <div className={styles.promptAndRoom} onClick={this.handleSubmit}>
+        <p className={styles.buttonText}>
+          Add Prompt
+        </p>
       </div>
     );
   }

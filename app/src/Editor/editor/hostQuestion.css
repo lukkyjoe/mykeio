@@ -1,5 +1,6 @@
 .hostQuestionContainer {
   margin: 5px;
+  width: 50%;
   flex-direction: column;
   display: flex;
   flex-wrap: wrap;
@@ -10,3 +11,7 @@
   width: 35%;
 }
 
+.titleAndBody {
+  padding-top: 20px;
+  padding-left: 15px;
+}

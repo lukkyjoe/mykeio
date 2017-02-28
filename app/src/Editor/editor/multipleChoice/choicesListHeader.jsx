@@ -3,7 +3,6 @@ import React from 'react';
 const headerStyle = {
   display: 'flex',
   justifyContent: 'space-around', 
-  fontFamily: 'helvetica',
   flexWrap: 'wrap',
 };
 

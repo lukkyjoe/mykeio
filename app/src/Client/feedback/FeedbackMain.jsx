@@ -58,10 +58,7 @@ class FeedbackMain extends Component {
     }
   }
 
-
-  render() {
-    //add condition. map not necessary for short answers
-    console.log('this.props.feedback!!!', this.props.feedback)
+  clientPromptDisplay() {
     if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
       let options = this.props.feedback.choices.map((a, index)=> {
         return (
@@ -75,19 +72,22 @@ class FeedbackMain extends Component {
           </div>
         );
       });
-    } else if (this.props.feedback.responseType === 'TEXT') {
-      let options = [];
-      options[0] = <div> input text area </div>
-    }
+      return [...options]
+  } 
+
+    if (this.props.feedback.responseType === 'TEXT') {
+        return (<div> input text area </div>)
+      }
+  }
+
+  render() {
     
-
-
     return ( 
       <div>
         <div className={styles.container}>
           {this.props.feedback.promptText}
         </div>
-        {[...options]}
+        {clientPromptDisplay()}
         <div style={{textAlign: 'center'}}>
           <button onClick={()=>{ this.submitMaster(); }}>Submit</button>
         </div>

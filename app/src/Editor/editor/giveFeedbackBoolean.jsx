@@ -12,7 +12,7 @@ class GiveFeedbackBoolean extends React.Component {
         <form>
           <div>
               <input type="checkbox" onChange={() => { this.handleClick(); }}/>
-              Give Feedback to Audience
+              Give feedback to audience
           </div>   
         </form>
       </div>

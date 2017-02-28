@@ -21,7 +21,6 @@ class PromptCount extends Component {
     return (
       <div className={styles.promptAndRoom}>
         <form onSubmit={this.handleSubmit}>
-          
           <input type="submit" value="Add new prompt"/>
         </form>
       </div>

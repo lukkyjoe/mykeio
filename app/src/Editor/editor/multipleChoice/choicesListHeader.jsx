@@ -12,7 +12,7 @@ export default class ChoicesListHeader extends React.Component {
         <thead>
           <tr style={headerStyle}>            
             <th>Items</th>
-            <th>Edit/Delete</th>
+            <th>Edit / Delete </th>
             <th>Correct Answer?</th>
           </tr>
         </thead>

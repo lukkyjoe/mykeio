@@ -11,10 +11,7 @@ export default class ChoicesListItem extends React.Component {
   
   renderChoiceSection() {
     const {choice } = this.props;
-    // const choiceStyle = {
-    //   color: isCorrectAnswer ? 'green' : black,
-    //   cursor: 'pointer'
-    // };
+
     if (this.state.isEditing) {
       return (
         <td>
@@ -45,7 +42,7 @@ export default class ChoicesListItem extends React.Component {
   }
   render() {
     return (
-        <tr>
+        <tr className={styles.itemStyle}>
           <td>{this.props.choice}</td>
           {this.renderChoiceSection()}
           {this.renderActionsSection()}

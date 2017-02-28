@@ -7,6 +7,22 @@
   padding-top:10px;
 }
 
+.roomName{
+  text-align: center
+}
+
+.promptAndRoom{
+  display: inline-block;
+}
+
+.createRoomButton{
+  display: inline-block;
+}
+
+.textOrMultipleChoice{
+  margin: auto;
+}
+
 .title{
   font-family: 'Patua One', cursive;
   color:#FFFFFF;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from '../EditorMain.css';
 
 class PromptCount extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class PromptCount extends Component {
   }
   render() {
     return (
-      <div>
+      <div className={styles.promptAndRoom}>
         <form onSubmit={this.handleSubmit}>
           
           <input type="submit" value="Add new prompt"/>

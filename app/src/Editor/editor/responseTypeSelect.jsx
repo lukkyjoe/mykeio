@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../EditorMain.css';
 
 class ResponseTypeSelect extends React.Component {
 
@@ -11,13 +12,11 @@ class ResponseTypeSelect extends React.Component {
     return (
       <div>
         <form>
-          <div>
+          <div className={styles.textOrMultipleChoice}>
             <label>
               <input type="radio" name="foo" value="MULTIPLE_CHOICE" onChange={this.handleClick.bind(this)} />
-              Multiple choice
+              Multiple choice &nbsp; &nbsp;   
             </label>
-          </div>
-          <div>
             <label>
               <input type="radio" name="foo" value="TEXT" onChange={this.handleClick.bind(this)}/>
               Text

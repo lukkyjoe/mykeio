@@ -7,7 +7,7 @@ export default class ChoicesListHeader extends React.Component {
         <thead>
           <tr>            
             <th>Items</th>
-            <th>Correct Answer?</th>
+            <th>Correct?</th>
           </tr>
         </thead>
     );

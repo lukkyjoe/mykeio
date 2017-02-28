@@ -1,10 +1,13 @@
 .promptContainer{
-  width:600px;
-  border:2px solid black;
+  width:500px;
   margin: auto;
-  border-radius: 7px;
+  background-color: white
 }
 
 .alignRight{
   float: right;
+}
+
+body{
+  font-family: Helvetica;
 }

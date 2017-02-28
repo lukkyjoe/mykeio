@@ -12,10 +12,13 @@ class HostQuestion extends React.Component {
     return (
       <div>
         <form className={styles.hostQuestionContainer} onSubmit={this.handleUpdateClick.bind(this)}>
-         Title: <input className={styles.item} placeholder="Title Required" ref="promptInput" required onChange={this.handleUpdateClick.bind(this)}></input>
-         <p></p>
+         <div>
+           Title: <input className={styles.item} placeholder="Title Required" ref="promptInput" required onChange={this.handleUpdateClick.bind(this)}></input>         
+         </div>
          {/*add tiny MCE, THIS TEXT ARE DOESNT GO ANYWHERE YET*/}
-         Body: <textarea className={styles.item} name="myTextarea" placeholder="Explain your prompt. (optional)"></textarea>
+         <div>
+           Body: <textarea className={styles.item} name="myTextarea" placeholder="Explain your prompt. (optional)"></textarea>         
+         </div>
         </form>
       </div>
     );

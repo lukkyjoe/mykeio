@@ -1,5 +1,6 @@
 .hostQuestionContainer {
   margin: 5px;
+  flex-direction: column;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

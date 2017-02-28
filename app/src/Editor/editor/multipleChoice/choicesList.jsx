@@ -3,6 +3,11 @@ import ChoicesListHeader from './choicesListHeader.jsx';
 import _ from 'lodash';
 import ChoicesListItem from './choicesListItem.jsx';
 
+const tableStyle = {
+  display: 'flex', 
+  flexDirection: 'column', 
+}
+
 
 export default class ChoicesList extends React.Component {
   renderItems() {
@@ -13,7 +18,7 @@ export default class ChoicesList extends React.Component {
    
   render() {
     return (
-      <table>
+      <table style={tableStyle}>
         <ChoicesListHeader />
         <tbody>
           {this.renderItems()}

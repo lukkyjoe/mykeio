@@ -51,7 +51,7 @@ class FeedbackMain extends Component {
       payload: {
         peerid: this.props.peerid,
         quizuuid: this.props.feedback.uuid,
-        textResponse: "here is a text response!",
+        textResponse: this.state.textAreaValue,
         clientData: this.props.clientData
       }    
     }); 

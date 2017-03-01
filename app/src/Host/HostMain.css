@@ -3,12 +3,12 @@ body{
   padding:0;
 }
 .questionContainer{
-  width:350px;
+  width:300px;
   display:inline-block;
 }
 
 .feedbackContainer{
-  width:350px;
+  width:300px;
   float: right;
 }
 
@@ -35,4 +35,10 @@ body{
   padding:0;
   font:helvetica;
   color:white;
+}
+
+.questionHeader{
+  width:300px;
+  height:60px;
+  background-color:#919191;
 }

@@ -234,8 +234,10 @@ class HostMain extends Component {
         </div>
         <div className={styles.contentMain}>
           <div className={styles.questionContainer}>
+            <div className={styles.questionHeader}>
+              <p className={styles.questionText}>Questions</p>
+            </div>
             <a href={'/#/' + this.props.params.roomid}>go to client</a>
-            <p>Questions:</p>
             {[...questions]}
           </div>
           {this.renderList()}

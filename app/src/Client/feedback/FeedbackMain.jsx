@@ -8,6 +8,7 @@ class FeedbackMain extends Component {
       hasClicked: false,
       optionsIsClicked: [],
       submissionIndex: undefined,
+      textAreaValue: "",
     };
     this.submitAnswer = this.submitAnswer.bind(this);
     this.toggleHasClicked = this.toggleHasClicked.bind(this);

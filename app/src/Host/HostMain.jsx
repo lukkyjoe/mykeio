@@ -115,6 +115,10 @@ class HostMain extends Component {
       });
       break;
     }
+
+    case 'TEXT_RESPONSE': {
+      console.log('text response data', data)
+    }
     }
   }
   //pure, returns new array

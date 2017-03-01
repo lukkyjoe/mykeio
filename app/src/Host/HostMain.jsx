@@ -117,7 +117,8 @@ class HostMain extends Component {
     }
 
     case 'TEXT_RESPONSE': {
-      console.log('text response data', data)
+      console.log('text response data', data);
+      
     }
     }
   }

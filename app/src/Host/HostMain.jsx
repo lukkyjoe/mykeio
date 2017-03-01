@@ -16,7 +16,7 @@ class HostMain extends Component {
       questions: [],
       promptDisplay: [],
       responseType: '',
-      textResponses: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}],
+      textResponses: [{dummyQuizID: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}]},]
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -119,9 +119,26 @@ class HostMain extends Component {
     case 'TEXT_RESPONSE': {
       console.log('text response data', data);
       let newArray = this.state.textResponses.slice();
-      newArray.push({username: data.payload.clientData.username, message: data.payload.textResponse});
-      this.setState({textResponses: newArray})
-      //still need to setstate
+      //there may be responses from different quizzes, so save them in different objects
+      //first, find the array that corresponds
+      let target = _.find(newArray, (collection) => collection.hasOwnProperty(data.payload.quizuuid));
+      console.log('target ========', target);
+      let targetIndex = _.findIndex(newArray, (collection) => collection.hasOwnProperty(data.payload.quizuuid));
+      console.log('targetIndex ====', targetIndex);
+      let dummyTarget = _.find(newArray, (collection) => collection.hasOwnProperty('dummyQuizID'));
+      console.log('dummyTarget', dummyTarget);
+      if (target === undefined) {
+        let textResponsesCollection = {};
+        textResponsesCollection[data.payload.quizuuid] = [{username: data.payload.clientData.username, message: data.payload.textResponse}];
+        console.log('new quiz collection=======', textResponsesCollection)
+        newArray.push(textResponsesCollection);
+        this.setState({textResponses: newArray});
+      } else {
+        newArray[targetIndex][data.payload.quizuuid].push({username: data.payload.clientData.username, message: data.payload.textResponse});
+        this.setState({textResponses: newArray});
+      }
+
+      break;
     }
     }
   }
@@ -165,7 +182,6 @@ class HostMain extends Component {
     }
     if (target.responseType === 'TEXT') {
       this.setState({responseType: 'TEXT'});
-      this.setState({promptDisplay: []}); //
     }
 
     //may have to expand this to include more

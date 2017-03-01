@@ -16,7 +16,7 @@ class HostMain extends Component {
       questions: [],
       promptDisplay: [],
       responseType: '',
-      textResponses: ['fee', 'fi', 'foh', 'fum'],
+      textResponses: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}],
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -104,6 +104,7 @@ class HostMain extends Component {
     }
 
     case 'FEEDBACK_RESPONSE': {
+      console.log('data when feedback comes through', data);
       let newArray = this.state.roomData.prompts.slice();
       let targetIndex = _.findIndex(newArray, 
         (prompt) => prompt.uuid === data.payload.quizuuid);
@@ -113,6 +114,14 @@ class HostMain extends Component {
       this.setState({roomData: newRoomData
       });
       break;
+    }
+
+    case 'TEXT_RESPONSE': {
+      console.log('text response data', data);
+      let newArray = this.state.textResponses.slice();
+      newArray.push({username: data.payload.clientData.username, message: data.payload.textResponse});
+      this.setState({textResponses: newArray})
+      //still need to setstate
     }
     }
   }

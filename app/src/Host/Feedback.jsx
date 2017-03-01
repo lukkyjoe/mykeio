@@ -16,6 +16,7 @@ class Feedback extends Component {
         payload: uuid,
       });
     }
+    console.log('this.props.uuid', this.props.uuid);
   }
 
   onPromptClick() {

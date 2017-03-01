@@ -8,12 +8,17 @@ class FeedbackMain extends Component {
       hasClicked: false,
       optionsIsClicked: [],
       submissionIndex: undefined,
+      textAreaValue: "",
     };
     this.submitAnswer = this.submitAnswer.bind(this);
     this.toggleHasClicked = this.toggleHasClicked.bind(this);
 
-    props.feedback.choices.forEach(()=>{ this.state.optionsIsClicked.push(false); });
-    console.log(props.feedback.choices);
+    if (props.feedback.choices) {
+      props.feedback.choices.forEach(()=>{ this.state.optionsIsClicked.push(false); });
+      console.log('props.feedback.choices', props.feedback.choices);
+    } else {
+      console.log('this is not multiple choice!')
+    }
   }
 
   toggleHasClicked(index) {
@@ -28,9 +33,28 @@ class FeedbackMain extends Component {
   }
   //submit the answer, then unrender the prompt
   submitMaster() {
-    this.submitAnswer();
-    this.props.unrenderPrompt();
-    this.checkAnswer();
+    // give text a different case type?
+    if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
+      this.submitAnswer();
+      this.props.unrenderPrompt();
+      this.checkAnswer();
+    }
+    if (this.props.feedback.responseType === 'TEXT') {
+      this.submitTextInput();
+    }    
+
+  }
+
+  submitTextInput() {
+    this.props.connection.send({
+      type: 'TEXT_RESPONSE',
+      payload: {
+        peerid: this.props.peerid,
+        quizuuid: this.props.feedback.uuid,
+        textResponse: this.state.textAreaValue,
+        clientData: this.props.clientData
+      }    
+    }); 
   }
 
   //submit the answer sends data to host
@@ -54,9 +78,16 @@ class FeedbackMain extends Component {
     }
   }
 
+  textAreaChange(event) {
+    this.setState({textAreaValue: event.target.value})
+  }
 
   render() {
-    let options = this.props.feedback.choices.map((a, index)=> {
+    //add condition. map not necessary for short answers
+    console.log('this.props.feedback!!!', this.props.feedback)
+    let options;
+    if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
+     options = this.props.feedback.choices.map((a, index)=> {
       return (
         <div 
           onClick={() => this.toggleHasClicked(index)} 
@@ -68,13 +99,19 @@ class FeedbackMain extends Component {
         </div>
       );
     });
+    }
+
 
     return ( 
       <div>
         <div className={styles.container}>
           {this.props.feedback.promptText}
         </div>
-        {[...options]}
+        {
+          (this.props.feedback.responseType === 'MULTIPLE_CHOICE')
+          ? [...options]
+          : <textarea onChange={this.textAreaChange.bind(this)}> </textarea>
+        }
         <div style={{textAlign: 'center'}}>
           <button onClick={()=>{ this.submitMaster(); }}>Submit</button>
         </div>

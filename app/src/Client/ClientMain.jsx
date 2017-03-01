@@ -186,7 +186,10 @@ class ClientMain extends Component {
           <h2>{this.state.roomTitle}</h2>
           {this.state.correctSubmission ? <CorrectSubmission /> : undefined}
           {this.state.incorrectSubmission ? <IncorrectSubmission feedback={this.state.feedback} /> : undefined}
-          {this.state.renderPrompt ? <FeedbackMain renderCorrect={this.renderCorrect} renderIncorrect={this.renderIncorrect} unrenderPrompt={this.unrenderPrompt} peerid={this.state.clientData.id} connection={this.connection} feedback={this.state.feedback}/> : undefined}
+          {this.state.renderPrompt ? <FeedbackMain renderCorrect={this.renderCorrect} renderIncorrect={this.renderIncorrect} 
+          unrenderPrompt={this.unrenderPrompt} peerid={this.state.clientData.id} 
+          connection={this.connection} feedback={this.state.feedback}
+          clientData={this.state.clientData}/> : undefined}
           {this.state.showAudio ? <VolumeBar /> : undefined}
           <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
         </div>

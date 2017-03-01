@@ -78,6 +78,9 @@ class FeedbackMain extends Component {
     }
   }
 
+  textAreaChange(event) {
+    this.setState({textAreaValue: event.target.value})
+  }
 
   render() {
     //add condition. map not necessary for short answers
@@ -107,7 +110,7 @@ class FeedbackMain extends Component {
         {
           (this.props.feedback.responseType === 'MULTIPLE_CHOICE')
           ? [...options]
-          : <textarea> </textarea>
+          : <textarea onChange={this.textAreaChange.bind(this)}> </textarea>
         }
         <div style={{textAlign: 'center'}}>
           <button onClick={()=>{ this.submitMaster(); }}>Submit</button>

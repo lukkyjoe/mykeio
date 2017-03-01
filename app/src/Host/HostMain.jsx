@@ -104,6 +104,7 @@ class HostMain extends Component {
     }
 
     case 'FEEDBACK_RESPONSE': {
+      console.log('data when feedback comes through', data);
       let newArray = this.state.roomData.prompts.slice();
       let targetIndex = _.findIndex(newArray, 
         (prompt) => prompt.uuid === data.payload.quizuuid);

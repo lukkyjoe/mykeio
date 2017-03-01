@@ -32,9 +32,24 @@ class FeedbackMain extends Component {
   }
   //submit the answer, then unrender the prompt
   submitMaster() {
-    this.submitAnswer();
-    this.props.unrenderPrompt();
-    this.checkAnswer();
+    // give text a different case type?
+    if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
+      this.submitAnswer();
+      this.props.unrenderPrompt();
+      this.checkAnswer();
+    }
+
+  }
+
+  submitTextInput() {
+    this.props.connection.send({
+      type: 'TEXT_RESPONSE',
+      payload: {
+        peerid: this.props.peerid,
+        quizuuid: this.props.feedback.uuid,
+        textResponse: "here is a text response!"
+      }    
+    }); 
   }
 
   //submit the answer sends data to host

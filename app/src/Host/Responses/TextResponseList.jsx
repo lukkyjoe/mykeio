@@ -5,7 +5,8 @@ import styles from './ResponsesView.css';
 const TextResponseList = ({textResponses}) => {
   const textResponseList = textResponses.map((response, index) => {
     return (
-      <div>{response} </div>
+      <div>{response.username} </div>
+      <div>{response.message} </div>
     )
   })
   

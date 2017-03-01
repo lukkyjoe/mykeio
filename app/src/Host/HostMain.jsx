@@ -16,7 +16,7 @@ class HostMain extends Component {
       questions: [],
       promptDisplay: [],
       responseType: '',
-      textResponses: ['fee', 'fi', 'foh', 'fum'],
+      textResponses: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}],
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -118,7 +118,7 @@ class HostMain extends Component {
 
     case 'TEXT_RESPONSE': {
       console.log('text response data', data);
-      let newArray = this.state.roomData.textResponses.slice();
+      let newArray = this.state.textResponses.slice();
       newArray.push({username: data.payload.clientData.username})
       //still need to setstate
     }

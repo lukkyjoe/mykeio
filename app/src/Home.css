@@ -16,6 +16,7 @@
   color:#48E5C2;
   margin:0;
   padding:0;
+  display: inline-block;
 }
 
 .subhead{
@@ -33,6 +34,10 @@
 
 .connectionImage{
   height:250px;
+}
+.logoImage{
+  height:75px;
+  padding-right: 20px;
 }
 
 .create{

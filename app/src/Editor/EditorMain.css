@@ -11,17 +11,51 @@ body{
   background-color: #ECEDED;
 }
 
+.logoImage{
+  height:40px;
+}
+
 .roomName{
-  text-align: center;
+  width:70%;
+  margin-left: 50px;
   font-size: 15px;
 }
 
+.roomNameInput {
+  outline: none;
+  border-radius: 1˝px;
+  margin-right: 7%;
+  height: 25px;
+  margin-top: 15px;
+}
+
 .promptAndRoom{
+  background-color: #353535;
+  border-radius: 5px;
+  text-align: center;
+  color: #eceded;
+  padding: 15px;
+  font-size: 17px;
+  float: left;
+  margin-left: 50px;
   display: inline-block;
 }
 
+.buttonText{
+  margin:0;
+  padding:0;
+}
+
 .createRoomButton{
+  background-color: rgba(255, 0, 0, 0.58);
+  border-radius: 5px;
+  text-align: center;
+  width: 20%;
+  color: #eceded;
+  padding: 15px;
+  font-size: 17px;
   display: inline-block;
+  margin-left: 50px;
 }
 
 .textOrMultipleChoice{
@@ -36,4 +70,7 @@ body{
 
 .contentMain{
   padding-top:70px;
+  text-align: right;
+  width: 97%;
+  display: inline-block;
 }

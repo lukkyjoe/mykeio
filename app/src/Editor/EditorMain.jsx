@@ -23,6 +23,7 @@ class EditorMain extends Component {
     
     this.updatePromptField = this.updatePromptField.bind(this);
     this.deletePrompt = this.deletePrompt.bind(this);
+    this.changeRoomTitle = this.changeRoomTitle.bind(this);
   }
 
   deletePrompt(index) {
@@ -53,6 +54,12 @@ class EditorMain extends Component {
     return listOfPrompts;
   }
 
+  changeRoomTitle(event) {
+    this.setState({roomTitle: event.target.value}, () => {
+      console.log(this.state.roomTitle);
+    });
+  }  
+
 
 // if change to +1 only button, consider the concat option from http://stackoverflow.com/questions/26253351/correct-modification-of-state-arrays-in-reactjs
   addPrompt() {
@@ -61,6 +68,7 @@ class EditorMain extends Component {
     newArray.push(newPrompt);
     this.setState({prompts: newArray});
   }
+  
   createRoom() {
     //validate here
     let multipleChoicestatus = this.state.prompts.reduce(function(acc, val) {
@@ -99,21 +107,27 @@ class EditorMain extends Component {
     }
   }
 
+
+
   render() {
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>
+          <img src='./img/mic-vector-white.svg' className={styles.logoImage}/>
           <h3 className={styles.title}>Room Settings</h3>
         </div>
-        <div className={styles.roomName}>
-          <form className={styles.contentMain} onSubmit={this.createRoom.bind(this)}>
-            <label>Room name:</label>
-              <input type="text" placeholder="Set a room name" size="30" />
+         
+        <div className={styles.contentMain}>
+          <form onSubmit={this.createRoom.bind(this)}>
+            <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
+            <div className={styles.createRoomButton} onClick={this.createRoom.bind(this)}>Go Live</div>
+            <br/>
+            <input className={styles.roomNameInput} default={this.state.roomTitle} type="text" onChange={this.changeRoomTitle} placeholder="Set a room name" size="30" />    
           </form>  
-          <div >
-          <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
-          <button className={styles.createRoomButton} onClick={this.createRoom.bind(this)}>Create Room</button>
-          {this.renderPrompts()}         
+        </div>
+        <div className={styles.roomName}>
+          <div>
+            {this.renderPrompts()}         
           </div>
         </div>
       </div>

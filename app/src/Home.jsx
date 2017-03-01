@@ -40,14 +40,14 @@ class Home extends Component {
         </div>
         <div className={styles.splashMain}>
           <div className={styles.headerMain}>
+            <img src='./img/mic-vector.svg' className={styles.logoImage}/>
             <h2 className={styles.logo}>myke.io</h2>
-            <h3 className={styles.subhead}>Fast, realtime feedback engine for teachers and presenters</h3>
             <div className={styles.create} onClick={this.onCreateRoom}>
               <p className={styles.createText}>Create Room</p>
             </div>
+            <h3 className={styles.subhead}>Fast, realtime feedback engine for teachers and presenters</h3>
             <img src='./img/quiz.svg' className={styles.connectionImage}/>
             <h3 className={styles.subhead}>Send out quizzes and questionnaires and get realtime answers</h3>
-
             <img src='./img/quest.svg' className={styles.connectionImage}/>
             <h3 className={styles.subhead}>Crowd members can ask questions straight from their phone, all audio is streamed to the host's computer with ultra low latency.</h3>
           </div>

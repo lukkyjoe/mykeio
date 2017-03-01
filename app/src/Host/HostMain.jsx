@@ -119,7 +119,8 @@ class HostMain extends Component {
     case 'TEXT_RESPONSE': {
       console.log('text response data', data);
       let newArray = this.state.textResponses.slice();
-      newArray.push({username: data.payload.clientData.username})
+      newArray.push({username: data.payload.clientData.username, message: data.payload.textResponse});
+      this.setState({textResponses: newArray})
       //still need to setstate
     }
     }

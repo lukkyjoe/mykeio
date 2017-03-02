@@ -195,7 +195,6 @@ class HostMain extends Component {
       this.setState(
         {
           responseType: 'TEXT',
-          textResponsesDisplay: targetCollection[text];
         });
     }
 

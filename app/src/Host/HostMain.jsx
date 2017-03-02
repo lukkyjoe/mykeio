@@ -16,7 +16,8 @@ class HostMain extends Component {
       questions: [],
       promptDisplay: [],
       responseType: '',
-      textResponses: [{dummyQuizID: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}]},]
+      textResponses: [{dummyQuizID: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}]},],
+      textResponsesDisplay: [],
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -135,7 +136,11 @@ class HostMain extends Component {
         this.setState({textResponses: newArray});
       } else {
         newArray[targetIndex][data.payload.quizuuid].push({username: data.payload.clientData.username, message: data.payload.textResponse});
-        this.setState({textResponses: newArray});
+        this.setState(
+          {
+            textResponses: newArray,
+            textResponsesDisplay: newArray[targetIndex][data.payload.quizuuid],
+          });
       }
 
       break;
@@ -184,8 +189,7 @@ class HostMain extends Component {
       this.setState({responseType: 'TEXT'});
     }
 
-    //may have to expand this to include more
-    //problem: switching between prompts overwrites the object that holds the prompt tallies
+
   }
 
   renderList() {
@@ -195,7 +199,8 @@ class HostMain extends Component {
       );
     } else if (this.state.responseType === 'TEXT') {
       return (
-          <TextResponseList textResponses={this.state.textResponses}/>
+          <TextResponseList textResponses={this.state.textResponsesDisplay}/>
+          //fix here! pass down props for uuid to show correct one
       );
     }  
   }
@@ -211,7 +216,6 @@ class HostMain extends Component {
       }
     }
 
-    //need to explore modifying displayData props to accomodate non-multi-choice format.
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>

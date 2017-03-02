@@ -29,8 +29,7 @@ body{
 .clippyButton{
   position: relative;
   display: inline-block;
-  padding: 6px 12px;
-  font-size: 13px;
+  padding: 5px 12px;
   font-weight: bold;
   line-height: 20px;
   color: #333;
@@ -46,6 +45,13 @@ body{
   -ms-user-select: none;
   user-select: none;
   -webkit-appearance: none;
+}
+
+.clippyButton:hover{
+  text-decoration: none;
+  background-color: #ddd;
+  background-image: linear-gradient(#eee,#ddd);
+  border-color: #ccc;
 }
 
 .clippyImage{

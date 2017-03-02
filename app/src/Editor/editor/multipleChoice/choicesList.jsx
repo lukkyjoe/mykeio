@@ -19,7 +19,7 @@ const choiceListStyle = {
 export default class ChoicesList extends React.Component {
   renderItems() {
     const props = _.omit(this.props, 'choices');
-    return _.map(this.props.choices, (choice, index) => <ChoicesListItem key={index} {...choice} {...props}/>
+    return _.map(this.props.choices, (choice, index) => <ChoicesListItem index={index} key={index} {...choice} {...props}/>
     );
   }
    

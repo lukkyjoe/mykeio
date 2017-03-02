@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ResponsesView.css';
 
 
-const TextResponseList = ({textResponses}) => {
+const TextResponseList = ({textResponsesDisplay}) => {
   const textResponseList = textResponses.map((response, index) => {
     return (
       <div>

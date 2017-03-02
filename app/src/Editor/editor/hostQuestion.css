@@ -1,17 +1,15 @@
 .hostQuestionContainer {
-  margin: 5px;
-  width: 50%;
-  flex-direction: column;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  width:100%;
 }
 
-.item {
-  width: 35%;
+.title{
+  width:298px;
+  border:none;
+  text-align:center;
+  font-size:16pt;
+  background-color:#313131;
+  padding-bottom:3px;
+  color:white;
 }
-
 .titleAndBody {
-  padding-top: 20px;
-  padding-left: 15px;
 }

@@ -1,10 +1,19 @@
 .promptContainer{
   background-color: white;
-  flex-direction: column;
+  width:300px;
+  margin:10px;
+  display:inline-block;
+  vertical-align:top;
 }
 
 .deleteButton{
   height: 20px;
+}
+
+.multipleChoiceInput{
+  width:295px;
+  border:none;
+  text-align:center;
 }
 
 body{

@@ -41,6 +41,7 @@ class FeedbackMain extends Component {
     }
     if (this.props.feedback.responseType === 'TEXT') {
       this.submitTextInput();
+      this.props.unrenderPrompt();
     }    
 
   }

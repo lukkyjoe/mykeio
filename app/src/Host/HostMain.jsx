@@ -21,7 +21,7 @@ class HostMain extends Component {
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
-    var clipboard = new Clipboard(styles.clippyButton);
+    var clipboard = new Clipboard('.btn');
   }
 
   componentDidMount() {
@@ -239,8 +239,8 @@ class HostMain extends Component {
               <p className={styles.questionText}>Questions</p>
             </div>
             <a href={'/#/' + this.props.params.roomid}>go to client</a>
-            <input className={styles.clippyInput} defaultValue={'myke.io/#/' + this.props.params.roomid}/>
-            <button className={styles.clippyButton} data-clipboard-target={'myke.io/#/' + this.props.params.roomid}>
+            <input id="foo" className={styles.clippyInput} readOnly value={'myke.io/#/' + this.props.params.roomid}/>
+            <button className={'btn ' + styles.clippyButton} data-clipboard-target="#foo">
               <img className={styles.clippyImage} src="/img/clippy.svg" alt="Copy to clipboard"/>
             </button>
             <p>Questions:</p>

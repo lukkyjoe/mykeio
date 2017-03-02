@@ -192,7 +192,7 @@ class HostMain extends Component {
     }
     if (target.responseType === 'TEXT') {
       let targetCollection = _.find(this.state.textResponses, (collection) => collection.hasOwnProperty(text));
-      if (targetCollection[text]) {
+      if (targetCollection.hasOwnProperty(text)) {
         this.setState(
           {
             responseType: 'TEXT',

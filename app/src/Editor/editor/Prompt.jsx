@@ -41,9 +41,11 @@ class Prompt extends React.Component {
     this.props.updatePromptField(this.state, this.props.index);
   }
 
-  deleteChoice(choiceToDelete) {
-    _.remove(this.state.choices, choice => choice.choice === choiceToDelete);
-    this.setState({choices: this.state.choices});
+  deleteChoice(indexToDelete) {
+    // take this chance to prevent mutation!
+    let newChoicesArray = this.state.choices.slice();
+    _.remove(newChoicesArray, choice => choice[indexToDelete]);
+    this.setState({choices: newChoicesArray});
     this.props.updatePromptField(this.state, this.props.index);
   }
 

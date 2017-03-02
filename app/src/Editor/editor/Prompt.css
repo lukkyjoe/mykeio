@@ -1,6 +1,7 @@
 .promptContainer{
   background-color: white;
   width:300px;
+  border-radius: 2px;
   margin:10px;
   display:inline-block;
   vertical-align:top;

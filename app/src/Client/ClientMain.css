@@ -38,6 +38,11 @@
   margin-top: 5px;
 }
 
+.questionX{
+  height:40px;
+  margin-top: 5px;
+}
+
 .roomStatus{
   color: #FFFFFF;
   font-size: 18pt;
@@ -74,6 +79,7 @@
 }
 
 .username{
+  outline: none;
   border: none;
   border-bottom: 2px solid white;
   text-align: center;

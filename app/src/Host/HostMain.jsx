@@ -249,16 +249,18 @@ class HostMain extends Component {
               <p className={styles.questionText}>Questions</p>
             </div>
             <a href={'/#/' + this.props.params.roomid}>go to client</a>
-            <input id="foo" className={styles.clippyInput} readOnly value={'myke.io/#/' + this.props.params.roomid}/>
-            <button className={'btn ' + styles.clippyButton} data-clipboard-target="#foo">
-              <img className={styles.clippyImage} src="/img/clippy.svg" alt="Copy to clipboard"/>
-            </button>
             <p>Questions:</p>
             {[...questions]}
           </div>
           {this.renderList()}
-          <div className={styles.feedbackContainer}>
-            {[...feedback]}
+        <div className={styles.feedbackContainer}>
+          {[...feedback]}
+        </div>
+          <div className={styles.clippyContainer}>
+            <input id="foo" className={styles.clippyInput} readOnly value={'myke.io/#/' + this.props.params.roomid}/>
+            <button className={'btn ' + styles.clippyButton} data-clipboard-target="#foo">
+              <img className={styles.clippyImage} src="/img/clippy.svg" alt="Copy to clipboard"/>
+            </button>
           </div>
         </div>
       </div>

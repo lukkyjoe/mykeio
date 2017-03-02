@@ -16,11 +16,12 @@ class HostMain extends Component {
       questions: [],
       promptDisplay: [],
       responseType: '',
-      textResponses: [{dummyQuizID: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}]},],
+      textResponses: [{dummyQuizID: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}]}, ],
       textResponsesDisplay: [],
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
+    var clipboard = new Clipboard(styles.clippyButton);
   }
 
   componentDidMount() {
@@ -131,7 +132,7 @@ class HostMain extends Component {
       if (target === undefined) {
         let textResponsesCollection = {};
         textResponsesCollection[data.payload.quizuuid] = [{username: data.payload.clientData.username, message: data.payload.textResponse}];
-        console.log('new quiz collection=======', textResponsesCollection)
+        console.log('new quiz collection=======', textResponsesCollection);
         newArray.push(textResponsesCollection);
         this.setState(
           {
@@ -238,6 +239,11 @@ class HostMain extends Component {
               <p className={styles.questionText}>Questions</p>
             </div>
             <a href={'/#/' + this.props.params.roomid}>go to client</a>
+            <input className={styles.clippyInput} value={'myke.io/#/' + this.props.params.roomid}/>
+            <button className={styles.clippyButton} data-clipboard-text={'myke.io/#/' + this.props.params.roomid}>
+                <img className={styles.clippyImage} src="/img/clippy.svg" alt="Copy to clipboard"/>
+            </button>
+            <p>Questions:</p>
             {[...questions]}
           </div>
           {this.renderList()}

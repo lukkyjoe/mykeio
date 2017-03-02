@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../Prompt.css';
+import styles from './createItem.css';
 
 
 export default class CreateItem extends React.Component {
@@ -7,7 +7,7 @@ export default class CreateItem extends React.Component {
     return (
       <form onSubmit={this.handleCreate.bind(this)}>
         <input className={styles.multipleChoiceInput} type="text" placeholder="Insert a multiple choice answer" ref="createInput" />
-        <button>Create</button>
+        <button className={styles}>Add</button>
       </form>
     );
   }

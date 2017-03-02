@@ -12,7 +12,6 @@ export default class MultipleChoiceBuilder extends React.Component {
   render() {
     return (
       <div>
-        <h3>Create your multiple choice items</h3>
         <CreateItem createChoice={this.props.createChoice}/>
         <ChoicesList 
           choices={this.state.choices}

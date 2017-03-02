@@ -22,7 +22,6 @@ class Prompt extends React.Component {
     console.log(this.props.index);
     //try updating the parent editor's state using the index props and updatePromptInArray function props
     this.props.updatePromptField(this.state, this.props.index);
-
   }
 
   createChoice(choice) {

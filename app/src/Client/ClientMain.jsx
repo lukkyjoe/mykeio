@@ -46,7 +46,7 @@ class ClientMain extends Component {
           this.state.clientData.id = id;
           this.connection = this.peer.connect(this.state.adminPeerId);
           this.connection.on('open', ()=>{
-            $('#status').fadeOut(700);
+            $('#status').fadeOut(1000);
             this.setState({status: 'connected to host.'});
             this.updateHostWithClientData();
             let that = this;

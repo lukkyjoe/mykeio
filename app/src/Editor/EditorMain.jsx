@@ -124,9 +124,11 @@ class EditorMain extends Component {
         <div className={styles.contentMain}>
           <form onSubmit={this.createRoom.bind(this)}>
             <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
-            <div className={styles.createRoomButton} onClick={this.createRoom.bind(this)}>Go Live</div>
-            <br/>
-            <input className={styles.roomNameInput} default={this.state.roomTitle} type="text" onChange={this.changeRoomTitle} placeholder="Set a room name" size="30" />    
+            <div className={styles.liveModule}>
+              <div className={styles.createRoomButton} onClick={this.createRoom.bind(this)}>Go Live</div>
+              <br/>
+              <input className={styles.roomNameInput} default={this.state.roomTitle} type="text" onChange={this.changeRoomTitle} placeholder="Set a room name" size="30" />    
+            </div>
           </form>  
         </div>
         <div className={styles.roomName}>

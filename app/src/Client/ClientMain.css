@@ -28,8 +28,22 @@
   animation: AnimationName 52s ease infinite;
 }
 
+.roomHeader{
+  color: #FFFFFF;
+  font-size: 25pt;
+}
+
+.questionMark{
+  height: 40px;
+  margin-top: 5px;
+}
+
+.roomStatus{
+  color: #FFFFFF;
+  font-size: 18pt;
+}
 .questionButton{
-  background-color:#33e686;
+  border: 2px solid white;
   position: absolute;
   bottom: 0;
   margin: auto;

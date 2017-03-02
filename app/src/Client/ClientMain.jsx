@@ -46,6 +46,7 @@ class ClientMain extends Component {
           this.state.clientData.id = id;
           this.connection = this.peer.connect(this.state.adminPeerId);
           this.connection.on('open', ()=>{
+            $('#status').fadeOut(700);
             this.setState({status: 'connected to host.'});
             this.updateHostWithClientData();
             let that = this;
@@ -181,8 +182,8 @@ class ClientMain extends Component {
     } else {
       return (
         <div className={styles.base}>
-          <h2>{this.state.roomTitle}</h2>
-          <p>{this.state.status}</p>
+          <p className={styles.roomHeader}>{this.state.roomTitle}</p>
+          <p id="status"className={styles.roomStatus}>{this.state.status}</p>
           {this.state.correctSubmission ? <CorrectSubmission /> : undefined}
           {this.state.incorrectSubmission ? <IncorrectSubmission feedback={this.state.feedback} /> : undefined}
           {this.state.renderPrompt ? <FeedbackMain renderCorrect={this.renderCorrect} renderIncorrect={this.renderIncorrect} 
@@ -190,7 +191,7 @@ class ClientMain extends Component {
           connection={this.connection} feedback={this.state.feedback}
           clientData={this.state.clientData}/> : undefined}
           {this.state.showAudio ? <VolumeBar /> : undefined}
-          <div className={styles.questionButton} onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'X' : '?'}</div>
+          <div className={styles.questionButton} onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? <img src='./img/X.svg'/> : <img className={styles.questionMark} src='./img/questionMark.svg'/>}</div>
         </div>
       );
     }

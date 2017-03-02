@@ -191,7 +191,11 @@ class HostMain extends Component {
       this.setState({promptDisplay: target.choices}); 
     }
     if (target.responseType === 'TEXT') {
-      this.setState({responseType: 'TEXT'});
+      this.setState(
+        {
+          responseType: 'TEXT',
+          textResponsesDisplay: textResponsesDisplay,
+        });
     }
 
 
@@ -204,7 +208,7 @@ class HostMain extends Component {
       );
     } else if (this.state.responseType === 'TEXT') {
       return (
-          <TextResponseList textResponses={this.state.textResponsesDisplay}/>
+          <TextResponseList textResponsesDisplay={this.state.textResponsesDisplay}/>
           //fix here! pass down props for uuid to show correct one
       );
     }  

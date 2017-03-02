@@ -1,4 +1,22 @@
-.selectTypeContainer {
-  display: flex;
-  flex-wrap: wrap;
+.textOrMultipleChoice{
+  width:100%;
+}
+
+.multButton{
+  display:inline-block;
+  width:149px;
+  text-align:center;
+  cursor:default;
+  padding-top:3px;
+  padding-bottom:3px;
+}
+
+.buttonText{
+  margin:0;
+  padding:0;
+
+}
+
+.selected{
+  background-color:#37ff37;
 }

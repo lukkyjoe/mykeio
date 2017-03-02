@@ -1,12 +1,13 @@
 import React from 'react';
+import styles from './createItem.css';
 
 
 export default class CreateItem extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleCreate.bind(this)}>
-        <input type="text" placeholder="Insert a multiple choice answer" ref="createInput" size="80"/>
-        <button>Create</button>
+        <input className={styles.multipleChoiceInput} type="text" placeholder="Insert a multiple choice answer" ref="createInput" />
+        <button className={styles}>Add</button>
       </form>
     );
   }

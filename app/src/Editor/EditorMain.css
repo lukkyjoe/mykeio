@@ -16,9 +16,7 @@ body{
 }
 
 .roomName{
-  width:70%;
-  margin-left: 50px;
-  font-size: 15px;
+  width:100%;
 }
 
 .roomNameInput {

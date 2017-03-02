@@ -1,0 +1,9 @@
+.multipleChoiceInput{
+  width: 298px;
+  border: none;
+  text-align: center;
+  font-size: 14pt;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: #f2f3f3;
+}

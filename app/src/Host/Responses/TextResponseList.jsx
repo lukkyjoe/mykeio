@@ -3,7 +3,7 @@ import styles from './ResponsesView.css';
 
 
 const TextResponseList = ({textResponsesDisplay}) => {
-  const textResponseList = textResponses.map((response, index) => {
+  const textResponseList = textResponsesDisplay.map((response, index) => {
     return (
       <div>
         <div>{response.username} </div>

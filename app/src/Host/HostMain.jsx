@@ -191,10 +191,11 @@ class HostMain extends Component {
       this.setState({promptDisplay: target.choices}); 
     }
     if (target.responseType === 'TEXT') {
+      let targetCollection = _.find(this.state.textResponses, (collection) => collection.hasOwnProperty(text));
       this.setState(
         {
           responseType: 'TEXT',
-          textResponsesDisplay: textResponsesDisplay,
+          textResponsesDisplay: targetCollection[text];
         });
     }
 

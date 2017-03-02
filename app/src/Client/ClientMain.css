@@ -1,20 +1,127 @@
 .usernameContainer{
+  text-align: center;
   top:0px;
   bottom:0px;
   position:absolute;
   width:100%;
-  background-color:#48E5C2;
-  padding-top:100px
-}
-.usernameInput{
-  margin:0 auto;
+  background: repeating-linear-gradient(180deg, #00c995, #007aff);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 52s ease infinite;
+  -moz-animation: AnimationName 52s ease infinite;
+  animation: AnimationName 52s ease infinite;
 }
 
-.usernamePrompt{
+.connectButtonText{
+  margin-top:7px;
+}
+
+.base {
+  text-align: center;
+  top:0px;
+  bottom:0px;
+  position:absolute;
+  width:100%;
+  background: linear-gradient(181deg, #00c995, #007aff);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 52s ease infinite;
+  -moz-animation: AnimationName 52s ease infinite;
+  animation: AnimationName 52s ease infinite;
+}
+
+.roomHeader{
+  color: #FFFFFF;
+  font-size: 25pt;
+}
+
+.questionMark{
+  height: 40px;
+  margin-top: 5px;
+}
+
+.roomStatus{
+  color: #FFFFFF;
+  font-size: 18pt;
+}
+.questionButton{
+  border: 2px solid white;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  padding: 15px;
+  width: 50px;
+  height:50px;
+  left: 0;
+  right:0;
+  margin-bottom: 100px;
+  border-radius: 100px;
+}
+
+.connectToHostButton{
+  height:40px;
+  width:180px;
+  border: 2px solid #FFFFFF;
+  border-radius:7px;
+  text-align:center;
+  margin:auto;
+  margin-bottom:50px;
+  margin-top:50px;
   color:white;
-  font:helvetica;
-  font-size:20pt;
+  background-color:rgba(0,0,0,0);
+}
+
+.connectToHostButton:hover{
+  background-color: rgba(255,255,255,0.1);
+}
+
+.username{
+  border: none;
+  border-bottom: 2px solid white;
+  text-align: center;
+  font-size: 18pt;
+  color:white;
+  background-color:rgba(0,0,0,0);
+  padding-bottom: 3px;
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #cfcfcf;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  color: #cfcfcf;
+}
+input:-ms-input-placeholder { 
+  color:#cfcfcf;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  color: #cfcfcf;
+}
+
+.usernameInput{
+  position: fixed;
+  top: 50%;
+  left: 50%;
   margin:0;
   padding:0;
+  margin-top:8px;
+  margin-bottom:3px;
+  font-size:16pt;
+  font-family:helvetica;
+  transform: translate(-50%, -50%);
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:52% 0%}
+    50%{background-position:49% 100%}
+    100%{background-position:52% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:52% 0%}
+    50%{background-position:49% 100%}
+    100%{background-position:52% 0%}
+}
+@keyframes AnimationName { 
+    0%{background-position:52% 0%}
+    50%{background-position:49% 100%}
+    100%{background-position:52% 0%}
 }
 

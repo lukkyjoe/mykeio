@@ -113,16 +113,22 @@ class EditorMain extends Component {
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>
-          <img src='./img/mic-vector-white.svg' className={styles.logoImage}/>
-          <h3 className={styles.title}>Room Settings</h3>
+          <div className={styles.logoImageContainer}>
+            <img src='./img/mic-vector-white.svg' className={styles.logoImage}/>
+          </div>
+          <div className={styles.settingsContainer}>
+            <p className={styles.title}>Room Settings</p>
+          </div>
         </div>
          
         <div className={styles.contentMain}>
           <form onSubmit={this.createRoom.bind(this)}>
             <PromptCount addPrompt={this.addPrompt.bind(this)}/> 
-            <div className={styles.createRoomButton} onClick={this.createRoom.bind(this)}>Go Live</div>
-            <br/>
-            <input className={styles.roomNameInput} default={this.state.roomTitle} type="text" onChange={this.changeRoomTitle} placeholder="Set a room name" size="30" />    
+            <div className={styles.liveModule}>
+              <div className={styles.createRoomButton} onClick={this.createRoom.bind(this)}>Go Live</div>
+              <br/>
+              <input className={styles.roomNameInput} default={this.state.roomTitle} type="text" onChange={this.changeRoomTitle} placeholder="Set a room name" size="30" />    
+            </div>
           </form>  
         </div>
         <div className={styles.roomName}>

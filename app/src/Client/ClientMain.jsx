@@ -46,6 +46,7 @@ class ClientMain extends Component {
           this.state.clientData.id = id;
           this.connection = this.peer.connect(this.state.adminPeerId);
           this.connection.on('open', ()=>{
+            $('#status').fadeOut(1000);
             this.setState({status: 'connected to host.'});
             this.updateHostWithClientData();
             let that = this;
@@ -172,18 +173,17 @@ class ClientMain extends Component {
     if (!this.state.isReady) {
       return (
         <div className={styles.usernameContainer}>
-          <form onSubmit={this.connectToHost.bind(this)}>
-            <p className={styles.usernamePrompt}>Username</p>
-            <input type='text' className={styles.usernameInput} onChange={this.handleUsernameInput.bind(this)}/>
-            <button onClick={this.connectToHost.bind(this)}>Connect to host</button>
+          <form className={styles.usernameInput} onSubmit={this.connectToHost.bind(this)}>
+            <input className={styles.username} placeholder="Enter Username" type='text' onChange={this.handleUsernameInput.bind(this)}/>
+            <div className={styles.connectToHostButton} onClick={this.connectToHost.bind(this)}><p className={styles.connectButtonText}>Connect to host</p></div>
           </form>
         </div>
       );
     } else {
       return (
         <div className={styles.base}>
-          <p>{this.state.status}</p>
-          <h2>{this.state.roomTitle}</h2>
+          <p className={styles.roomHeader}>{this.state.roomTitle}</p>
+          <p id="status"className={styles.roomStatus}>{this.state.status}</p>
           {this.state.correctSubmission ? <CorrectSubmission /> : undefined}
           {this.state.incorrectSubmission ? <IncorrectSubmission feedback={this.state.feedback} /> : undefined}
           {this.state.renderPrompt ? <FeedbackMain renderCorrect={this.renderCorrect} renderIncorrect={this.renderIncorrect} 
@@ -191,7 +191,7 @@ class ClientMain extends Component {
           connection={this.connection} feedback={this.state.feedback}
           clientData={this.state.clientData}/> : undefined}
           {this.state.showAudio ? <VolumeBar /> : undefined}
-          <button onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? 'Cancel Question' : 'Ask Question'}</button>
+          <div className={styles.questionButton} onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? <img src='./img/X.svg'/> : <img className={styles.questionMark} src='./img/questionMark.svg'/>}</div>
         </div>
       );
     }

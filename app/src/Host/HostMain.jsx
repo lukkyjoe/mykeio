@@ -113,8 +113,11 @@ class HostMain extends Component {
       newArray[targetIndex].choices[data.payload.index].tally = newArray[targetIndex].choices[data.payload.index].tally + 1;
       let newRoomData = Object.assign({}, this.state.roomData);
       newRoomData.prompts = newArray;
-      this.setState({roomData: newRoomData
-      });
+      this.setState(
+        {
+          roomData: newRoomData,
+          responseType: 'MULTIPLE_CHOICE',
+        });
       break;
     }
 
@@ -138,7 +141,7 @@ class HostMain extends Component {
           {
             textResponses: newArray, 
             textResponsesDisplay: textResponsesCollection[data.payload.quizuuid],
-
+            responseType: 'TEXT',
           });
       } else {
         newArray[targetIndex][data.payload.quizuuid].push({username: data.payload.clientData.username, message: data.payload.textResponse});
@@ -146,6 +149,7 @@ class HostMain extends Component {
           {
             textResponses: newArray,
             textResponsesDisplay: newArray[targetIndex][data.payload.quizuuid],
+            responseType: 'TEXT',
           });
       }
 

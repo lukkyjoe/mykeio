@@ -16,7 +16,8 @@ class HostMain extends Component {
       questions: [],
       promptDisplay: [],
       responseType: '',
-      textResponses: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}],
+      textResponses: [{dummyQuizID: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}]},],
+      textResponsesDisplay: [],
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -119,9 +120,35 @@ class HostMain extends Component {
     case 'TEXT_RESPONSE': {
       console.log('text response data', data);
       let newArray = this.state.textResponses.slice();
-      newArray.push({username: data.payload.clientData.username, message: data.payload.textResponse});
-      this.setState({textResponses: newArray})
-      //still need to setstate
+      //there may be responses from different quizzes, so save them in different objects
+      //first, find the array that corresponds
+      let target = _.find(newArray, (collection) => collection.hasOwnProperty(data.payload.quizuuid));
+      console.log('target ========', target);
+      let targetIndex = _.findIndex(newArray, (collection) => collection.hasOwnProperty(data.payload.quizuuid));
+      console.log('targetIndex ====', targetIndex);
+      let dummyTarget = _.find(newArray, (collection) => collection.hasOwnProperty('dummyQuizID'));
+      console.log('dummyTarget', dummyTarget);
+      if (target === undefined) {
+        let textResponsesCollection = {};
+        textResponsesCollection[data.payload.quizuuid] = [{username: data.payload.clientData.username, message: data.payload.textResponse}];
+        console.log('new quiz collection=======', textResponsesCollection)
+        newArray.push(textResponsesCollection);
+        this.setState(
+          {
+            textResponses: newArray, 
+            textResponsesDisplay: textResponsesCollection[data.payload.quizuuid],
+
+          });
+      } else {
+        newArray[targetIndex][data.payload.quizuuid].push({username: data.payload.clientData.username, message: data.payload.textResponse});
+        this.setState(
+          {
+            textResponses: newArray,
+            textResponsesDisplay: newArray[targetIndex][data.payload.quizuuid],
+          });
+      }
+
+      break;
     }
     }
   }
@@ -164,12 +191,14 @@ class HostMain extends Component {
       this.setState({promptDisplay: target.choices}); 
     }
     if (target.responseType === 'TEXT') {
-      this.setState({responseType: 'TEXT'});
-      this.setState({promptDisplay: []}); //
+      let targetCollection = _.find(this.state.textResponses, (collection) => collection.hasOwnProperty(text));
+      this.setState(
+        {
+          responseType: 'TEXT',
+        });
     }
 
-    //may have to expand this to include more
-    //problem: switching between prompts overwrites the object that holds the prompt tallies
+
   }
 
   renderList() {
@@ -179,7 +208,8 @@ class HostMain extends Component {
       );
     } else if (this.state.responseType === 'TEXT') {
       return (
-          <TextResponseList textResponses={this.state.textResponses}/>
+          <TextResponseList textResponsesDisplay={this.state.textResponsesDisplay}/>
+          //fix here! pass down props for uuid to show correct one
       );
     }  
   }
@@ -195,7 +225,6 @@ class HostMain extends Component {
       }
     }
 
-    //need to explore modifying displayData props to accomodate non-multi-choice format.
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>

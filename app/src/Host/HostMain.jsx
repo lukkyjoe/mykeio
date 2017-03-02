@@ -133,7 +133,12 @@ class HostMain extends Component {
         textResponsesCollection[data.payload.quizuuid] = [{username: data.payload.clientData.username, message: data.payload.textResponse}];
         console.log('new quiz collection=======', textResponsesCollection)
         newArray.push(textResponsesCollection);
-        this.setState({textResponses: newArray});
+        this.setState(
+          {
+            textResponses: newArray, 
+            textResponsesDisplay: textResponsesCollection[data.payload.quizuuid],
+
+          });
       } else {
         newArray[targetIndex][data.payload.quizuuid].push({username: data.payload.clientData.username, message: data.payload.textResponse});
         this.setState(

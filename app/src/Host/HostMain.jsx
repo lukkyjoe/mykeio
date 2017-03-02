@@ -197,6 +197,7 @@ class HostMain extends Component {
     }
     if (target.responseType === 'TEXT') {
       let targetCollection = _.find(this.state.textResponses, (collection) => collection.hasOwnProperty(text));
+      //state's responseType is not changing as it should, because it's only changing upon selection when target collection is defined
       if (targetCollection != undefined) {
         this.setState(
           {

@@ -199,9 +199,7 @@ class HostMain extends Component {
             textResponsesDisplay: targetCollection[text],
           });
       }
-
     }
-
 
   }
 
@@ -213,7 +211,6 @@ class HostMain extends Component {
     } else if (this.state.responseType === 'TEXT') {
       return (
           <TextResponseList textResponsesDisplay={this.state.textResponsesDisplay}/>
-          //fix here! pass down props for uuid to show correct one
       );
     }  
   }

@@ -42,7 +42,6 @@ class Prompt extends React.Component {
   }
 
   deleteChoice(indexToDelete) {
-    // take this chance to prevent mutation!
     let newChoicesArray = this.state.choices.slice();
     _.remove(newChoicesArray, choice => choice === newChoicesArray[indexToDelete]);
     this.setState({choices: newChoicesArray});

@@ -204,6 +204,11 @@ class HostMain extends Component {
             responseType: 'TEXT',
             textResponsesDisplay: targetCollection[text],
           });
+      } else {
+        this.setState(
+          {
+            responseType: 'TEXT',
+          })
       }
     }
 

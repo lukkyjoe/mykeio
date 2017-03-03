@@ -1,4 +1,4 @@
-buttonContainerimport React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
 

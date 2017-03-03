@@ -13,7 +13,7 @@ const ResponsesView = ({displayData}) => {
   })
   
   return (
-    <div>
+    <div className={styles.ResponsesView}>
           {responseList}
     </div>
   )

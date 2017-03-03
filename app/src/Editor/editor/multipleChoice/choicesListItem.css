@@ -1,4 +1,22 @@
-.itemStyle {
-  display: flex;
-  justify-content: space-around;
+.text{
+  display:inline-block;
+  margin-left:5px;
+}
+
+.buttonContainer{
+  display:inline-block;
+  float:right;
+}
+
+.button{
+  border:none;
+  font-size:14pt;
+  color:white;
+  background-color:#000000;
+}
+
+.correctButton{
+  height:27px;
+  float:right;
+  border:none;
 }

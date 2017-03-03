@@ -5,7 +5,8 @@ export default class ChoicesListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isEditing: false
+      isEditing: false,
+      isCorrect: false
     };
   }
   
@@ -14,11 +15,11 @@ export default class ChoicesListItem extends React.Component {
 
     if (this.state.isEditing) {
       return (
-        <td>
+        <div>
           <form onSubmit={this.onSaveClick.bind(this)}>
             <input type="text" defaultValue={choice} ref="editInput" />
           </form>
-        </td>
+        </div>
       );
     }
   }
@@ -26,27 +27,27 @@ export default class ChoicesListItem extends React.Component {
   renderActionsSection() {
     if (this.state.isEditing) {
       return (
-        <td>
+        <div>
           <button onClick={this.onSaveClick.bind(this)}>Save</button>
           <button onClick={this.onCancelClick.bind(this)}>Cancel</button>
-        </td>
+        </div>
       );
     }
     return (
-        <td>
-          <button onClick={this.onEditClick.bind(this)}>&#10000;</button>
-          <button onClick={this.props.deleteChoice.bind(this, this.props.index)}>&#10007;</button>
-          <input type="checkbox" onChange={this.onChangeTest.bind(this)} className={styles.checkboxwarning}/>
-        </td>
+        <div className={styles.buttonContainer}>
+          <button className={styles.button} onClick={this.onEditClick.bind(this)}>&#10000;</button>
+          <button className={styles.button}onClick={this.props.deleteChoice.bind(this, this.props.index)}>&#10007;</button>
+          <button  onClick={this.onChangeTest.bind(this)} className={styles.correctButton}>{this.state.isCorrect?"Correct":"Incorrect"}</button>
+        </div>
     );
   }
   render() {
     return (
-        <tr className={styles.itemStyle}>
-          <td>{this.props.choice}</td>
+        <div className={styles.itemStyle}>
+          <div className={styles.text}>{this.props.choice}</div>
           {this.renderChoiceSection()}
           {this.renderActionsSection()}
-        </tr>
+        </div>
     );
   }
   onEditClick() {
@@ -70,6 +71,7 @@ export default class ChoicesListItem extends React.Component {
   }
 
   onChangeTest(event) {
+    this.setState({isCorrect:!this.state.isCorrect});
     this.props.selectAsCorrect(this.props.choice);
   }
 }

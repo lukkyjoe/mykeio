@@ -244,7 +244,6 @@ class HostMain extends Component {
       <div className={styles.base}>
         <div className={styles.topBar}>
           <div>
-            <a href={'/#/' + this.props.params.roomid}>go to client</a>
             <p className={styles.title}>{this.state.roomData ? this.state.roomData.roomTitle : 'connecting...'}</p>
           </div>
           <div className={styles.counterContainer}>
@@ -259,6 +258,7 @@ class HostMain extends Component {
         </div>
         <div className={styles.contentMain}>
           <div className={styles.questionContainer}>
+            {/*<a href={'/#/' + this.props.params.roomid}>go to client</a>*/}
             <p className={styles.questionsHeader}>Questions</p>
             {[...questions]}
           </div>

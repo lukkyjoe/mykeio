@@ -7,7 +7,7 @@ export default class CreateItem extends React.Component {
     return (
       <form onSubmit={this.handleCreate.bind(this)}>
         <input className={styles.multipleChoiceInput} type="text" placeholder="Insert a multiple choice answer" ref="createInput" />
-        <button className={styles}>Add</button>
+        <button className={styles.button}>Add</button>
       </form>
     );
   }

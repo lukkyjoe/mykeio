@@ -7,3 +7,14 @@
   padding-bottom: 3px;
   background-color: #f2f3f3;
 }
+
+.button{
+  width:100%;
+  font-size:12pt;
+  padding-top:3px;
+  padding-bottom:3px;
+  background-color:#37ff37;
+  border:none;
+  color: dimgrey;
+  font-family: Helvetica-bold;
+}

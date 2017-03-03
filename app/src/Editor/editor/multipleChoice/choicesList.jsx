@@ -25,12 +25,9 @@ export default class ChoicesList extends React.Component {
    
   render() {
     return (
-      <table style={tableStyle}>
-        <ChoicesListHeader />
-        <tbody style={choiceListStyle}>
+      <div style={tableStyle}>
           {this.renderItems()}
-        </tbody>
-      </table>
+      </div>
     );
   }
 }

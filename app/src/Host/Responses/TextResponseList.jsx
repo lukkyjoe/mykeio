@@ -14,11 +14,7 @@ const TextResponseList = ({textResponsesDisplay}) => {
   
   return (
     <div>
-      <table className={styles.responsesView}>
-        <tbody>
           {textResponseList}
-        </tbody>
-      </table>
     </div>
   )
 }

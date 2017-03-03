@@ -14,11 +14,7 @@ const ResponsesView = ({displayData}) => {
   
   return (
     <div>
-      <table className={styles.responsesView}>
-        <tbody>
           {responseList}
-        </tbody>
-      </table>
     </div>
   )
 }

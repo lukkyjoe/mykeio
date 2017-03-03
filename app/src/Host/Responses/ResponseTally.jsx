@@ -4,14 +4,14 @@ import styles from './ResponseTally.css';
 const ResponseTally = ({response, index}) => {
   
   return (
-    <tr className={styles.responseTally}>
-      <td>
+    <div className={styles.responseTally}>
+      <div>
         {response.choice}
-      </td>
-      <td>
+      </div>
+      <div>
         {response.tally}
-      </td>
-    </tr>
+      </div>
+    </div>
   )
 }
 

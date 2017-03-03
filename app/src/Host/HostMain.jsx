@@ -250,7 +250,7 @@ class HostMain extends Component {
             <p className={styles.counter}>{this.state.clients.length + ' clients connected'}</p>
           </div>
           <div className={styles.clippyContainer}>
-            <input id="foo" className={styles.clippyInput} readOnly value={'myke.io/#/' + this.props.params.roomid}/>
+            <input id="foo" className={styles.clippyInput} readOnly value={'https://myke.io/#/' + this.props.params.roomid}/>
             <button className={'btn ' + styles.clippyButton} data-clipboard-target="#foo">
               <img className={styles.clippyImage} src="/img/clippy.svg" alt="Copy to clipboard"/>
             </button>

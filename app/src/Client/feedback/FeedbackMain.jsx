@@ -119,7 +119,7 @@ class FeedbackMain extends Component {
           : <textarea onChange={this.textAreaChange.bind(this)}> </textarea>
         }
         <div style={{textAlign: 'center'}}>
-          <button onClick={()=>{ this.submitMaster(); }}>Submit</button>
+          <div className={styles.submitButton} onClick={()=>{ this.submitMaster(); }}><p className={styles.submitButtonText}>Submit</p></div>
         </div>
       </div>
     );

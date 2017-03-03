@@ -19,6 +19,27 @@
   text-align: center;
 }
 
+.submitButton{
+  height:40px;
+  width:180px;
+  border: 2px solid #FFFFFF;
+  border-radius:7px;
+  text-align:center;
+  margin:auto;
+  margin-bottom:50px;
+  margin-top:50px;
+  color:white;
+  background-color:rgba(0,0,0,0);
+}
+
+.submitButton:hover{
+  background-color: rgba(255,255,255,0.1);
+}
+
+.submitButtonText{
+  margin-top:7px;
+}
+
 .containerOptions:hover {
   background-color: green;
 }

@@ -5,8 +5,8 @@ import {Router, Route, Link, hashHistory} from 'react-router';
 
 import Home from './Home.jsx';
 import EditorMain from './Editor/EditorMain.jsx';
-import HostMain from './host/HostMain.jsx';
-import ClientMain from './client/ClientMain.jsx';
+import HostMain from './Host/HostMain.jsx';
+import ClientMain from './Client/ClientMain.jsx';
 
 render(
   <Router history = {hashHistory}>

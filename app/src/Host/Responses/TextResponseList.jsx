@@ -3,7 +3,6 @@ import styles from './ResponsesView.css';
 
 
 const TextResponseList = ({textResponsesDisplay}) => {
-  
   const textResponseList = textResponsesDisplay.map((response, index) => {
     return (
       <div>
@@ -12,22 +11,12 @@ const TextResponseList = ({textResponsesDisplay}) => {
       </div>
     )
   })
-
-  checkResponseLength() {
-    if (textResponsesDisplay.length < 1) {
-      return (
-        <div>No responses have been submitted yet</div>
-      )
-    } else {
-      return textResponseList;
-    }
-  }
-
+  
   return (
     <div>
       <table className={styles.responsesView}>
         <tbody>
-          {this.checkResponseLength.bind(this)}
+          {textResponseList}
         </tbody>
       </table>
     </div>

@@ -13,7 +13,7 @@ const TextResponseList = ({textResponsesDisplay}) => {
   });
   
   return (
-    <div>
+    <div className={styles.responsesView}>
           {textResponseList}
     </div>
   );

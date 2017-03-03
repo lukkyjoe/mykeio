@@ -5,13 +5,30 @@ body{
 .questionContainer{
   width:300px;
   display:inline-block;
+  vertical-align: top;
 }
 
 .feedbackContainer{
   width:300px;
   float: right;
+  display:inline-block;
+  vertical-align: top;
+
 }
 
+.clippyContainer{
+  padding: 5px;
+  position: absolute;
+  display: inline-block;
+  right: 0px;
+  top: 0px;
+}
+
+
+
+.counterContainer{
+  display: inline-block;
+}
 .clippyInput{
   padding: 7px 8px;
   font-size: 13px;
@@ -21,17 +38,27 @@ body{
   background-repeat: no-repeat;
   background-position: right 8px center;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 3px 0px 0px 3px;
   outline: none;
   cursor: text;
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+.questionsHeader{
+  text-align: center;
+  text-decoration: underline;
+}
+
+.feedbackHeader{
+  text-align: center;
+  text-decoration: underline;
 }
 
 .clippyButton{
   outline: none;
   position: relative;
   display: inline-block;
-  padding: 5px 12px;
+  padding: 2px 12px;
   font-weight: bold;
   line-height: 20px;
   color: #333;
@@ -41,7 +68,7 @@ body{
   background-color: #eee;
   background-image: linear-gradient(#fcfcfc,#eee);
   border: 1px solid #d5d5d5;
-  border-radius: 3px;
+  border-radius: 0px 3px 3px 0px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -59,14 +86,16 @@ body{
 .clippyImage{
   height:15px;
   width:15px;
+  margin-top: 5px;
 }
 .topBar{
   position:fixed;
   height:50px;
   width:100%;
-  background-color:#919191;
+  background-color:#353535;
   text-align:center;
-  padding-top:10px;
+  padding-top:5px;
+  padding-bottom:5px;
 }
 
 .contentMain{
@@ -79,6 +108,7 @@ body{
   display:inline;
 }
 .counter{
+  font-size: 11pt;
   margin:0;
   padding:0;
   font:helvetica;

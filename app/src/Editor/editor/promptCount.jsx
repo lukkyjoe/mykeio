@@ -19,7 +19,7 @@ class PromptCount extends Component {
   }
   render() {
     return (
-      <div className={styles.promptAndRoom} onClick={this.handleSubmit}>
+      <div className={styles.addPrompt} onClick={this.handleSubmit}>
         <p className={styles.buttonText}>
           Add Prompt
         </p>

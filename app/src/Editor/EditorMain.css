@@ -19,6 +19,7 @@ body{
 
 .logoImage{
   height:40px;
+  
 }
 
 .logoImageContainer{
@@ -45,8 +46,20 @@ body{
   margin-top: 15px;
 }
 
-.promptAndRoom{
+.addPrompt{
   background-color: #353535;
+  border-radius: 5px;
+  text-align: center;
+  color: #eceded;
+  padding: 15px;
+  font-size: 17px;
+  float: left;
+  margin-left: 50px;
+  display: inline-block;
+}
+
+.addPrompt:hover{
+  background-color: #504f4f;
   border-radius: 5px;
   text-align: center;
   color: #eceded;
@@ -64,6 +77,18 @@ body{
 
 .createRoomButton{
   background-color: rgba(255, 0, 0, 0.58);
+  border-radius: 5px;
+  text-align: center;
+  width: 65%;
+  margin-right: 7%;
+  color: #eceded;
+  padding: 15px;
+  font-size: 17px;
+  display: inline-block;
+}
+
+.createRoomButton:hover{
+  background-color: rgba(255, 43, 43, 0.58);
   border-radius: 5px;
   text-align: center;
   width: 65%;

@@ -139,7 +139,7 @@ class VolumeBar extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginLeft: '300px'}} >
         <canvas id="myCanvas" ref={(el) => { this.canvasEl = el; }} width="50" height="500" />
       </div>
     );

@@ -16,6 +16,7 @@
 }
 
 .correctButton{
+  width: 60px;
   height:27px;
   float:right;
   border:none;

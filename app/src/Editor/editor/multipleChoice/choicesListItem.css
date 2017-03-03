@@ -10,12 +10,14 @@
 
 .button{
   border:none;
+  outline: none;
   font-size:14pt;
   color:white;
   background-color:#000000;
 }
 
 .correctButton{
+  outline: none;
   width: 60px;
   height:27px;
   float:right;

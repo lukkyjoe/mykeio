@@ -8,7 +8,7 @@ class FeedbackMain extends Component {
       hasClicked: false,
       optionsIsClicked: [],
       submissionIndex: undefined,
-      textAreaValue: "",
+      textAreaValue: '',
     };
     this.submitAnswer = this.submitAnswer.bind(this);
     this.toggleHasClicked = this.toggleHasClicked.bind(this);
@@ -17,7 +17,7 @@ class FeedbackMain extends Component {
       props.feedback.choices.forEach(()=>{ this.state.optionsIsClicked.push(false); });
       console.log('props.feedback.choices', props.feedback.choices);
     } else {
-      console.log('this is not multiple choice!')
+      console.log('this is not multiple choice!');
     }
   }
 
@@ -26,14 +26,19 @@ class FeedbackMain extends Component {
       return false;
     });
     temp[index] = true;
+    console.log('THIS IS THE STATE BEFORE', this.state);
     this.setState({
       optionsIsClicked: temp,
       submissionIndex: index
+    }, ()=> {
+      console.log('THIS IS THE STATE NOW', this.state);
     });
   }
   //submit the answer, then unrender the prompt
   submitMaster() {
-    // give text a different case type?
+    if (this.state.submissionIndex === undefined) {
+      return;
+    }
     if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
       this.submitAnswer();
       this.props.unrenderPrompt();
@@ -80,16 +85,16 @@ class FeedbackMain extends Component {
   }
 
   textAreaChange(event) {
-    this.setState({textAreaValue: event.target.value})
+    this.setState({textAreaValue: event.target.value});
   }
 
   render() {
     //add condition. map not necessary for short answers
-    console.log('this.props.feedback!!!', this.props.feedback)
+    console.log('this.props.feedback!!!', this.props.feedback);
     let options;
     if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
-     options = this.props.feedback.choices.map((a, index)=> {
-      return (
+      options = this.props.feedback.choices.map((a, index)=> {
+        return (
         <div 
           onClick={() => this.toggleHasClicked(index)} 
           value={a.choice} 
@@ -98,8 +103,8 @@ class FeedbackMain extends Component {
           key={index}>
           {a.choice}
         </div>
-      );
-    });
+        );
+      });
     }
 
 
@@ -114,7 +119,7 @@ class FeedbackMain extends Component {
           : <textarea onChange={this.textAreaChange.bind(this)}> </textarea>
         }
         <div style={{textAlign: 'center'}}>
-          <button onClick={()=>{ this.submitMaster(); }}>Submit</button>
+          <div className={styles.submitButton} onClick={()=>{ this.submitMaster(); }}><p className={styles.submitButtonText}>Submit</p></div>
         </div>
       </div>
     );

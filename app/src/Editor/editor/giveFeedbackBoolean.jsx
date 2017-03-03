@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './hostQuestion.css';
 
 class GiveFeedbackBoolean extends React.Component {
 
@@ -10,9 +11,11 @@ class GiveFeedbackBoolean extends React.Component {
     return (
       <div>
         <form>
-          <div>
-              <input type="checkbox" onChange={() => { this.handleClick(); }}/>
+          <div className={styles.checkboxContainer}>
+            <label className={styles.checkboxLabel}>
+              <input className={styles.checkbox} type="checkbox" onChange={() => { this.handleClick(); }}/>
               Give feedback to audience
+            </label>
           </div>   
         </form>
       </div>

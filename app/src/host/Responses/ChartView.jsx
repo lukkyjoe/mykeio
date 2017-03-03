@@ -8,16 +8,25 @@ class ChartView extends Component {
     super(props);
   } 
   componentDidUpdate() {
-    if (this.props.roomData.prompts) {
-      // var promptLabel = 
+    if (this.props.promptDisplay) {
+      
+      var promptLabels = this.props.promptDisplay.map((choice) => {
+        return choice.choice;
+      });
+
+      var promptData = this.props.promptDisplay.map((choice) => {
+        return choice.tally;
+      });
+
+      console.log('this are the prompt labelsxxxxxx', promptLabels);
       // var promptData = 
       var promptChart = new Chart(this.refs.promptChartRef, {
         type: 'bar',
         data: {
-          labels: [this.props.roomData.prompts[0].choices[0].choice],
+          labels: promptLabels,
           datasets: [{
             label: '# of Submissions',
-            data: [this.props.roomData.prompts[0].choices[0].tally],
+            data: promptData,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -51,7 +60,7 @@ class ChartView extends Component {
   }
 
   render() {
-    console.log('THIS IS THE room DATA', this.props.roomData);
+    console.log('THIS IS THE PROMPT DISPLAY BITCH', this.props.promptDisplay);
     return (
       <div className={styles.chartContainer}>
         <canvas ref="promptChartRef" id="promptChart"></canvas>

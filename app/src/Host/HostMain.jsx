@@ -263,9 +263,9 @@ class HostMain extends Component {
           </div>
           {this.renderList()}
         <div className={styles.feedbackContainer}>
-          {[...feedback]}
-        </div> 
-          <ChartView roomData={this.state.roomData}/>
+            {[...feedback]}
+        </div>
+          <ChartView promptDisplay={this.state.promptDisplay}/>
         </div>
       </div>
     );

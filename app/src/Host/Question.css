@@ -1,3 +1,10 @@
+.questionContainer{
+  margin-top:5px;
+  margin-bottom:5px;
+  height:60px;
+  background-color:#6f6f6f;
+}
+
 .container{
   margin-top:5px;
   margin-bottom:5px;
@@ -17,12 +24,34 @@
   height:60px;
 }
 
-.button{
+.cancelButton{
   height:60px;
   width:60px;
   display:inline-block;
   background-color:#54d8c8;
-  
+}
+
+.cancelButton:hover{
+  height:60px;
+  width:60px;
+  display:inline-block;
+  background-color:#ff1c1c;
+}
+
+
+
+.micButton{
+  height:60px;
+  width:60px;
+  display:inline-block;
+  background-color:#54d8c8;
+}
+
+.micButton:hover{
+  height:60px;
+  width:60px;
+  display:inline-block;
+  background-color:#22e629;
 }
 
 .check{
@@ -30,10 +59,6 @@
   width:30px;
   margin-left:15px;
   margin-top:15px;
-}
-
-.button:hover{
-  background-color:#FFA563;
 }
 
 .cross{

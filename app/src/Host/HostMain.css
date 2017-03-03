@@ -13,11 +13,15 @@ body{
 }
 
 .clippyContainer{
-  display: inline-block;
   padding: 5px;
-  float: right;
+  display: inline-block;
 }
 
+
+
+.counterContainer{
+  display: inline-block;
+}
 .clippyInput{
   padding: 7px 8px;
   font-size: 13px;
@@ -73,7 +77,8 @@ body{
   width:100%;
   background-color:#919191;
   text-align:center;
-  padding-top:10px;
+  padding-top:5px;
+  padding-bottom:5px;
 }
 
 .contentMain{

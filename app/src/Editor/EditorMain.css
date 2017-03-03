@@ -45,8 +45,20 @@ body{
   margin-top: 15px;
 }
 
-.promptAndRoom{
+.addPrompt{
   background-color: #353535;
+  border-radius: 5px;
+  text-align: center;
+  color: #eceded;
+  padding: 15px;
+  font-size: 17px;
+  float: left;
+  margin-left: 50px;
+  display: inline-block;
+}
+
+.addPrompt:hover{
+  background-color: #595858;
   border-radius: 5px;
   text-align: center;
   color: #eceded;

@@ -20,7 +20,7 @@ class HostMain extends Component {
       promptDisplay: [],
       responseType: '',
       textResponses: [{dummyQuizID: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}]}, ],
-      textResponsesDisplay: [{username: '', message: 'No responses have currently been submitted'}],
+      textResponsesDisplay: [{username: '', message: 'No responses submitted yet...'}],
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);
@@ -243,8 +243,13 @@ class HostMain extends Component {
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>
-          <p className={styles.title}>{this.state.roomData ? this.state.roomData.roomTitle : 'connecting...'}</p>
-          <p className={styles.counter}>{this.state.clients.length + ' clients connected'}</p>
+          <div>
+            <a href={'/#/' + this.props.params.roomid}>go to client</a>
+            <p className={styles.title}>{this.state.roomData ? this.state.roomData.roomTitle : 'connecting...'}</p>
+          </div>
+          <div className={styles.counterContainer}>
+            <p className={styles.counter}>{this.state.clients.length + ' clients connected'}</p>
+          </div>
           <div className={styles.clippyContainer}>
             <input id="foo" className={styles.clippyInput} readOnly value={'myke.io/#/' + this.props.params.roomid}/>
             <button className={'btn ' + styles.clippyButton} data-clipboard-target="#foo">
@@ -254,17 +259,12 @@ class HostMain extends Component {
         </div>
         <div className={styles.contentMain}>
           <div className={styles.questionContainer}>
-            <div className={styles.questionHeader}>
-              <p className={styles.questionText}>Questions</p>
-            </div>
-            <a href={'/#/' + this.props.params.roomid}>go to client</a>
-            <p>Questions:</p>
             {[...questions]}
           </div>
           {this.renderList()}
-        <div className={styles.feedbackContainer}>
-            {[...feedback]}
-        </div>
+          <div className={styles.feedbackContainer}>
+              {[...feedback]}
+          </div>
         </div>
       </div>
     );

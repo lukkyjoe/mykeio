@@ -1,5 +1,7 @@
 .promptContainer{
   background-color: white;
+  font-family: "HelveticaNeue-Light", Helvetica-Bold, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  color: #919090;
   width:300px;
   border-radius: 2px;
   margin:10px;

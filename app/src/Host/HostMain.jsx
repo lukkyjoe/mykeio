@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+buttonContainerimport React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
 
@@ -211,7 +211,7 @@ class HostMain extends Component {
         this.setState(
           {
             responseType: 'TEXT',
-          })
+          });
       }
     }
 
@@ -220,7 +220,7 @@ class HostMain extends Component {
   renderList() {
     if (this.state.responseType === 'MULTIPLE_CHOICE') {
       return (
-        <ResponsesView displayData={this.state.promptDisplay}/>
+        <ChartView promptDisplay={this.state.promptDisplay}/>
       );
     } else if (this.state.responseType === 'TEXT') {
       return (
@@ -265,7 +265,6 @@ class HostMain extends Component {
         <div className={styles.feedbackContainer}>
             {[...feedback]}
         </div>
-          <ChartView promptDisplay={this.state.promptDisplay}/>
         </div>
       </div>
     );

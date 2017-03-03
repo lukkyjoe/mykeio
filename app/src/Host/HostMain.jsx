@@ -259,10 +259,12 @@ class HostMain extends Component {
         </div>
         <div className={styles.contentMain}>
           <div className={styles.questionContainer}>
+            <p className={styles.questionsHeader}>Questions</p>
             {[...questions]}
           </div>
           {this.renderList()}
           <div className={styles.feedbackContainer}>
+            <p className={styles.feedbackHeader}>Prompts</p>
               {[...feedback]}
           </div>
         </div>

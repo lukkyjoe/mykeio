@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
+
 import ResponsesView from './Responses/ResponsesView.jsx';
 import Question from './Question.jsx';
 import Feedback from './Feedback.jsx';
 import TextResponseList from './Responses/TextResponseList.jsx';
+import ChartView from './Responses/ChartView.jsx';
+
 
 class HostMain extends Component {
 
@@ -242,6 +245,12 @@ class HostMain extends Component {
         <div className={styles.topBar}>
           <p className={styles.title}>{this.state.roomData ? this.state.roomData.roomTitle : 'connecting...'}</p>
           <p className={styles.counter}>{this.state.clients.length + ' clients connected'}</p>
+          <div className={styles.clippyContainer}>
+            <input id="foo" className={styles.clippyInput} readOnly value={'myke.io/#/' + this.props.params.roomid}/>
+            <button className={'btn ' + styles.clippyButton} data-clipboard-target="#foo">
+              <img className={styles.clippyImage} src="/img/clippy.svg" alt="Copy to clipboard"/>
+            </button>
+          </div>
         </div>
         <div className={styles.contentMain}>
           <div className={styles.questionContainer}>
@@ -255,13 +264,8 @@ class HostMain extends Component {
           {this.renderList()}
         <div className={styles.feedbackContainer}>
           {[...feedback]}
-        </div>
-          <div className={styles.clippyContainer}>
-            <input id="foo" className={styles.clippyInput} readOnly value={'myke.io/#/' + this.props.params.roomid}/>
-            <button className={'btn ' + styles.clippyButton} data-clipboard-target="#foo">
-              <img className={styles.clippyImage} src="/img/clippy.svg" alt="Copy to clipboard"/>
-            </button>
-          </div>
+        </div> 
+          <ChartView roomData={this.state.roomData}/>
         </div>
       </div>
     );

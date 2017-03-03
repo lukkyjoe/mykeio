@@ -191,7 +191,7 @@ class ClientMain extends Component {
           connection={this.connection} feedback={this.state.feedback}
           clientData={this.state.clientData}/> : undefined}
           {this.state.showAudio ? <VolumeBar /> : undefined}
-          <div className={styles.questionButton} onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? <img className={styles.questionX} src='./img/X.svg'/> : <img className={styles.questionMark} src='./img/questionMark.svg'/>}</div>
+          <div className={styles.questionButton} onClick={this.handleQuestionClick.bind(this)}>{this.state.hasVoiceQuestion ? <img className={styles.questionX} src='./img/cross-white.png'/> : <img className={styles.questionMark} src='./img/questionMark.svg'/>}</div>
         </div>
       );
     }

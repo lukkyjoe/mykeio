@@ -1,0 +1,13 @@
+canvas {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.chartContainer{
+  display: inline-block;
+  padding-left: 100px;
+  margin: auto;
+  width: 500px;
+}

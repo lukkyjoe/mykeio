@@ -18,6 +18,7 @@ body{
 
 .clippyContainer{
   padding: 5px;
+  margin-top:15px;
   position: absolute;
   display: inline-block;
   right: 0px;

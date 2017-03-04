@@ -21,5 +21,18 @@ app.use(bodyParser.urlencoded({
 
 app.use('/api', apiRoutes);
 
+const server = require('greenlock-express').create({
+
+  server: 'https://acme-v01.api.letsencrypt.org/directory',
+
+  email: 'sawyer.schumacher@gmail.com',
+
+  agreeTos: true,
+
+  approveDomains: [ 'myke.io','www.myke.io' ],
+
+  app: app
+
+}).listen(80,443);
+
 app.use(express.static(path.join(__dirname, 'app/dist/')));
-app.listen(process.env.PORT || 3030);

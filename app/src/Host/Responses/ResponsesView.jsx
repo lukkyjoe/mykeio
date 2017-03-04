@@ -8,12 +8,12 @@ import styles from './ResponsesView.css';
 const ResponsesView = ({displayData}) => {
   const responseList = displayData.map((response, index) => {
     return (
-      <ResponseTally response={response} key={index}/>
+      <ResponseTally className={styles.responsesView} response={response} key={index}/>
     )
   })
   
   return (
-    <div>
+    <div className={styles.responsesView}>
           {responseList}
     </div>
   )

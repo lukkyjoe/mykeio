@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HostMain.css';
 import $ from 'jquery';
-
 import ResponsesView from './Responses/ResponsesView.jsx';
 import Question from './Question.jsx';
 import Feedback from './Feedback.jsx';
@@ -195,12 +194,14 @@ class HostMain extends Component {
       if (!target.choices[0].hasOwnProperty('tally')) {
         target.choices.forEach((choice) => choice.tally = 0);
       }
-      this.setState({responseType: 'MULTIPLE_CHOICE'});
-      this.setState({promptDisplay: target.choices}); 
+      this.setState(
+        {
+          responseType: 'MULTIPLE_CHOICE', 
+          promptDisplay: target.choices
+        });
     }
     if (target.responseType === 'TEXT') {
       let targetCollection = _.find(this.state.textResponses, (collection) => collection.hasOwnProperty(text));
-      //state's responseType is not changing as it should, because it's only changing upon selection when target collection is defined
       if (targetCollection != undefined) {
         this.setState(
           {

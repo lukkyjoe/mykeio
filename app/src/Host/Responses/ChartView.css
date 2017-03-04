@@ -7,7 +7,21 @@ canvas {
 
 .chartContainer{
   display: inline-block;
-  padding-top: 20px;
+  padding-top: 10px;
   margin: auto;
   width: 500px;
+}
+
+.answers{
+  margin-top:10px;
+}
+
+.chartCard{
+  color:#919090;
+  border-radius:2px;
+  font-size: 12pt;
+  margin-left: 107px;
+  background-color:white;
+  width: 300px;
+  padding: 2px;
 }

@@ -197,7 +197,8 @@ class HostMain extends Component {
       this.setState(
         {
           responseType: 'MULTIPLE_CHOICE', 
-          promptDisplay: target.choices
+          promptDisplay: target.choices,
+          promptTitle: target.promptText
         });
     }
     if (target.responseType === 'TEXT') {
@@ -215,13 +216,12 @@ class HostMain extends Component {
           });
       }
     }
-
   }
 
   renderList() {
     if (this.state.responseType === 'MULTIPLE_CHOICE') {
       return (
-        <ChartView promptDisplay={this.state.promptDisplay}/>
+          <ChartView promptDisplay={this.state.promptDisplay} promptTitle={this.state.promptTitle} />
       );
     } else if (this.state.responseType === 'TEXT') {
       return (
@@ -262,16 +262,20 @@ class HostMain extends Component {
             </button>
           </div>
         </div>
+        {/*<a href={'/#/' + this.props.params.roomid}>go to client</a>*/}
         <div className={styles.contentMain}>
           <div className={styles.questionContainer}>
-            {/*<a href={'/#/' + this.props.params.roomid}>go to client</a>*/}
             <p className={styles.questionsHeader}>Questions</p>
-            {[...questions]}
+            <div className={styles.questionsMap}>
+              {[...questions]}
+            </div>
           </div>
           {this.renderList()}
           <div className={styles.feedbackContainer}>
             <p className={styles.feedbackHeader}>Prompts</p>
+            <div className={styles.feedbackMap}>
               {[...feedback]}
+            </div>
           </div>
         </div>
       </div>

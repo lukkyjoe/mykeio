@@ -19,7 +19,7 @@ class IncorrectSubmission extends Component {
 
     return (
       <div>
-        Incorrect! <p></p>Correct answer: {[...correctAnswers]}
+        Incorrect! <p></p>Correct answer(s): {[...correctAnswers]}
       </div>
     );
   }

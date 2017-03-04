@@ -244,6 +244,9 @@ class HostMain extends Component {
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>
+          <div className={styles.logoImageContainer}>
+            <img src='./img/mic-vector-white.svg' className={styles.logoImage}/>
+          </div>
           <div>
             <p className={styles.title}>{this.state.roomData ? this.state.roomData.roomTitle : 'connecting...'}</p>
           </div>

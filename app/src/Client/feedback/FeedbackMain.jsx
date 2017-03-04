@@ -36,10 +36,10 @@ class FeedbackMain extends Component {
   }
   //submit the answer, then unrender the prompt
   submitMaster() {
-    if (this.state.submissionIndex === undefined) {
-      return;
-    }
     if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
+      if (this.state.submissionIndex === undefined) {
+        return;
+      }
       this.submitAnswer();
       this.props.unrenderPrompt();
       this.checkAnswer();

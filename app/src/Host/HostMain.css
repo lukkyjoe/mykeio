@@ -107,6 +107,14 @@ body{
   text-align: center;
 }
 
+.logoImage{
+  height:40px; 
+}
+
+.logoImageContainer{
+  display: inline-block;
+}
+
 .title{
   font-family: 'Patua One', cursive;
   color:#FFFFFF;

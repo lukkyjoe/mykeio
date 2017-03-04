@@ -6,6 +6,7 @@ body{
   width:300px;
   display:inline-block;
   vertical-align: top;
+  float: left;
 }
 
 .feedbackContainer{

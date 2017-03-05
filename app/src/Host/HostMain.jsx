@@ -241,15 +241,20 @@ class HostMain extends Component {
       }
     }
 
+    //try to combine elements into one div to make it easier to reason
     return (
       <div className={styles.base}>
         <div className={styles.topBar}>
-          <div>
+          <div className={styles.logoImageContainer}>
+            <img src='./img/mic-vector-white.svg' className={styles.logoImage}/>
+          </div>
+          <div className={styles.connectingContainer}>
             <p className={styles.title}>{this.state.roomData ? this.state.roomData.roomTitle : 'connecting...'}</p>
           </div>
           <div className={styles.counterContainer}>
-            <p className={styles.counter}>{this.state.clients.length + ' clients connected'}</p>
+            <p className={styles.counter}>{this.state.clients.length + ' clients connected'}</p>            
           </div>
+
           <div className={styles.clippyContainer}>
             <input id="foo" className={styles.clippyInput} readOnly value={'https://myke.io/#/' + this.props.params.roomid}/>
             <button className={'btn ' + styles.clippyButton} data-clipboard-target="#foo">

@@ -26,10 +26,15 @@ body{
   top: 0px;
 }
 
-
+.connectingContainer{
+  display: inline-block;
+  transform: translateY(-65%);
+}
 
 .counterContainer{
   display: inline-block;
+  transform: translate(10px, 10px);
+  float: left;
 }
 .clippyInput{
   padding: 7px 8px;
@@ -98,8 +103,7 @@ body{
   width:100%;
   background-color:#353535;
   text-align:center;
-  padding-top:5px;
-  padding-bottom:5px;
+  padding-top:10px;
 }
 
 .contentMain{
@@ -107,10 +111,21 @@ body{
   text-align: center;
 }
 
+.logoImage{
+  height:40px; 
+}
+
+.logoImageContainer{
+  display: inline-block;
+  margin-left: -130px;
+}
+
 .title{
   font-family: 'Patua One', cursive;
   color:#FFFFFF;
-  display:inline;
+  margin: 0;
+  padding: 0;
+  top: 20px;
 }
 .counter{
   font-size: 11pt;

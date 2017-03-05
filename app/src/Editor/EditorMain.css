@@ -27,10 +27,6 @@ body{
   display: inline-block;
 }
 
-.logoImageContainer{
-  display: inline-block;
-}
-
 .settingsContainer{
   display: inline-block;
   transform: translateY(-65%);

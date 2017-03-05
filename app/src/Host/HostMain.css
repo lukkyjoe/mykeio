@@ -33,7 +33,7 @@ body{
 
 .counterContainer{
   display: inline-block;
-  transform: translateY(0%);
+  transform: translate(10px, 10px);
   float: left;
 }
 .clippyInput{

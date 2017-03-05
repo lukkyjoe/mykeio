@@ -1,7 +1,19 @@
 .responsesView{
-  border:2px solid black;
-  width: 30%;
-  border-collapse: collapse;
-  display: inline-block;
+  color:#919090;
+  border-radius:2px;
+  font-size: 12pt;
+  margin-left: 107px;
+  background-color:white;
+  width: 300px;
+  padding: 2px;
+}
 
+.chartCard{
+  color:#919090;
+  border-radius:2px;
+  font-size: 12pt;
+  margin-left: 107px;
+  background-color:white;
+  width: 300px;
+  padding: 2px;
 }

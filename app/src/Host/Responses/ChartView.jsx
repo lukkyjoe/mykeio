@@ -60,10 +60,27 @@ class ChartView extends Component {
   }
 
   render() {
-    console.log('THIS IS THE PROMPT DISPLAY BITCH', this.props.promptDisplay);
+    console.log('THIS IS THE PROMPT DISPLAY', this.props.promptDisplay);
+    let correctAnswersArray = this.props.promptDisplay.filter((choice) => {
+      return choice.correctAnswer === 'true';
+    });
+    let correctAnswers = correctAnswersArray.map((a, index) => {
+      return (
+        <div className={styles.answers} key={index}>
+          {a.choice}
+        </div>
+      );
+    });
     return (
       <div className={styles.chartContainer}>
         <canvas ref="promptChartRef" id="promptChart"></canvas>
+        <br></br>
+        <div className={styles.chartCard}>
+          <p>
+            Correct Answer{correctAnswers.length > 1 ? 's' : ''}:
+            {[...correctAnswers]}
+          </p>          
+        </div>
       </div>
     );
   }

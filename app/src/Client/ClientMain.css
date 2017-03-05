@@ -33,6 +33,16 @@
   font-size: 25pt;
 }
 
+.logoImage{
+  height:40px; 
+}
+
+.logoImageContainer{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 .questionMark{
   height: 40px;
   margin-top: 5px;

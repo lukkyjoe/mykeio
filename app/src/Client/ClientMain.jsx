@@ -182,6 +182,9 @@ class ClientMain extends Component {
     } else {
       return (
         <div className={styles.base}>
+          <div className={styles.logoImageContainer}>
+            <img src='./img/mic-vector-white.svg' className={styles.logoImage}/>
+          </div>
           <p className={styles.roomHeader}>{this.state.roomTitle}</p>
           <p id="status"className={styles.roomStatus}>{this.state.status}</p>
           {this.state.correctSubmission ? <CorrectSubmission /> : undefined}

@@ -95,14 +95,14 @@ class FeedbackMain extends Component {
     if (this.props.feedback.responseType === 'MULTIPLE_CHOICE') {
       options = this.props.feedback.choices.map((a, index)=> {
         return (
-        <div 
-          onClick={() => this.toggleHasClicked(index)} 
-          value={a.choice} 
-          className={styles.containerOptions}
-          style={this.state.optionsIsClicked[index] ? {backgroundColor: 'blue'} : undefined} 
-          key={index}>
-          {a.choice}
-        </div>
+          <div 
+            onClick={() => this.toggleHasClicked(index)} 
+            value={a.choice} 
+            className={styles.containerOptions}
+            style={this.state.optionsIsClicked[index] ? {backgroundColor: 'blue'} : undefined} 
+            key={index}>
+            {a.choice}
+          </div>
         );
       });
     }
@@ -113,11 +113,13 @@ class FeedbackMain extends Component {
         <div className={styles.container}>
           {this.props.feedback.promptText}
         </div>
-        {
-          (this.props.feedback.responseType === 'MULTIPLE_CHOICE')
-          ? [...options]
-          : <textarea onChange={this.textAreaChange.bind(this)}> </textarea>
-        }
+        <div className={styles.choicesContainer}>
+          {
+            (this.props.feedback.responseType === 'MULTIPLE_CHOICE')
+              ? [...options]
+              : <textarea onChange={this.textAreaChange.bind(this)}> </textarea>
+          }
+        </div>
         <div style={{textAlign: 'center'}}>
           <div className={styles.submitButton} onClick={()=>{ this.submitMaster(); }}><p className={styles.submitButtonText}>Submit</p></div>
         </div>

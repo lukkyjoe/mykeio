@@ -251,9 +251,9 @@ class HostMain extends Component {
           <div className={styles.connectingContainer}>
             <p className={styles.title}>{this.state.roomData ? this.state.roomData.roomTitle : 'connecting...'}</p>
           </div>
-          {/*<div className={styles.counterContainer}>
+          <div className={styles.counterContainer}>
             <p className={styles.counter}>{this.state.clients.length + ' clients connected'}</p>            
-          </div>*/}
+          </div>
 
           <div className={styles.clippyContainer}>
             <input id="foo" className={styles.clippyInput} readOnly value={'https://myke.io/#/' + this.props.params.roomid}/>

@@ -6,7 +6,7 @@ const TextResponseList = ({textResponsesDisplay}) => {
   const textResponseList = textResponsesDisplay.map((response, index) => {
     return (
       <div className={styles.textResponseCard} key={index}>
-        <div className={styles.textResponseText}>{response.username}</div>x````
+        <div className={styles.textResponseText}>{response.username}{textResponsesDisplay[0].message === 'No responses submitted yet...' ? '' : ':'}</div>
         <div>{response.message}</div>
       </div>
     );

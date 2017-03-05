@@ -14,6 +14,7 @@
   border-radius:2px;
   font-size: 12pt;
   margin-top: 150px;
+  margin-top: 50px;
   width: 30%;
   border-collapse: collapse;
   display: inline-block;
@@ -31,10 +32,9 @@
   padding: 2px;
 }
 
-<<<<<<< HEAD
 .username{
   float: left;
 }
 .textResponseText{
-  color: black
+  color: #919090
 }

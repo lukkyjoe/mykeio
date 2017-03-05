@@ -19,7 +19,7 @@ class HostMain extends Component {
       promptDisplay: [],
       responseType: '',
       textResponses: [{dummyQuizID: [{username: 'a', message: 'fee'}, {username: 'b', message: 'fi'}]}, ],
-      textResponsesDisplay: [{username: '', message: 'No responses submitted yet...'}],
+      textResponsesDisplay: [{username: 'Status', message: 'No responses submitted yet.'}],
     };
     this.connectionHash = {};
     this.setUpRoom = this.setUpRoom.bind(this);

@@ -29,7 +29,7 @@ body{
 
 .settingsContainer{
   display: inline-block;
-  transform: translateY(-65%);
+  transform: translateY(-60%);
 }
 
 .roomName{

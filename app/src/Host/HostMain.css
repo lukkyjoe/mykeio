@@ -44,7 +44,7 @@ body{
 
 .connectingContainer{
   display: inline-block;
-  transform: translateY(-65%);
+  transform: translateY(-50%);
 }
 
 .counterContainer{

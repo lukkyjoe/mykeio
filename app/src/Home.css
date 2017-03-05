@@ -38,6 +38,7 @@
 .logoImage{
   height:75px;
   padding-right: 20px;
+  transform: translateY(12%)
 }
 
 .create{

@@ -8,6 +8,14 @@
   font-size:16pt;
 }
 
+.incorrect{
+  color: white;
+}
+
+.correct{
+  color:white;
+}
+
 .containerOptions {
   width: 40%;
   margin-top:5px;

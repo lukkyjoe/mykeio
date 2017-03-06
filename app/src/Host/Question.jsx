@@ -28,7 +28,7 @@ class Question extends Component {
     return (
       <div className={styles.questionContainer}>
         <div className={styles.usernameContainer}>
-          <p className={styles.username}>{this.props.user.username.length > 15 ? this.props.user.username.substring(0, 15) + '...' : this.props.user.username}</p>
+          <p className={styles.username}>{this.props.user.username.length > 10 ? this.props.user.username.substring(0, 10) + '...' : this.props.user.username}</p>
         </div>
         <div className={styles.buttonContainer}>
           <div className={styles.cancelButton} onClick={()=>(this.props.onCancelQuestion(this.props.user.id))}>

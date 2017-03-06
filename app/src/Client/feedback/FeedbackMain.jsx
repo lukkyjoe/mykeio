@@ -99,7 +99,7 @@ class FeedbackMain extends Component {
             onClick={() => this.toggleHasClicked(index)} 
             value={a.choice} 
             className={styles.containerOptions}
-            style={this.state.optionsIsClicked[index] ? {backgroundColor: 'blue'} : undefined} 
+            style={this.state.optionsIsClicked[index] ? {backgroundColor: '#54d8c8'} : undefined} 
             key={index}>
             {a.choice}
           </div>

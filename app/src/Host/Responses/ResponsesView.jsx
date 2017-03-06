@@ -9,14 +9,13 @@ const ResponsesView = ({displayData}) => {
   const responseList = displayData.map((response, index) => {
     return (
       <ResponseTally className={styles.responsesView} response={response} key={index}/>
-    )
-  })
-  
+    );
+  });
   return (
     <div className={styles.responsesView}>
-          {responseList}
+      {responseList}
     </div>
-  )
-}
+  );
+};
 
 export default ResponsesView;

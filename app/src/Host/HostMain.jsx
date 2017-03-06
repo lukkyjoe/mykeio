@@ -225,7 +225,7 @@ class HostMain extends Component {
       );
     } else if (this.state.responseType === 'TEXT') {
       return (
-          <TextResponseList textResponsesDisplay={this.state.textResponsesDisplay}/>
+        <TextResponseList textResponsesDisplay={this.state.textResponsesDisplay}/>
       );
     }  
   }
@@ -262,11 +262,11 @@ class HostMain extends Component {
             </button>
           </div>
         </div>
-        {/*<a href={'/#/' + this.props.params.roomid}>go to client</a>*/}
         <div className={styles.contentMain}>
           <div className={styles.questionContainer}>
             <p className={styles.questionsHeader}>Questions</p>
             <div className={styles.questionsMap}>
+<a href={'/#/' + this.props.params.roomid}>go to client</a>
               {[...questions]}
             </div>
           </div>

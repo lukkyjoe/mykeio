@@ -117,11 +117,13 @@ class FeedbackMain extends Component {
           {
             (this.props.feedback.responseType === 'MULTIPLE_CHOICE')
               ? [...options]
-              : <textarea onChange={this.textAreaChange.bind(this)}> </textarea>
+              : <textarea className={styles.textInput} cols="30" rows="9" onChange={this.textAreaChange.bind(this)}> </textarea>
           }
         </div>
         <div style={{textAlign: 'center'}}>
-          <div className={styles.submitButton} onClick={()=>{ this.submitMaster(); }}><p className={styles.submitButtonText}>Submit</p></div>
+          <div className={styles.submitButton} onClick={()=>{ this.submitMaster(); }}>
+            <p className={styles.submitButtonText}>Submit</p>
+          </div>
         </div>
       </div>
     );

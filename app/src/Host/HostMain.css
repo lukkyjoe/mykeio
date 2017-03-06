@@ -44,7 +44,7 @@ body{
 
 .connectingContainer{
   display: inline-block;
-  transform: translateY(-65%);
+  transform: translateY(-50%);
 }
 
 .counterContainer{
@@ -145,6 +145,7 @@ body{
 }
 .counter{
   font-size: 11pt;
+  transform: translateY(32%);
   margin:0;
   padding:0;
   font:helvetica;

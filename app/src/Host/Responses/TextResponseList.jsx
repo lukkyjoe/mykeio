@@ -5,8 +5,8 @@ import styles from './ResponsesView.css';
 const TextResponseList = ({textResponsesDisplay}) => {
   const textResponseList = textResponsesDisplay.map((response, index) => {
     return (
-      <div key={index}>
-        <div className={styles.username}>{response.username}:</div>
+      <div className={styles.textResponseCard} key={index}>
+        <div className={styles.textResponseText}>{response.username}{textResponsesDisplay[0].message === 'No responses submitted yet...' ? '' : ':'}</div>
         <div>{response.message}</div>
       </div>
     );
@@ -14,7 +14,7 @@ const TextResponseList = ({textResponsesDisplay}) => {
   
   return (
     <div className={styles.responsesView}>
-          {textResponseList}
+      {textResponseList}
     </div>
   );
 };

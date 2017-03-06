@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './FeedbackMain.css';
 
 class IncorrectSubmission extends Component {
   constructor(props) {
@@ -18,8 +19,8 @@ class IncorrectSubmission extends Component {
     });
 
     return (
-      <div>
-        Incorrect! <p></p>Correct answer(s): {[...correctAnswers]}
+      <div className={styles.incorrect}>
+        Incorrect! <p></p>Correct answer{correctAnswersArray.length > 1 ? 's' : ''}: {[...correctAnswers]}
       </div>
     );
   }

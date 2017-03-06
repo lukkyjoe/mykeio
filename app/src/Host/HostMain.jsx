@@ -266,7 +266,7 @@ class HostMain extends Component {
           <div className={styles.questionContainer}>
             <p className={styles.questionsHeader}>Questions</p>
             <div className={styles.questionsMap}>
-<a href={'/#/' + this.props.params.roomid}>go to client</a>
+              {/*<a href={'/#/' + this.props.params.roomid}>go to client</a>*/}
               {[...questions]}
             </div>
           </div>
